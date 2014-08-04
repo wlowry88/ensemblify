@@ -1,7 +1,8 @@
 x omniauth login
 x create user from omniauth
 x update user form
-- create group form
+- users and groiups can approve/deny requests, group notifications
+
 - RESTful routes/views for group & user
 - group index shows only groups that fit user's preferences
 - make zipcode string

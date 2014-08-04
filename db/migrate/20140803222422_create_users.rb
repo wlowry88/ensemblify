@@ -12,9 +12,9 @@ class CreateUsers < ActiveRecord::Migration
       t.text :short_bio
       t.string :image
       t.string :email
-      t.integer :zipcode
+      t.string :zipcode
       t.string :phone_number
-      t.integer :level
+      t.string :level
       t.string :video_sample
       t.string :audio_sample
       t.boolean :available

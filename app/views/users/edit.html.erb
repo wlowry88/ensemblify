@@ -1,6 +1,48 @@
 <h1>Editing user</h1>
 
-<%= render 'form' %>
+  <%= form_for(@user) do |f| %>
+    <p>
+    <%= f.label :instrument %>
+    <%= f.collection_select :instrument, @instrument_list, :to_s, :to_s %>
+    </p>
+    <p>
+    <%= f.label :level %>
+    <%= f.collection_select :level, ["beginner", "intermediate", "advanced", "professional"], :to_s, :to_s %>
+    </p>
+    <p>
+    <%= f.label :zipcode %>
+    <%= f.text_field :zipcode %>
+    </p>
+    <p>
+    <%= f.label :phone_number %>
+    <%= f.telephone_field :phone_number %>
+    </p>
+    <p>
+    <%= f.label :short_bio %>
+    <%= f.text_area :short_bio %>
+    </p>
+    <p>
+    <%= f.fields_for :interests, Interest.new do |i| %>
+      <%= i.label :instrumentation_id %>
+      <%= i.collection_check_boxes :instrumentation_id, @ensemble_types, :id, :name %>
+    <% end %>
+    </p>
+    <p>
+    <%= f.label :available %>
+    <%= f.collection_select :available, ["Seeking a group", "All set"], :to_s, :to_s %>
+    </p>
+    <p>
+    <%= f.label :video_sample %>
+    <%= f.text_field :video_sample, placeholder: "https://www.youtube.com/example" %>
+    </p>
+    <p>
+    <%= f.label :audio_sample %>
+    <%= f.text_field :audio_sample, placeholder: "https://soundcloud.com/example" %>
+    </p>
+    <p>
+    <%= f.submit %>
+    </p>
+  <% end %>
 
 <%= link_to 'Show', @user %> |
 <%= link_to 'Back', users_path %>

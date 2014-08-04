@@ -36,6 +36,7 @@ gem 'spring',        group: :development
 
 group :test, :development do
   gem "rspec-rails"
+  gem "pry-rails"
   gem "capybara"
   gem "selenium-webdriver"
   gem "better_errors"

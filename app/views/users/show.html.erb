@@ -2,12 +2,12 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @user.name %>
+  <%= @user.full_name %>
 </p>
 
 <p>
   <strong>Instrument:</strong>
-  <%= @user.instrument %>
+  <%#= @user.instrument %>
 </p>
 
 <p>
@@ -16,23 +16,12 @@
 </p>
 
 <p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
   <strong>Short bio:</strong>
-  <%= @user.short_bio %>
+  <%#= @user.short_bio %>
 </p>
 
 <p>
-  <strong>Image:</strong>
-  <%= @user.image %>
+  <%= image_tag @user.image %>
 </p>
 
 <p>
@@ -42,47 +31,47 @@
 
 <p>
   <strong>Zipcode:</strong>
-  <%= @user.zipcode %>
+  <%#= @user.zipcode %>
 </p>
 
 <p>
   <strong>Phone number:</strong>
-  <%= @user.phone_number %>
+  <%#= @user.phone_number %>
 </p>
 
 <p>
   <strong>Instrument:</strong>
-  <%= @user.instrument %>
+  <%#= @user.instrument %>
 </p>
 
 <p>
   <strong>Level:</strong>
-  <%= @user.level %>
+  <%#= @user.level %>
 </p>
 
 <p>
   <strong>Video sample:</strong>
-  <%= @user.video_sample %>
+  <%#= @user.video_sample %>
 </p>
 
 <p>
   <strong>Audio sample:</strong>
-  <%= @user.audio_sample %>
+  <%#= @user.audio_sample %>
 </p>
 
 <p>
   <strong>Type preferences:</strong>
-  <%= @user.type_preferences %>
+  <%#= @user.type_preferences %>
 </p>
 
 <p>
   <strong>Style preferences:</strong>
-  <%= @user.style_preferences %>
+  <%#= @user.style_preferences %>
 </p>
 
 <p>
   <strong>Availability:</strong>
-  <%= @user.availability %>
+  <%#= @user.availability %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

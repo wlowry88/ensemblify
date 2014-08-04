@@ -75,6 +75,10 @@ ActiveRecord::Schema.define(version: 20140804003346) do
   add_index "requests", ["user_id"], name: "index_requests_on_user_id"
 
   create_table "users", force: true do |t|
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "oauth_token"
+    t.string   "oauth_expires_at"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "instrument"

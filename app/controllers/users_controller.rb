@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    raise params.inspect
+    ##raise user_params.inspect
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -70,8 +70,8 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Never trust parameters from the scary internet, only allow the white list through.                                                                                                    "interests_attributes"=>{"0"=>{"instrumentation"=>["1", ""]}}
     def user_params
-      params.require(:user).permit(:name, :instrument, :gender, :first_name, :last_name, :short_bio, :image, :email, :zipcode, :phone_number, :instrument, :level, :video_sample, :audio_sample, :type_preferences, :style_preferences, :availability)
+      params.require(:user).permit(:name, :instrument, :gender, :first_name, :last_name, :short_bio, :image, :email, :zipcode, :instrument, :level, :video_sample, :audio_sample, :phone_number, :availability, :interests_attributes => {:instrumentation_id => []})
     end
 end

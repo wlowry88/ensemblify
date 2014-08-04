@@ -4,6 +4,15 @@ class User < ActiveRecord::Base
 	has_many :interests
 	has_many :instrumentations, through: :interests
 
+  def interests_attributes=(attributes)
+    ##{"0"=>{"instrumentation_id"=>["1", "2", ""]}}
+    attributes["0"]["instrumentation_id"].each do |id|
+      if !id.empty?
+        Interest.create(user_id: self.id, instrumentation_id: id)
+      end
+    end
+  end
+
 	def full_name
 		"#{first_name} #{last_name}"
 	end

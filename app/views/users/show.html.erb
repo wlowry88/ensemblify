@@ -31,43 +31,22 @@
   <%= f.telephone_field :phone_number %>
   <%= f.label :short_bio %>
   <%= f.text_area :short_bio %>
-  <%= f.fields_for :interests do |i| %>
-    <%= i.label :instrumentation %>
-    <%= i.collection_check_boxes :instrumentation, @ensemble_types, :id, :name %>
-    <% end %>
+  <%= f.fields_for :interests, Interest.new do |i| %>
+    <%= i.label :instrumentation_id %>
+    <%= i.collection_check_boxes :instrumentation_id, Instrumentation.all, :id, :name %>
+  <% end %>
+  <%= f.label :available %>
+  <%= f.collection_select :available, ["Seeking a group", "All set"], :to_s, :to_s %>
+  <%= f.label :video_sample %>
+  <%= f.text_field :video_sample, placeholder: "https://www.youtube.com/example" %>
+  <%= f.label :audio_sample %>
+  <%= f.text_field :audio_sample, placeholder: "https://soundcloud.com/example" %>
+
   <%= f.submit %>
 <% end %>
 
-<p>
-  <strong>Short bio:</strong>
-  <%#= @user.short_bio %>
-</p>
 
 
-<p>
-  <strong>Video sample:</strong>
-  <%#= @user.video_sample %>
-</p>
-
-<p>
-  <strong>Audio sample:</strong>
-  <%#= @user.audio_sample %>
-</p>
-
-<p>
-  <strong>Type preferences:</strong>
-  <%#= @user.type_preferences %>
-</p>
-
-<p>
-  <strong>Style preferences:</strong>
-  <%#= @user.style_preferences %>
-</p>
-
-<p>
-  <strong>Availability:</strong>
-  <%#= @user.availability %>
-</p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

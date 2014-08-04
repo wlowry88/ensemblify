@@ -5,69 +5,23 @@
   <%= image_tag @user.image %>
 </p>
 
-<% if (@user.registered?) %>
-    <% @user.profile_attributes.each do |attr, value| %>
-      <p><strong><%= attr %>: </strong><%= value %></p>
-    <% end %>
-    <strong>Ensemble Preferences:</strong>
-    <% @user.interests.each do |interest| %>
-        <li><%= Instrumentation.find(interest.instrumentation_id).name %></li>
-    <% end %>
-
-
-  <%= link_to 'Update Profile', edit_user_path %>
-<% elsif (!@user.registered? && @user==current_user) %>
-  <%= form_for(@user) do |f| %>
-    <p>
-    <%= f.label :instrument %>
-    <%= f.collection_select :instrument, @instrument_list, :to_s, :to_s %>
-    </p>
-    <p>
-    <%= f.label :level %>
-    <%= f.collection_select :level, ["", "beginner", "intermediate", "advanced", "professional"], :to_s, :to_s %>
-    </p>
-    <p>
-    <%= f.label :zipcode %>
-    <%= f.text_field :zipcode %>
-    </p>
-    <p>
-    <%= f.label :phone_number %>
-    <%= f.telephone_field :phone_number %>
-    </p>
-    <p>
-    <%= f.label :short_bio %>
-    <%= f.text_area :short_bio %>
-    </p>
-    <p>
-    <%= f.fields_for :interests, Interest.new do |i| %>
-      <%= i.label :instrumentation_id, "Ensemble Preference: " %>
-      <%= i.collection_check_boxes :instrumentation_id, @ensemble_types, :id, :name %>
-    <% end %>
-    </p>
-    <p>
-    <%= f.label :available %>
-    <%= f.collection_select :available, ["Seeking a group", "All set"], :to_s, :to_s %>
-    </p>
-    <p>
-    <%= f.label :video_sample %>
-    <%= f.text_field :video_sample, placeholder: "https://www.youtube.com/example" %>
-    </p>
-    <p>
-    <%= f.label :audio_sample %>
-    <%= f.text_field :audio_sample, placeholder: "https://soundcloud.com/example" %>
-    </p>
-    <p>
-    <%= f.submit %>
-    </p>
+  <% @user.profile_attributes.each do |attr, value| %>
+    <p><strong><%= attr %>: </strong><%= value %></p>
   <% end %>
-<% end %>
+  <strong>Ensemble Preferences:</strong>
+  <% @user.interests.each do |interest| %>
+      <li><%= Instrumentation.find(interest.instrumentation_id).name %></li>
+  <% end %>
 
- <% if @user != current_user  %>
-  <p>Would you like to invite <%= @user.first_name %> to one of your groups?</p>
+  <%= link_to 'Update Profile', edit_user_path if current_user==@user%>
+
+
+  <% if @user != current_user  %>
+    <p>Would you like to invite <%= @user.first_name %> to one of your groups?</p>
     <%= form_for Request.new do |f| %>
-        <%= f.label :group %>
-        <%= f.collection_select :group, current_user.admin_of, :id, :name %>
-        <%= f.submit "Invite #{@user.first_name}" %>
+      <%= f.label :group %>
+      <%= f.collection_select :group, current_user.admin_of, :id, :name %>
+      <%= f.submit "Invite #{@user.first_name}" %>
     <% end %>
   <% end %>
 

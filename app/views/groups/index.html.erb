@@ -6,7 +6,6 @@
       <th>Name</th>
       <th>Type</th>
       <th>Complete</th>
-      <th>Admin</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,10 +13,9 @@
   <tbody>
     <% @groups.each do |group| %>
       <tr>
-        <td><%= group.name %></td>
+        <td><%= link_to group.name, group %></td>
         <td><%= group.instrumentation.name %></td>
         <td><%= group.complete %></td>
-        <td><%= group.admin %></td>
         <td><%= link_to 'Show', group %></td>
         <td><%= link_to 'Edit', edit_group_path(group) %></td>
         <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>

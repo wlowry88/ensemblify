@@ -6,6 +6,7 @@ x update user form
 - group index shows only groups that fit user's preferences
 - make zipcode string
 - on edit page, display already checked boxes for ensemble preferences
+- preventing multiple invites
 
 
 

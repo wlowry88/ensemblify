@@ -6,18 +6,8 @@
 </p>
 
 <p>
-  <strong>Instrument:</strong>
-  <%#= @user.instrument %>
-</p>
-
-<p>
   <strong>Gender:</strong>
   <%= @user.gender %>
-</p>
-
-<p>
-  <strong>Short bio:</strong>
-  <%#= @user.short_bio %>
 </p>
 
 <p>
@@ -29,25 +19,30 @@
   <%= @user.email %>
 </p>
 
-<p>
-  <strong>Zipcode:</strong>
-  <%#= @user.zipcode %>
-</p>
+
+<%= form_for(@user) do |f| %>
+  <%= f.label :instrument %>
+  <%= f.collection_select :instrument, @instrument_list, :to_s, :to_s %>
+  <%= f.label :level %>
+  <%= f.collection_select :level, ["beginner", "intermediate", "advanced", "professional"], :to_s, :to_s %>
+  <%= f.label :zipcode %>
+  <%= f.text_field :zipcode %>
+  <%= f.label :phone_number %>
+  <%= f.telephone_field :phone_number %>
+  <%= f.label :short_bio %>
+  <%= f.text_area :short_bio %>
+  <%= f.fields_for :interests do |i| %>
+    <%= i.label :instrumentation %>
+    <%= i.collection_check_boxes :instrumentation, @ensemble_types, :id, :name %>
+    <% end %>
+  <%= f.submit %>
+<% end %>
 
 <p>
-  <strong>Phone number:</strong>
-  <%#= @user.phone_number %>
+  <strong>Short bio:</strong>
+  <%#= @user.short_bio %>
 </p>
 
-<p>
-  <strong>Instrument:</strong>
-  <%#= @user.instrument %>
-</p>
-
-<p>
-  <strong>Level:</strong>
-  <%#= @user.level %>
-</p>
 
 <p>
   <strong>Video sample:</strong>

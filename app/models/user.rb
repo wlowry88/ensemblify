@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 	def full_name
 		"#{first_name} #{last_name}"
 	end
-	
+
 	def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
@@ -23,5 +23,10 @@ class User < ActiveRecord::Base
       user.save
     end
   end
+
+  def self.instrument_list
+    ["violin", "viola", "cello", "bass", "harp", "guitar", "flute", "clarinet", "oboe", "bassoon", "french horn", "trumpet", "trombone", "tuba", "piano", "voice", "percussion", "saxophone"]
+  end
+
 end
 

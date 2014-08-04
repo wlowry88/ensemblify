@@ -55,5 +55,9 @@ class User < ActiveRecord::Base
     !(instrument.nil? || zipcode.nil?)
   end
 
+  def admin_of
+    self.groups.where(:admin => self.id)
+  end
+
 end
 

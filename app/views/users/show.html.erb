@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
-<h1><%= "Welcome, " + @user.full_name + "!" unless @user.registered? %> </h1>
+<h1><%= "Welcome, " + @user.full_name + "!" unless (@user.registered? || @user != current_user) %> </h1>
 
 <p>
   <%= image_tag @user.image %>
 </p>
 
-<% if @user.registered? %>
+<% if (@user.registered?) %>
     <% @user.profile_attributes.each do |attr, value| %>
       <p><strong><%= attr %>: </strong><%= value %></p>
     <% end %>
@@ -14,8 +14,9 @@
         <li><%= Instrumentation.find(interest.instrumentation_id).name %></li>
     <% end %>
 
+
   <%= link_to 'Update Profile', edit_user_path %>
-<% else %>
+<% elsif (!@user.registered? && @user==current_user) %>
   <%= form_for(@user) do |f| %>
     <p>
     <%= f.label :instrument %>
@@ -60,6 +61,16 @@
     </p>
   <% end %>
 <% end %>
+
+ <% if @user != current_user  %>
+  <p>Would you like to invite <%= @user.first_name %> to one of your groups?</p>
+    <%= form_for Request.new do |f| %>
+        <%= f.label :group %>
+        <%= f.collection_select :group, current_user.admin_of, :id, :name %>
+        <%= f.submit "Invite #{@user.first_name}" %>
+    <% end %>
+  <% end %>
+
 
 
 

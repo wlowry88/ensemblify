@@ -3,8 +3,7 @@ class CreatePieces < ActiveRecord::Migration
     create_table :pieces do |t|
       t.string :name
       t.integer :level
-      t.references :type, index: true
-
+      t.references :instrumentation, index: true
       t.timestamps
     end
   end

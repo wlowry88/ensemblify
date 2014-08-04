@@ -25,14 +25,14 @@ ActiveRecord::Schema.define(version: 20140804003346) do
 
   create_table "groups", force: true do |t|
     t.string   "name"
-    t.integer  "type_id"
+    t.integer  "instrumentation_id"
     t.boolean  "complete"
     t.integer  "admin"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "groups", ["type_id"], name: "index_groups_on_type_id"
+  add_index "groups", ["instrumentation_id"], name: "index_groups_on_instrumentation_id"
 
   create_table "instrumentations", force: true do |t|
     t.string   "name"
@@ -42,23 +42,23 @@ ActiveRecord::Schema.define(version: 20140804003346) do
 
   create_table "interests", force: true do |t|
     t.integer  "user_id"
-    t.integer  "type_id"
+    t.integer  "instrumentation_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "interests", ["type_id"], name: "index_interests_on_type_id"
+  add_index "interests", ["instrumentation_id"], name: "index_interests_on_instrumentation_id"
   add_index "interests", ["user_id"], name: "index_interests_on_user_id"
 
   create_table "pieces", force: true do |t|
     t.string   "name"
     t.integer  "level"
-    t.integer  "type_id"
+    t.integer  "instrumentation_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "pieces", ["type_id"], name: "index_pieces_on_type_id"
+  add_index "pieces", ["instrumentation_id"], name: "index_pieces_on_instrumentation_id"
 
   create_table "requests", force: true do |t|
     t.integer  "user_id"

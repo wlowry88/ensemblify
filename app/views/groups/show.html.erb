@@ -20,5 +20,15 @@
   <%= link_to @admin.full_name, @admin %>
 </p>
 
+<% if !(@group.member_ids.include? current_user.id) %>
+  <p>Would you like to ask to join <%= @group.name %>?</p>
+  <%= form_for Request.new do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :user_approved, value: true %>
+    <%= f.hidden_field :group_id, value: @group.id %>
+    <%= f.submit "Ask to Join #{@group.name}" %>
+  <% end %>
+<% end %>
+
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>

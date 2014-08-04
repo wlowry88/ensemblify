@@ -5,7 +5,13 @@ class Group < ActiveRecord::Base
   has_many :group_pieces
   has_many :pieces, through: :group_pieces
 
-  def admin_name
-
+  def members
+  	requests.where(finalized: true).collect {|request| User.find(request.user_id)}
   end
+
+  def member_ids
+  	requests.where(finalized: true).collect {|request| request.user_id}
+  end
+
+
 end

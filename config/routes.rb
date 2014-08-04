@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :requests
 
   resources :users
+  get 'login', to: 'static_pages#login'
   get 'logout', to: 'sessions#destroy'
   get '/auth/:provider/callback', to: 'sessions#create'
 
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'static_pages#login'
+  root 'groups#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

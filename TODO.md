@@ -1,10 +1,11 @@
 x omniauth login
 x create user from omniauth
-- update user form
+x update user form
 - create group form
 - RESTful routes/views for group & user
 - group index shows only groups that fit user's preferences
 - make zipcode string
+- on edit page, display already checked boxes for ensemble preferences
 
 
 

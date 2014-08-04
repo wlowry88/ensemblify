@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<h1><%= "Welcome, " + @user.full_name + "!" unless @user.registered? %> </h1>
 
 <p>
   <%= image_tag @user.image %>
@@ -7,6 +8,10 @@
 <% if @user.registered? %>
     <% @user.profile_attributes.each do |attr, value| %>
       <p><strong><%= attr %>: </strong><%= value %></p>
+    <% end %>
+    <strong>Ensemble Preferences:</strong>
+    <% @user.interests.each do |interest| %>
+        <li><%= Instrumentation.find(interest.instrumentation_id).name %></li>
     <% end %>
 
   <%= link_to 'Update Profile', edit_user_path %>
@@ -34,7 +39,7 @@
     </p>
     <p>
     <%= f.fields_for :interests, Interest.new do |i| %>
-      <%= i.label :instrumentation_id %>
+      <%= i.label :instrumentation_id, "Ensemble Preference: " %>
       <%= i.collection_check_boxes :instrumentation_id, @ensemble_types, :id, :name %>
     <% end %>
     </p>

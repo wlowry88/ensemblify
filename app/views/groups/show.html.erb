@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <strong>Type:</strong>
-  <%= @group.type %>
+  <strong>Ensemble Type:</strong>
+  <%= @group.instrumentation.name %>
 </p>
 
 <p>
@@ -17,7 +17,7 @@
 
 <p>
   <strong>Admin:</strong>
-  <%= @group.admin %>
+  <%= link_to @admin.full_name, @admin %>
 </p>
 
 <%= link_to 'Edit', edit_group_path(@group) %> |

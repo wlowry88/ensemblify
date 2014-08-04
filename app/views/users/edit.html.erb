@@ -23,7 +23,7 @@
     </p>
     <p>
     <%= f.fields_for :interests, Interest.new do |i| %>
-      <%= i.label :instrumentation_id %>
+      <%= i.label :instrumentation_id, "Ensemble Preference: "  %>
       <%= i.collection_check_boxes :instrumentation_id, @ensemble_types, :id, :name %>
     <% end %>
     </p>
@@ -44,5 +44,4 @@
     </p>
   <% end %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Show', @user %>

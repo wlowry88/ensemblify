@@ -16,16 +16,16 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :type_id %><br>
-    <%= f.text_field :type_id %>
+    <%= f.label :instrumentation_id %><br>
+    <%= f.collection_select :instrumentation_id, Instrumentation.all, :id, :name  %>
+
   </div>
   <div class="field">
     <%= f.label :complete %><br>
     <%= f.check_box :complete %>
   </div>
   <div class="field">
-    <%= f.label :admin %><br>
-    <%= f.number_field :admin %>
+    <%= f.hidden_field :admin, :value => current_user.id %>
   </div>
   <div class="actions">
     <%= f.submit %>

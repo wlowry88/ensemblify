@@ -15,7 +15,7 @@
     <% @groups.each do |group| %>
       <tr>
         <td><%= group.name %></td>
-        <td><%= group.type %></td>
+        <td><%= group.instrumentation.name %></td>
         <td><%= group.complete %></td>
         <td><%= group.admin %></td>
         <td><%= link_to 'Show', group %></td>

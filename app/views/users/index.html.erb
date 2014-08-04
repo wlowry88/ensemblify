@@ -27,7 +27,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.name %></td>
+        <td><%= user.full_name %></td>
         <td><%= user.instrument %></td>
         <td><%= user.gender %></td>
         <td><%= user.first_name %></td>
@@ -41,9 +41,8 @@
         <td><%= user.level %></td>
         <td><%= user.video_sample %></td>
         <td><%= user.audio_sample %></td>
-        <td><%= user.type_preferences %></td>
-        <td><%= user.style_preferences %></td>
-        <td><%= user.availability %></td>
+        <td><%= user.interests.collect{|i|i.instrumentation.name}.uniq.join(", ") %></td>
+        <td><%= user.available %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

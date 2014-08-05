@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   def member_of
     self.requests.collect do |request|
       request.group if request.finalized
-    end
+    end.compact
   end
 
   def profile_attributes
@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
     end
     new_hash = {}
     hash.each do |attribute, value|
-      if (value.is_a? Integer) || !(value.nil? || value.empty?)
+      if !value.nil? && !value.empty?
         new_hash[attribute.split("_").map(&:capitalize).join(' ')] = value
       end
     end

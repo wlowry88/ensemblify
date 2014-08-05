@@ -13,7 +13,13 @@
   <% @user.profile_attributes.each do |attr, value| %>
     <p><strong><%= attr %>: </strong><%= value %></p>
   <% end %>
-  <strong>Ensemble Preferences:</strong>
+  <% if @user.interests.any? %>
+    <strong>Ensemble Preferences:</strong>
+    <% @user.interests.each do |interest| %>
+      <%= interest.instrumentation.name %>
+    <% end %>
+  <% end %>
+
   <% @user.interests.each do |interest| %>
       <li><%= Instrumentation.find(interest.instrumentation_id).name %></li>
   <% end %>
@@ -44,5 +50,12 @@
       <%= f.submit "Invite #{@user.first_name}" %>
     <% end %>
   <% end %>
+
+  <p>
+    <strong>Groups:</strong>
+    <% @user.member_of.each do |group| %>
+      <li><%= link_to group.name, group %></li>
+    <% end %>
+  </p>
 
 

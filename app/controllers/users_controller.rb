@@ -75,6 +75,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.                                                                                                    "interests_attributes"=>{"0"=>{"instrumentation"=>["1", ""]}}
     def user_params
-      params.require(:user).permit(:name, :instrument, :gender, :first_name, :last_name, :short_bio, :image, :email, :zipcode, :instrument, :level, :video_sample, :audio_sample, :phone_number, :availability, :interests_attributes => {:instrumentation_id => []})
+      params.require(:user).permit(:name, :instrument, :gender, :first_name, :last_name, :short_bio, :image, :email, :zipcode, :instrument, :level, :video_sample, :audio_sample, :phone_number, :available, :interests_attributes => {:instrumentation_id => []})
     end
 end

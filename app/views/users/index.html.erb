@@ -5,20 +5,8 @@
     <tr>
       <th>Name</th>
       <th>Instrument</th>
-      <th>Gender</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Short bio</th>
-      <th>Image</th>
-      <th>Email</th>
-      <th>Zipcode</th>
-      <th>Phone number</th>
-      <th>Instrument</th>
       <th>Level</th>
-      <th>Video sample</th>
-      <th>Audio sample</th>
-      <th>Type preferences</th>
-      <th>Style preferences</th>
+      <th>Ensemble Preferences</th>
       <th>Availability</th>
       <th colspan="3"></th>
     </tr>
@@ -29,23 +17,9 @@
       <tr>
         <td><%= user.full_name %></td>
         <td><%= user.instrument %></td>
-        <td><%= user.gender %></td>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-        <td><%= user.short_bio %></td>
-        <td><%= user.image %></td>
-        <td><%= user.email %></td>
-        <td><%= user.zipcode %></td>
-        <td><%= user.phone_number %></td>
-        <td><%= user.instrument %></td>
         <td><%= user.level %></td>
-        <td><%= user.video_sample %></td>
-        <td><%= user.audio_sample %></td>
         <td><%= user.interests.collect{|i|i.instrumentation.name}.uniq.join(", ") %></td>
         <td><%= user.available %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

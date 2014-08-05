@@ -17,7 +17,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :level
       t.string :video_sample
       t.string :audio_sample
-      t.boolean :available
+      t.string :available
 
       t.timestamps
     end

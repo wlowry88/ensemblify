@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20140804003346) do
     t.string   "level"
     t.string   "video_sample"
     t.string   "audio_sample"
-    t.boolean  "available"
+    t.string   "available"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

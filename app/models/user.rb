@@ -55,11 +55,11 @@ class User < ActiveRecord::Base
   end
 
   def self.instrument_list
-    ["violin", "viola", "cello", "bass", "harp", "guitar", "flute", "clarinet", "oboe", "bassoon", "french horn", "trumpet", "trombone", "tuba", "piano", "voice", "percussion", "saxophone"]
+    ["","violin", "viola", "cello", "bass", "harp", "guitar", "flute", "clarinet", "oboe", "bassoon", "french horn", "trumpet", "trombone", "tuba", "piano", "voice", "percussion", "saxophone"]
   end
 
   def check_for_instrument_and_zipcode
-    !(instrument.nil? || zipcode.empty?)
+    !(instrument.nil? || zipcode.empty? || instrument.empty?)
   end
 
   def admin_of

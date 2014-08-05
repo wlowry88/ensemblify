@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :authentication_required, only: [:new, :edit, :create, :update, :destroy]
 
   # GET /groups
   # GET /groups.json
@@ -22,6 +23,11 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
+    if current_user == @group.admin
+      render 'edit'
+    else
+      redirect_to @group, notice: 'You do not have editing rights for this group'
+    end
   end
 
   # POST /groups

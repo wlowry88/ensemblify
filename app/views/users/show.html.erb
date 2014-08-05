@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <h1><%= "Welcome, " + @user.full_name + "! Please fill out the rest of your profile!" unless (@user.registered? || @user != current_user) %> </h1>
 
-<% if current_user==@user %> 
+<% if current_user==@user %>
   <% Request.where(user_id: @user.id, finalized: nil).each do |request| %>
   <%= link_to request.invite_message, request.group %>
   <% end %>
@@ -19,9 +19,9 @@
   <% end %>
 
   <%= link_to 'Update Profile', edit_user_path if current_user==@user%>
- 
+
   <% if current_user.pending_requests(@user) %>
-     <p>Add Catherine to your groups?</p>
+     <p>Add <%= @user.first_name %> to your groups?</p>
      <p><% current_user.pending_requests(@user).each do |request| %>
     <%= binding.pry %>
           <%= form_for request do |f| %>

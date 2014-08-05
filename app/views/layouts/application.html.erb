@@ -10,6 +10,8 @@
 <body>
 <%= "Signed in as #{current_user.full_name}! |" if logged_in?%>
 <%= link_to "Profile | ", current_user if logged_in? %> 
+<%= link_to "Musicians | ", users_path %> 
+<%= link_to "Ensembles | ", groups_path  %> 
 <%= link_to "Login Page", "/login" unless logged_in?%>
 <%= link_to "Logout", "/logout" if logged_in? %>
 

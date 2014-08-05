@@ -19,6 +19,12 @@ class User < ActiveRecord::Base
 		"#{first_name} #{last_name}"
 	end
 
+  def member_of
+    self.requests.collect do |request|
+      request.group if request.finalized
+    end
+  end
+
   def profile_attributes
     hash=self.attributes.select do |attribute, value|
       !["uid", "provider", "oauth_token", "oauth_expires_at", "created_at", "updated_at", "id","image"].include?(attribute)
@@ -57,8 +63,18 @@ class User < ActiveRecord::Base
   end
 
   def admin_of
-    self.groups.where(:admin => self.id)
+    self.groups.where(:admin_id => self.id)
   end
 
+  def group_ids_for_admin
+    self.groups.where(:admin_id => self.id).collect{|group| group.id}
+  end
+
+  def pending_requests(user)
+    array = group_ids_for_admin.map do |id|
+      Request.where(group_id: id, user_id: user.id, finalized: nil)[0]
+    end
+    array.compact
+  end
 end
 

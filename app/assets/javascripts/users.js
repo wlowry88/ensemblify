@@ -6,14 +6,13 @@ $(function(){
 		e.preventDefault();
 		$(".intelligent_matches").toggle();
 		$(".all_matches").toggle();
-		var that = this;
 		$(this).text(function(){
-			if($(this).text()=="Show Intelligent Matches") {
-				return "Show All Matches"
+			if($(this).text() == "Show Intelligent Matches") {
+				return "Show All Musicians"
 			} else {
 				return "Show Intelligent Matches"
 			}
-		})
+		});
 	});
 
 });

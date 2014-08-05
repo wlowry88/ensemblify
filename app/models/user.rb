@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 	has_many :interests
 	has_many :instrumentations, through: :interests
   before_update :registered?
+  has_many :groups, foreign_key: "admin_id"
 
   def interests_attributes=(attributes)
     ##{"0"=>{"instrumentation_id"=>["1", "2", ""]}}

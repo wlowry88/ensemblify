@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20140804003346) do
     t.string   "name"
     t.integer  "instrumentation_id"
     t.boolean  "complete"
-    t.integer  "admin"
+    t.integer  "admin_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -4,6 +4,7 @@ class Group < ActiveRecord::Base
   has_many :users, through: :requests
   has_many :group_pieces
   has_many :pieces, through: :group_pieces
+  belongs_to :admin, class_name: "User"
 
   def members
   	requests.where(finalized: true).collect {|request| User.find(request.user_id)}

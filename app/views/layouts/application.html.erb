@@ -8,6 +8,10 @@
   <%= analytics_init if Rails.env.production? %>
 </head>
 <body>
+<%= "Signed in as #{current_user.full_name}! |" if logged_in?%>
+<%= link_to "Profile | ", current_user if logged_in? %> 
+<%= link_to "Login Page", "/login" unless logged_in?%>
+<%= link_to "Logout", "/logout" if logged_in? %>
 
 <%= yield %>
 

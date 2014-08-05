@@ -4,7 +4,11 @@ class SessionsController < ApplicationController
 		auth = request.env["omniauth.auth"]
 		@user = User.from_omniauth(auth)
 		session[:user_id]= @user.id 
-		redirect_to @user 
+		if @user.registered?
+			redirect_to groups_path
+		else
+			redirect_to @user 
+		end
 	end
 
 	def destroy

@@ -6,6 +6,10 @@ class Request < ActiveRecord::Base
   	"You have been invited to join #{self.group.name}!"
   end
 
+  def apply_message
+    "#{self.user.full_name} wants to join your group!"
+  end
+
   def invited?
     !user_approved && group_approved
   end

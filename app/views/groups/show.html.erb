@@ -1,4 +1,9 @@
 <p id="notice"><%= notice %></p>
+<% if current_user==@group.admin %> 
+  <% Request.where(group_id: @group.id, finalized: nil).each do |request| %>
+  <%= link_to request.apply_message, request.user %>
+  <% end %>
+<% end %>
 
 <p>
   <strong>Name:</strong>

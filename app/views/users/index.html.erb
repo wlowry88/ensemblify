@@ -1,6 +1,36 @@
 <h1>Musicians</h1>
 
-<table>
+<p>
+<button>Get Matches Based On Interests</button>
+<button>Show All</button>
+</p>
+
+<table class="intelligent_matches">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Instrument</th>
+      <th>Level</th>
+      <th>Ensemble Preferences</th>
+      <th>Availability</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.full_name %></td>
+        <td><%= user.instrument %></td>
+        <td><%= user.level %></td>
+        <td><%= user.interests.collect{|i|i.instrumentation.name}.uniq.join(", ") %></td>
+        <td><%= user.available %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table class="all_matches">
   <thead>
     <tr>
       <th>Name</th>

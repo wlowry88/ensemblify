@@ -1,6 +1,35 @@
 <h1>Ensembles</h1>
 
-<table>
+<% if current_user %>
+  <p>Intelligent Matches</p>
+  <table class="intelligent_matches">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Complete</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @groups.where(complete: false).each do |group| %>
+        <% current_user.interests.each do |interest| %>
+          <% if interest.instrumentation == group.instrumentation %>
+          <tr>
+            <td><%= link_to group.name, group %></td>
+            <td><%= group.instrumentation.name %></td>
+            <td><%= group.complete %></td>
+          </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<table class="all_matches">
+  <p>All Matches</p>
   <thead>
     <tr>
       <th>Name</th>

@@ -63,10 +63,14 @@ class GroupsController < ApplicationController
   # DELETE /groups/1
   # DELETE /groups/1.json
   def destroy
-    @group.destroy
-    respond_to do |format|
-      format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user == @group.admin
+      @group.destroy
+      respond_to do |format|
+        format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to @group, notice: 'You do not have editing rights for this group'
     end
   end
 

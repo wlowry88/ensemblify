@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<% if current_user == @group.admin %> 
+<% if current_user == @group.admin %>
   <% Request.where(group_id: @group.id, finalized: nil).each do |request| %>
   <%= link_to request.apply_message, request.user %>
   <% end %>
@@ -46,5 +46,13 @@
   <% end %>
 <% end %>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<p>
+  <strong>Members:</strong>
+  <% @group.members.each do |member| %>
+    <li><%= link_to member.full_name, member %></li>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_group_path(@group) if current_user == @group.admin %> |
+<%= link_to 'Back', groups_path %> |
+<%= link_to 'Destroy', @group, method: :delete, data: {confirm: "Are you sure?"} if current_user == @group.admin %>

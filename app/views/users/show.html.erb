@@ -20,10 +20,9 @@
 
   <%= link_to 'Update Profile', edit_user_path if current_user==@user%>
 
-  <% if current_user.pending_requests(@user) %>
+  <% if (current_user.pending_requests(@user).size > 0 && @user != current_user) %>
      <p>Add <%= @user.first_name %> to your groups?</p>
      <p><% current_user.pending_requests(@user).each do |request| %>
-    <%= binding.pry %>
           <%= form_for request do |f| %>
             <%= f.hidden_field :group_approved, value: true %>
             <%= f.submit "Accept Request to join #{request.group.name}" %>
@@ -35,11 +34,11 @@
         <%end%>
       </p>
 
-  <% elsif (@user != current_user && !current_user.admin_of.empty?) %>
+  <% elsif (@user != current_user && !current_user.admin_of.empty? && !(current_user.admin_of - @user.member_of).empty?) %>
     <p>Would you like to invite <%= @user.first_name %> to one of your groups?</p>
     <%= form_for Request.new do |f| %>
       <%= f.label :group_id %>
-      <%= f.collection_select :group_id, current_user.admin_of, :id, :name %>
+      <%= f.collection_select :group_id, (current_user.admin_of - @user.member_of), :id, :name %>
       <%= f.hidden_field :user_id, value: @user.id %>
       <%= f.hidden_field :group_approved, value: true %>
       <%= f.submit "Invite #{@user.first_name}" %>

@@ -1,4 +1,19 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$(function(){
 
+	$(".all_matches").hide();
+
+	$(".wrapper").on("click", ".intelligent_all_toggle", function(e){
+		e.preventDefault();
+		$(".intelligent_matches").toggle();
+		$(".all_matches").toggle();
+		var that = this;
+		$(this).text(function(){
+			if($(this).text()=="Show Intelligent Matches") {
+				return "Show All Matches"
+			} else {
+				return "Show Intelligent Matches"
+			}
+		})
+	});
+
+});

@@ -1,7 +1,11 @@
 x omniauth login
 x create user from omniauth
 x update user form
-- users and groiups can approve/deny requests, group notifications
+- group notifications
+- users and groups can approve/deny requests
+- mailers
+- correctly redirect to login when needed
+- hide edit capabilites
 
 - RESTful routes/views for group & user
 - group index shows only groups that fit user's preferences

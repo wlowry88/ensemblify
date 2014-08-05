@@ -19,8 +19,19 @@
   <strong>Admin:</strong>
   <%= link_to @admin.full_name, @admin %>
 </p>
+<% if @request %>
+  <% if @request.invited? %>
+    <%= form_for @request do |f| %>
+      <%= f.hidden_field :user_approved, value: true %>
+      <%= f.submit "Accept Invitation" %>
+    <% end %>
+    <%= form_for @request do |f| %>
+      <%= f.hidden_field :user_approved, value: false %>
+      <%= f.submit "Deny Invitation" %>
+    <% end %>
+  <% end %>
 
-<% if !(@group.member_ids.include? current_user.id) %>
+<% elsif !(@group.member_ids.include? current_user.id) %>
   <p>Would you like to ask to join <%= @group.name %>?</p>
   <%= form_for Request.new do |f| %>
     <%= f.hidden_field :user_id, value: current_user.id %>

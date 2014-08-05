@@ -12,6 +12,7 @@ class GroupsController < ApplicationController
   # GET /groups/1.json
   def show
     @admin = User.find(@group.admin.id)
+    @request = Request.find_open_request_by_user_and_group(current_user, @group)
   end
 
   # GET /groups/new

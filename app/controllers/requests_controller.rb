@@ -1,13 +1,18 @@
 class RequestsController < ApplicationController
 
 	def create
-		raise request_params.inspect
 		@request = Request.new(request_params)
 		if @request.save
 			redirect_to Group.find(@request.group_id)
 		end
-		
+	end	
 
+	def update
+		@request = Request.find(params[:id])
+		if @request.update(request_params)
+			@request.finalize
+			redirect_to Group.find(@request.group_id)
+		end
 	end
 
 

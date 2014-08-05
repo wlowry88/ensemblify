@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 	has_many :groups, through: :requests
 	has_many :interests
 	has_many :instrumentations, through: :interests
-  before_update :registered?
+  before_update :check_for_instrument_and_zipcode
   has_many :groups, foreign_key: "admin_id"
 
   def interests_attributes=(attributes)
@@ -58,8 +58,8 @@ class User < ActiveRecord::Base
     ["violin", "viola", "cello", "bass", "harp", "guitar", "flute", "clarinet", "oboe", "bassoon", "french horn", "trumpet", "trombone", "tuba", "piano", "voice", "percussion", "saxophone"]
   end
 
-  def registered?
-    !(instrument.nil? || zipcode.nil?)
+  def check_for_instrument_and_zipcode
+    !(instrument.nil? || zipcode.empty?)
   end
 
   def admin_of

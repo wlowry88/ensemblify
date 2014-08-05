@@ -42,6 +42,7 @@
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :user_approved, value: true %>
     <%= f.hidden_field :group_id, value: @group.id %>
+    <%= f.hidden_field :part, value: current_user.instrument %>
     <%= f.submit "Ask to Join #{@group.name}" %>
   <% end %>
 <% end %>
@@ -49,7 +50,7 @@
 <p>
   <strong>Members:</strong>
   <% @group.members.each do |member| %>
-    <li><%= link_to member.full_name, member %></li>
+    <li><%= link_to member.full_name, member %>, <%= member.instrument %></li>
   <% end %>
 </p>
 

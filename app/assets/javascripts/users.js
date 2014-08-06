@@ -21,6 +21,7 @@ $(function(){
 		var instrument = $("#user_instrument_id").val();
 		var available = $("#user_available").val();
 		var interests = $("#user_instrumentation_ids").val();
+		var level = $("#user_level").val();
 		if(instrument.length > 0){
 			$.each($(".instrument_field"), function(i, value){
 				if($(value).text() !== instrument){
@@ -38,6 +39,13 @@ $(function(){
 		if(interests.length > 0){
 			$.each($(".interests_field"), function(i, value){
 				if($(value).text().indexOf(interests)===-1){
+					$(value).parent().hide();
+				}
+			});
+		}		
+		if(level.length > 0){
+			$.each($(".level_field"), function(i, value){
+				if($(value).text() !== level){
 					$(value).parent().hide();
 				}
 			});

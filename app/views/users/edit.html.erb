@@ -3,15 +3,15 @@
   <%= form_for(@user) do |f| %>
     <p>
     <%= f.label :instrument_id %>
-    <%= f.collection_select :instrument_id, @instrument_list, :id, :name %>
+    <%= f.collection_select :instrument_id, @instrument_list, :id, :name, {prompt: "< select >"}, {required: true} %>
     </p>
     <p>
     <%= f.label :level %>
-    <%= f.collection_select :level, ["","beginner", "intermediate", "advanced", "professional"], :to_s, :to_s %>
+    <%= f.collection_select :level, ["beginner", "intermediate", "advanced", "professional"], :to_s, :to_s, {prompt: "< select >"} %>
     </p>
     <p>
     <%= f.label :zipcode %>
-    <%= f.text_field :zipcode %>
+    <%= f.text_field :zipcode, required: true %>
     </p>
     <p>
     <%= f.label :phone_number %>
@@ -21,7 +21,8 @@
     <%= f.label :short_bio %>
     <%= f.text_area :short_bio %>
     </p>
-    <%= f.collection_check_boxes :instrumentation_ids, @ensemble_types, :id, :name %>
+    <%= f.label :instrumentation_ids, "Ensemble Preferences:" %>
+    <%= f.collection_check_boxes :instrumentation_ids, @ensemble_types[1..-1], :id, :name %>
     </p>
     <p>
     <%= f.label :available %>

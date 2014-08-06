@@ -36,15 +36,17 @@
   <div class="all_matches">
     <%= form_for(User.new) do |f| %>
     <%= f.label :instrument_id %>
-    <%= f.collection_select :instrument_id, @instrument_list, :name, :name %>
+    <%= f.collection_select :instrument_id, @instrument_list, :name, :name, {prompt: ""} %>
     <%= f.label :available %>
-    <%= f.collection_select :available, ["","Seeking a group","All Set"], :to_s, :to_s %>
+    <%= f.collection_select :available, ["Seeking a group","All Set"], :to_s, :to_s, {prompt: ""} %>
     <%= f.label :instrumentation_ids, "Interests" %>
-    <%= f.collection_select :instrumentation_ids, @ensemble_types, :name, :name %>
+    <%= f.collection_select :instrumentation_ids, @ensemble_types, :name, :name, {prompt: ""} %>
     <%= f.label :level %>
-    <%= f.collection_select :level, ["","beginner", "intermediate", "advanced", "professional"], :to_s, :to_s %>
+    <%= f.collection_select :level, ["beginner", "intermediate", "advanced", "professional"], :to_s, :to_s, {prompt: ""} %>
     <%= f.submit "Search", class:"search_button" %>
+    <button class="clear_fields">Clear Fields</button>
     <% end %>
+
     <table class="all_matches">
       <h4>Showing all musicians</h4>
       <thead>

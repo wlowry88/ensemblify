@@ -42,14 +42,22 @@ $(function(){
 					$(value).parent().hide();
 				}
 			});
-		}		
+		}
 		if(level.length > 0){
 			$.each($(".level_field"), function(i, value){
 				if($(value).text() !== level){
 					$(value).parent().hide();
 				}
 			});
-		}		
+		}
+	});
+
+	$(".wrapper").on("click", ".clear_fields", function(e){
+		e.preventDefault();
+		$("#user_instrument_id").val("");
+		$("#user_available").val("");
+		$("#user_instrumentation_ids").val("");
+		$("#user_level").val("");
 	});
 
 });

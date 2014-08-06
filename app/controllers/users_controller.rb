@@ -11,8 +11,6 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @instrument_list = User.instrument_list
-    @ensemble_types = Instrumentation.all
   end
 
   # GET /users/new
@@ -22,7 +20,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @instrument_list = User.instrument_list
+    @instrument_list = Instrument.all
     @ensemble_types = Instrumentation.all
   end
 
@@ -45,7 +43,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    ##raise user_params.inspect
+    # raise user_params.inspect
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -75,6 +73,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.                                                                                                    "interests_attributes"=>{"0"=>{"instrumentation"=>["1", ""]}}
     def user_params
-      params.require(:user).permit(:name, :instrument, :gender, :first_name, :last_name, :short_bio, :image, :email, :zipcode, :instrument, :level, :video_sample, :audio_sample, :phone_number, :available, :interests_attributes => {:instrumentation_id => []})
+      params.require(:user).permit(:name, :instrument_id, :gender, :first_name, :last_name, :short_bio, :image, :email, :zipcode, :instrument, :level, :video_sample, :audio_sample, :phone_number, :available, :interests_attributes => {:instrumentation_id => []})
     end
 end

@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :oauth_expires_at
       t.string :first_name
       t.string :last_name
-      t.string :instrument
+      t.references :instrument, index: true
       t.string :gender
       t.text :short_bio
       t.string :image

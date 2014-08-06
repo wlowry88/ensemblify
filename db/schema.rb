@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140804003346) do
+ActiveRecord::Schema.define(version: 20140805234308) do
 
   create_table "group_pieces", force: true do |t|
     t.integer  "group_id"
@@ -34,7 +34,23 @@ ActiveRecord::Schema.define(version: 20140804003346) do
 
   add_index "groups", ["instrumentation_id"], name: "index_groups_on_instrumentation_id"
 
+  create_table "instrument_instrumentations", force: true do |t|
+    t.integer  "instrument_id"
+    t.integer  "instrumentation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "instrument_instrumentations", ["instrument_id"], name: "index_instrument_instrumentations_on_instrument_id"
+  add_index "instrument_instrumentations", ["instrumentation_id"], name: "index_instrument_instrumentations_on_instrumentation_id"
+
   create_table "instrumentations", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "instruments", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -81,7 +97,7 @@ ActiveRecord::Schema.define(version: 20140804003346) do
     t.string   "oauth_expires_at"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "instrument"
+    t.integer  "instrument_id"
     t.string   "gender"
     t.text     "short_bio"
     t.string   "image"
@@ -95,5 +111,7 @@ ActiveRecord::Schema.define(version: 20140804003346) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["instrument_id"], name: "index_users_on_instrument_id"
 
 end

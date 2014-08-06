@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
     def registered?
       if current_user
-        if (current_user.instrument.nil? || current_user.zipcode.empty? || current_user.instrument.empty?)
+        if (current_user.instrument.nil? || current_user.zipcode.empty? || current_user.instrument.name.empty?)
           redirect_to current_user, notice: 'Please update your instrument and zip code.'
         end
       else

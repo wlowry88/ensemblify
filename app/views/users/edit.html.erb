@@ -2,8 +2,8 @@
 
   <%= form_for(@user) do |f| %>
     <p>
-    <%= f.label :instrument %>
-    <%= f.collection_select :instrument, @instrument_list, :to_s, :to_s %>
+    <%= f.label :instrument_id %>
+    <%= f.collection_select :instrument_id, @instrument_list, :id, :name %>
     </p>
     <p>
     <%= f.label :level %>

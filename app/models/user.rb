@@ -3,8 +3,9 @@ class User < ActiveRecord::Base
 	has_many :groups, through: :requests
 	has_many :interests
 	has_many :instrumentations, through: :interests
-  before_update :check_for_instrument_and_zipcode
   has_many :groups, foreign_key: "admin_id"
+  belongs_to :instrument
+  before_update :check_for_instrument_and_zipcode
 
   def interests_attributes=(attributes)
     ##{"0"=>{"instrumentation_id"=>["1", "2", ""]}}
@@ -25,19 +26,6 @@ class User < ActiveRecord::Base
     end.compact
   end
 
-  def profile_attributes
-    hash=self.attributes.select do |attribute, value|
-      !["uid", "provider", "oauth_token", "oauth_expires_at", "created_at", "updated_at", "id","image"].include?(attribute)
-    end
-    new_hash = {}
-    hash.each do |attribute, value|
-      if !value.nil? && !value.empty?
-        new_hash[attribute.split("_").map(&:capitalize).join(' ')] = value
-      end
-    end
-    new_hash
-  end
-
 	def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
@@ -54,12 +42,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.instrument_list
-    ["","violin", "viola", "cello", "bass", "harp", "guitar", "flute", "clarinet", "oboe", "bassoon", "french horn", "trumpet", "trombone", "tuba", "piano", "voice", "percussion", "saxophone"]
-  end
-
   def check_for_instrument_and_zipcode
-    !(instrument.nil? || zipcode.empty? || instrument.empty?)
+    !(instrument.nil? || zipcode.empty? || instrument.name.empty?)
   end
 
   def admin_of
@@ -75,6 +59,14 @@ class User < ActiveRecord::Base
       Request.where(group_id: id, user_id: user.id, finalized: nil)[0]
     end
     array.compact
+  end
+
+  def gender_pronoun
+    if self.gender == 'female'
+      "her"
+    else
+      "him"
+    end
   end
 end
 

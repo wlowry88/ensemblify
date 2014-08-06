@@ -6,56 +6,65 @@
   <%= link_to request.invite_message, request.group %>
   <% end %>
 <% end %>
+<h1><%= @user.full_name %></h1>
 <p>
   <%= image_tag @user.image %>
 </p>
+<p><%= "Instrument: #{@user.instrument.name.capitalize}" if @user.instrument %></p>
+<p><%= "Level: #{@user.level}" if @user.level %></p>
+<p><%= "Available: #{@user.available}" if @user.available %></p>
+<p><%= "Zipcode: #{@user.zipcode}" if @user.zipcode %></p>
+<p><%= "Bio: #{@user.short_bio}" if !@user.short_bio.empty? %></p>
+<p><%= "Video Sample: #{@user.video_sample}" if !@user.video_sample.empty? %></p>
+<p><%= "Audio Sample: #{@user.audio_sample}" if !@user.audio_sample.empty? %></p>
 
-  <% @user.profile_attributes.each do |attr, value| %>
-    <p><strong><%= attr %>: </strong><%= value %></p>
-  <% end %>
-  <% if @user.interests.any? %>
-    <strong>Ensemble Preferences:</strong>
-    <% @user.interests.each do |interest| %>
-      <%= interest.instrumentation.name %>
-    <% end %>
-  <% end %>
 
+<% if @user.interests.any? %>
+  <strong>Ensemble Preferences:</strong>
   <% @user.interests.each do |interest| %>
-      <li><%= Instrumentation.find(interest.instrumentation_id).name %></li>
+    <li><%= interest.instrumentation.name %></li>
   <% end %>
+<% end %>
 
-  <%= link_to 'Update Profile', edit_user_path if current_user==@user%>
+<%= link_to 'Update Profile', edit_user_path if current_user==@user%>
 
-  <% if (current_user.pending_requests(@user).size > 0 && @user != current_user) %>
-     <p>Add <%= @user.first_name %> to your groups?</p>
-     <p><% current_user.pending_requests(@user).each do |request| %>
-          <%= form_for request do |f| %>
-            <%= f.hidden_field :group_approved, value: true %>
-            <%= f.submit "Accept Request to join #{request.group.name}" %>
-          <% end %>
-          <%= form_for request do |f| %>
-            <%= f.hidden_field :group_approved, value: false %>
-            <%= f.submit "Deny Request to join #{request.group.name}" %>
-          <% end %>
-        <%end%>
-      </p>
+<% if (current_user.pending_requests(@user).size > 0 && @user != current_user) %>
+   <p>Add <%= @user.first_name %> to your groups?</p>
+   <p><% current_user.pending_requests(@user).each do |request| %>
+        <%= form_for request do |f| %>
+          <%= f.hidden_field :group_approved, value: true %>
+          <%= f.submit "Accept Request to join #{request.group.name}" %>
+        <% end %>
+        <%= form_for request do |f| %>
+          <%= f.hidden_field :group_approved, value: false %>
+          <%= f.submit "Deny Request to join #{request.group.name}" %>
+        <% end %>
+      <%end%>
+    </p>
 
-  <% elsif (@user != current_user && !current_user.admin_of.empty? && !(current_user.admin_of - @user.member_of).empty?) %>
-    <p>Would you like to invite <%= @user.first_name %> to one of your groups?</p>
-    <%= form_for Request.new do |f| %>
-      <%= f.label :group_id %>
-      <%= f.collection_select :group_id, (current_user.admin_of - @user.member_of), :id, :name %>
-      <%= f.hidden_field :user_id, value: @user.id %>
-      <%= f.hidden_field :group_approved, value: true %>
-      <%= f.submit "Invite #{@user.first_name}" %>
-    <% end %>
+<% elsif (@user != current_user && !current_user.admin_of.empty? && !(current_user.admin_of - @user.member_of).empty?) %>
+  <p>Would you like to invite <%= @user.first_name %> to one of your groups?</p>
+  <%= form_for Request.new do |f| %>
+    <%= f.label :group_id %>
+    <%= f.collection_select :group_id, (current_user.admin_of - @user.member_of), :id, :name %>
+    <%= f.hidden_field :user_id, value: @user.id %>
+    <%= f.hidden_field :group_approved, value: true %>
+    <%= f.submit "Invite #{@user.first_name}" %>
   <% end %>
-
-  <p>
-    <strong>Groups:</strong>
+<% end %>
+<p>
+  <strong>Ensembles:</strong>
+  <% if !@user.member_of.empty? %>
     <% @user.member_of.each do |group| %>
       <li><%= link_to group.name, group %></li>
     <% end %>
-  </p>
+  <% else %>
+    <% if current_user == @user %>
+      You are not currently a member of any ensembles. Why not browse the <%= link_to 'ensemble library', groups_path%>?
+    <% else %>
+      <%= "#{@user.first_name} isn't in any ensembles. Invite #{@user.gender_pronoun} to yours!" %>
+    <% end %>
+  <% end %>
+</p>
 
 

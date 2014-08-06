@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :groups, foreign_key: "admin_id"
   belongs_to :instrument
   before_update :check_for_instrument_and_zipcode
+  geocoded_by :zipcode
+  after_validation :geocode
 
   def instrumentation_ids=(attributes)
     self.interests.destroy_all

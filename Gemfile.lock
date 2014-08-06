@@ -76,6 +76,7 @@ GEM
       bundler (~> 1.0)
       rails (>= 3, < 5)
     formatador (0.2.5)
+    geocoder (1.2.3)
     google-analytics-rails (0.0.6)
     guard (2.6.1)
       formatador (>= 0.2.4)
@@ -255,6 +256,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   figaro
+  geocoder
   google-analytics-rails
   guard-rspec
   jbuilder (~> 2.0)

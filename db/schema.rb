@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140805234308) do
+ActiveRecord::Schema.define(version: 20140806223735) do
 
   create_table "group_pieces", force: true do |t|
     t.integer  "group_id"
@@ -110,6 +110,8 @@ ActiveRecord::Schema.define(version: 20140805234308) do
     t.string   "available"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "users", ["instrument_id"], name: "index_users_on_instrument_id"

@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
-	has_many :requests
-	has_many :groups, through: :requests
-	has_many :interests
-	has_many :instrumentations, through: :interests
+  has_many :requests
+  has_many :groups, through: :requests
+  has_many :interests
+  has_many :instrumentations, through: :interests
   has_many :groups, foreign_key: "admin_id"
   belongs_to :instrument
   before_update :check_for_instrument_and_zipcode
@@ -16,9 +16,9 @@ class User < ActiveRecord::Base
     end
   end
 
-	def full_name
-		"#{first_name} #{last_name}"
-	end
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 
   def member_of
     self.requests.collect do |request|
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
     end.compact
   end
 
-	def self.from_omniauth(auth)
+  def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
@@ -68,5 +68,18 @@ class User < ActiveRecord::Base
       "him"
     end
   end
-end
 
+  def musician_intelligent_match
+    user_array = User.where(available: 'Seeking a group').collect do |user|
+      self.groups.collect do |group|
+        if group.instrumentation.instruments.include?(user.instrument)
+          if user.instrumentations.include?(group.instrumentation)
+            user
+          end
+        end
+      end
+    end
+    user_array.flatten.compact.uniq.delete_if{|e| e == self}
+  end
+
+end

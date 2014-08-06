@@ -3,9 +3,39 @@
 <div class="wrapper">
 
   <button class="intelligent_musician_toggle">Show All Musicians</button>
-
   <% if current_user %>
-    <table class="intelligent_matches">
+    <div class="intelligent_matches">
+      <table class="intelligent_matches">
+        <h4>These musicians might be a good fit for your group</h4>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Instrument</th>
+            <th>Level</th>
+            <th>Ensemble Preferences</th>
+            <th>Availability</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% current_user.musician_intelligent_match.each do |user| %>
+            <tr>
+              <td><%= user.full_name %></td>
+              <td><%= user.instrument.name %></td>
+              <td><%= user.level %></td>
+              <td><%= user.interests.collect{|i|i.instrumentation.name}.join(", ") %></td>
+              <td><%= user.available %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+
+  <div class="all_matches">
+    <table class="all_matches">
+      <h4>Showing all musicians</h4>
       <thead>
         <tr>
           <th>Name</th>
@@ -18,45 +48,18 @@
       </thead>
 
       <tbody>
-        <% @users.where(available: 'Seeking a group').each do |user| %>
-          <tr>
-            <td><%= user.full_name %></td>
-            <td><%= user.instrument.name %></td>
-            <td><%= user.level %></td>
-            <td><%= user.interests.collect{|i|i.instrumentation.name}.uniq.join(", ") %></td>
-            <td><%= user.available %></td>
-          </tr>
+        <% @users.each do |user| %>
+          <% unless current_user == user %>
+            <tr>
+              <td><%= user.full_name %></td>
+              <td><%= user.instrument.name %></td>
+              <td><%= user.level %></td>
+              <td><%= user.interests.collect{|i|i.instrumentation.name}.uniq.join(", ") %></td>
+              <td><%= user.available %></td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
-  <% end %>
-
-  <table class="all_matches">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Instrument</th>
-        <th>Level</th>
-        <th>Ensemble Preferences</th>
-        <th>Availability</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= user.full_name %></td>
-          <td><%= user.instrument.name %></td>
-          <td><%= user.level %></td>
-          <td><%= user.interests.collect{|i|i.instrumentation.name}.uniq.join(", ") %></td>
-          <td><%= user.available %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  </div>
 </div>
-
-<br>
-
-<%= link_to 'New User', new_user_path %>

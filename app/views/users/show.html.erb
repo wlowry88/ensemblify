@@ -15,8 +15,8 @@
 <p><%= "Available: #{@user.available}" if @user.available %></p>
 <p><%= "Zipcode: #{@user.zipcode}" if @user.zipcode %></p>
 <p><%= "Bio: #{@user.short_bio}" if !@user.short_bio.empty? %></p>
-<p><%= "Video Sample: #{@user.video_sample}" if @user.video_sample %></p>
-<p><%= "Audio Sample: #{@user.audio_sample}" if @user.audio_sample %></p>
+<p><%= "Video Sample: #{@user.video_sample}" if !@user.video_sample.empty? %></p>
+<p><%= "Audio Sample: #{@user.audio_sample}" if !@user.audio_sample.empty? %></p>
 
 
 <% if @user.interests.any? %>

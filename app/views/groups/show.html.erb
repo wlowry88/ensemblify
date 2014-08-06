@@ -53,7 +53,7 @@
 <p>
   <strong>Members:</strong>
   <% @group.members.each do |member| %>
-    <li><%= link_to member.full_name, member %>, <%= member.instrument %></li>
+    <li><%= link_to member.full_name, member %>, <%= member.instrument.name %></li>
   <% end %>
 </p>
 

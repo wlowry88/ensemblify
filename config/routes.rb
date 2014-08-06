@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :requests
 
-  resources :users
+  resources :users, only: [:show, :edit, :create, :update, :destroy, :index]
   get 'login', to: 'static_pages#login'
   get 'logout', to: 'sessions#destroy'
   get '/auth/:provider/callback', to: 'sessions#create'

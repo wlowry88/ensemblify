@@ -15,8 +15,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :zipcode
       t.string :phone_number
       t.string :level
-      t.string :video_sample
-      t.string :audio_sample
+      t.string :video_sample, default: ""
+      t.string :audio_sample, default: ""
       t.string :available
 
       t.timestamps

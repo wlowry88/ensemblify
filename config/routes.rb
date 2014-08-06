@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'search/get_instruments_for_group'
+
   resources :pieces
 
   resources :groups
@@ -9,6 +11,8 @@ Rails.application.routes.draw do
   get 'login', to: 'static_pages#login'
   get 'logout', to: 'sessions#destroy'
   get '/auth/:provider/callback', to: 'sessions#create'
+
+  post 'search/get_instruments_for_group', to: 'search#get_instruments_for_group'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

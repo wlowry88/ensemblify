@@ -22,7 +22,7 @@
     <%= f.text_area :short_bio %>
     </p>
     <%= f.label :instrumentation_ids, "Ensemble Preferences:" %>
-    <%= f.collection_check_boxes :instrumentation_ids, @ensemble_types[1..-1], :id, :name %>
+    <%= f.collection_check_boxes :instrumentation_ids, @ensemble_types, :id, :name %>
     </p>
     <p>
     <%= f.label :available %>

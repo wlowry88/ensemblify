@@ -35,6 +35,26 @@ $(function(){
 				}
 			});
 		}
+		var ensembleMatches;
+		function ajax1(){
+			return $.ajax({
+				url: 'search/get_instruments_for_group',
+				type: 'POST',
+				data: {instrument: $("#group_instruments").val()},
+				success: function(data){
+					ensembleMatches = data.join(",");
+				}
+			});
+		}
+		$.when(ajax1()).done(function(){
+			if(instruments.length > 0){
+				$.each($(".group_instrumentation"), function(i, value){
+					if(ensembleMatches.indexOf($(value).text())===-1){
+						$(value).parent().hide();
+					}
+				});
+			}
+		});
 	});
 
 	$(".wrapper").on("click", ".clear_fields", function(e){

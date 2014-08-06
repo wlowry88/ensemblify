@@ -24,7 +24,7 @@
             <tr>
               <td><%= link_to group.name, group %></td>
               <td><%= group.instrumentation.name %></td>
-              <td><%= group.complete %></td>
+              <td><%= group.complete ? "complete" : "incomplete" %></td>
             </tr>
             <% end %>
           <% end %>

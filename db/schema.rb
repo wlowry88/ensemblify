@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 20140805234308) do
     t.string   "last_name"
     t.integer  "instrument_id"
     t.string   "gender"
-    t.text     "short_bio"
+    t.text     "short_bio",        default: ""
     t.string   "image"
     t.string   "email"
     t.string   "zipcode"

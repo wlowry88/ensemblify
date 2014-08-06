@@ -7,11 +7,11 @@ class User < ActiveRecord::Base
   belongs_to :instrument
   before_update :check_for_instrument_and_zipcode
 
-  def interests_attributes=(attributes)
-    ##{"0"=>{"instrumentation_id"=>["1", "2", ""]}}
-    attributes["0"]["instrumentation_id"].each do |id|
+  def instrumentation_ids=(attributes)
+    self.interests.destroy_all
+    attributes.each do |id|
       if !id.empty?
-        Interest.create(user_id: self.id, instrumentation_id: id)
+        Interest.find_or_create_by(user_id: self.id, instrumentation_id: id)
       end
     end
   end

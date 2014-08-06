@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    raise user_params.inspect
     @user = User.new(user_params)
 
     respond_to do |format|
@@ -43,7 +44,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    # raise user_params.inspect
+
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -73,6 +74,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.                                                                                                    "interests_attributes"=>{"0"=>{"instrumentation"=>["1", ""]}}
     def user_params
-      params.require(:user).permit(:name, :instrument_id, :gender, :first_name, :last_name, :short_bio, :image, :email, :zipcode, :instrument, :level, :video_sample, :audio_sample, :phone_number, :available, :interests_attributes => {:instrumentation_id => []})
+      params.require(:user).permit(:name, :instrument_id, :gender, :first_name, :last_name, :short_bio, :image, :email, :zipcode, :instrument, :level, :video_sample, :audio_sample, :phone_number, :available, :instrumentation_ids => [])
     end
 end

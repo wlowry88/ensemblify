@@ -9,7 +9,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :last_name
       t.references :instrument, index: true
       t.string :gender
-      t.text :short_bio
+      t.text :short_bio, default: ""
       t.string :image
       t.string :email
       t.string :zipcode

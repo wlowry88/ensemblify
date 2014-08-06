@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<h1><%= "Welcome, " + @user.full_name + "! Please fill out the rest of your profile!" unless (@user.check_for_instrument_and_zipcode || @user != current_user) %> </h1>
+<h3><%= "Welcome, " + @user.full_name + "! Please fill out the rest of your profile!" unless (@user.check_for_instrument_and_zipcode || @user != current_user) %> </h3>
 
 <% if current_user == @user %>
   <% Request.where(user_id: @user.id, finalized: nil).each do |request| %>
@@ -15,8 +15,8 @@
 <p><%= "Available: #{@user.available}" if @user.available %></p>
 <p><%= "Zipcode: #{@user.zipcode}" if @user.zipcode %></p>
 <p><%= "Bio: #{@user.short_bio}" if !@user.short_bio.empty? %></p>
-<p><%= "Video Sample: #{@user.video_sample}" if !@user.video_sample.empty? %></p>
-<p><%= "Audio Sample: #{@user.audio_sample}" if !@user.audio_sample.empty? %></p>
+<p><%= "Video Sample: #{@user.video_sample}" if @user.video_sample %></p>
+<p><%= "Audio Sample: #{@user.audio_sample}" if @user.audio_sample %></p>
 
 
 <% if @user.interests.any? %>

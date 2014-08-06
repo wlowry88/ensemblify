@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @instrument_list = Instrument.all
   end
 
   def show
@@ -15,7 +16,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    raise user_params.inspect
     @user = User.new(user_params)
 
     respond_to do |format|

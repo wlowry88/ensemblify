@@ -34,6 +34,13 @@
   <% end %>
 
   <div class="all_matches">
+    <%= form_for(User.new) do |f| %>
+    <%= f.label :instrument_id %>
+    <%= f.collection_select :instrument_id, @instrument_list, :name, :name %>
+    <%= f.label :available %>
+    <%= f.collection_select :available, ["","Seeking a group","All Set"], :to_s, :to_s %>
+    <%= f.submit "Search", class:"search_button" %>
+    <% end %>
     <table class="all_matches">
       <h4>Showing all musicians</h4>
       <thead>
@@ -51,11 +58,11 @@
         <% @users.each do |user| %>
           <% unless current_user == user %>
             <tr>
-              <td><%= user.full_name %></td>
-              <td><%= user.instrument.name %></td>
-              <td><%= user.level %></td>
-              <td><%= user.interests.collect{|i|i.instrumentation.name}.uniq.join(", ") %></td>
-              <td><%= user.available %></td>
+              <td class="name_field"><%= user.full_name %></td>
+              <td class="instrument_field"><%= user.instrument.name %></td>
+              <td class="level_field"><%= user.level %></td>
+              <td class="interests_field"><%= user.interests.collect{|i|i.instrumentation.name}.uniq.join(", ") %></td>
+              <td class="available_field"><%= user.available %></td>
             </tr>
           <% end %>
         <% end %>

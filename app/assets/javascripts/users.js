@@ -2,19 +2,6 @@ $(function(){
 
 	$(".all_matches").hide();
 
-	$(".wrapper").on("click", ".intelligent_ensemble_toggle", function(e){
-		e.preventDefault();
-		$(".intelligent_matches").toggle();
-		$(".all_matches").toggle();
-		$(this).text(function(){
-			if($(this).text() == "Show Intelligent Matches") {
-				return "Show All Ensembles"
-			} else {
-				return "Show Intelligent Matches"
-			}
-		});
-	});	
-
 	$(".wrapper").on("click", ".intelligent_musician_toggle", function(e){
 		e.preventDefault();
 		$(".intelligent_matches").toggle();
@@ -26,6 +13,27 @@ $(function(){
 				return "Show Intelligent Matches"
 			}
 		});
+	});
+
+	$(".all_matches").on("click", ".search_button", function(e){
+		e.preventDefault();
+		$(".instrument_field").parent().show();
+		var instrument = $("#user_instrument_id").val();
+		var available = $("#user_available").val();
+		if(instrument.length > 0){
+			$.each($(".instrument_field"), function(i, value){
+				if($(value).text() !== instrument){
+					$(value).parent().hide();
+				}
+			});
+		}
+		if(available.length > 0){
+			$.each($(".available_field"), function(i, value){
+				if($(value).text() !== available){
+					$(value).parent().hide();
+				}
+			});
+		}		
 	});
 
 });

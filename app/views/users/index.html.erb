@@ -25,7 +25,7 @@
               <td><%= user.instrument.name %></td>
               <td><%= user.level %></td>
               <td><%= user.interests.collect{|i|i.instrumentation.name}.join(", ") %></td>
-              <td><%= user.available %></td>
+              <td><%= user.available ? "Seeking a group" : "All set" %></td>
             </tr>
           <% end %>
         </tbody>
@@ -68,7 +68,7 @@
               <td class="instrument_field"><%= user.instrument.name %></td>
               <td class="level_field"><%= user.level %></td>
               <td class="interests_field"><%= user.interests.collect{|i|i.instrumentation.name}.uniq.join(", ") %></td>
-              <td class="available_field"><%= user.available %></td>
+              <td class="available_field"><%= user.available ? "Seeking a group" : "All Set" %></td>
             </tr>
           <% end %>
         <% end %>

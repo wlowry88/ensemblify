@@ -39,6 +39,7 @@
     <%= f.collection_select :instrument_id, @instrument_list, :name, :name %>
     <%= f.label :available %>
     <%= f.collection_select :available, ["","Seeking a group","All Set"], :to_s, :to_s %>
+    <%= f.collection_select :instrumentation_ids, @ensemble_types, :name, :name %>
     <%= f.submit "Search", class:"search_button" %>
     <% end %>
     <table class="all_matches">

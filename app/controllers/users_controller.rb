@@ -4,14 +4,16 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @instrument_list = Instrument.all
+    @instrument_list = Instrument.order(:name)
+    @ensemble_types = Instrumentation.order(:name)
+
   end
 
   def show
   end
 
   def edit
-    @instrument_list = Instrument.all
+    @instrument_list = Instrument.order(:name)
     @ensemble_types = Instrumentation.all
   end
 

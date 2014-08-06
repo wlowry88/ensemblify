@@ -34,7 +34,22 @@
   </div>
   <% end %>
 
-  <div class="all_matches">
+  <div class="all_ensemble_matches">
+    <%= form_for(Group.new) do |f| %>
+
+      <%= f.label :instrumentation_id %>
+      <%= f.collection_select :instrumentation_id, Instrumentation.all, :name, :name, {prompt: ""}  %>
+
+      <%= f.label :instruments %>
+      <%= f.collection_select :instruments, Instrument.all, :name, :name, {prompt: ""} %>
+
+      <%= f.label :complete %>
+      <%= f.collection_select :complete, ["complete", "incomplete"], :to_s, :to_s, {prompt: ""} %>
+
+      <%= f.submit "Search", class:"search_button" %>
+      <button class="clear_fields">Clear Fields</button>
+    <% end %>
+
     <table>
       <p>All Ensembles</p>
       <thead>
@@ -50,8 +65,8 @@
         <% @groups.each do |group| %>
           <tr>
             <td><%= link_to group.name, group %></td>
-            <td><%= group.instrumentation.name %></td>
-            <td><%= group.complete %></td>
+            <td class="group_instrumentation"><%= group.instrumentation.name %></td>
+            <td class="group_complete"><%= group.complete ? "complete" : "incomplete" %></td>
           </tr>
         <% end %>
       </tbody>

@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
   end
 
   def musician_intelligent_match
-    user_array = User.where(available: true).collect do |user|
+    user_array = User.where(available: 'Seeking a group').collect do |user|
       self.groups.collect do |group|
         if group.instrumentation.instruments.include?(user.instrument)
           if user.instrumentations.include?(group.instrumentation)

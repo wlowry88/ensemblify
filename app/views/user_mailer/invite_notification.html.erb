@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hey <%= @user.first_name %>,</h1>
+    <p>
+      You've been invited to join <%= @group.name %>. Check them out. Maybe message them and see what they're about. Then, maybe accept or deny.
+    </p>
+    <p>
+      <%= link_to @user.full_name, @url %>.
+    </p>
+    <p>Now go practice!</p>
+
+    <p>Love,<br>
+    The Ensemblify Team</p>
+  </body>
+</html>!

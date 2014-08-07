@@ -17,17 +17,19 @@ x add search capabilities for group and musician
 x add Geocoder
   x change zipcode on show page to city, state
 x group show page - add jquery show for instrument types in ensemble
+x add complete button for group edit page
 
 - mailers (tg)
 - zipcode validation (w)
-- include chosen-rails gem
-- add complete button for group edit page
+- integrate bootstrap
+- set up youtube/soundcloud to not just be a string of a link
 - preventing multiple invites
 - group member can send group admin a musician suggestion from that musician's show page
+- include chosen-rails gem
 - SEEEEEEEEEEEEEEEEEEEED
-- integrate bootstrap
 
 extra things:
+- add ability to set up practice times
 - allow sldkfjslkdjf to use location? group distance from you (use geocoder by ip address)
 - add twilio
 - phone validation

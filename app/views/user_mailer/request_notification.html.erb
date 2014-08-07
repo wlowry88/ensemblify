@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hey <%= @admin.first_name %>,</h1>
+    <p>
+      <%= @user.full_name %> has requested to join <%= @group.name %>. Check <%= @user.gender_pronoun %> out. Maybe message <%= @user.gender_pronoun %>. Then, maybe accept or deny.
+    </p>
+    <p>
+      <%= link_to @group.name, @url %>.
+    </p>
+    <p>Now go practice!</p>
+
+    <p>Love,<br>
+    The Ensemblify Team</p>
+  </body>
+</html>!

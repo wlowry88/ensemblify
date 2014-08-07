@@ -13,6 +13,8 @@ $(function(){
 			}
 		});
 	});
+	
+	$(".show_parts").hide();
 
 	$(".group_parts").on("click", ".show_parts_button", function(e){
 		e.preventDefault();

@@ -3,6 +3,11 @@ class RequestsController < ApplicationController
 	def create
 		@request = Request.new(request_params)
 		if @request.save
+			if @request.group_approved.nil?
+				UserMailer.request_notification(@request.group.admin, @request.user, @request.group).deliver
+			elsif @request.user_approved.nil?
+				UserMailer.invite_notification(@request.user, @request.group).deliver
+			end
 			redirect_to Group.find(@request.group_id)
 		end
 	end	

@@ -2,7 +2,7 @@
 <h3><%= "Welcome, " + @user.first_name + "! Please fill out the rest of your profile!" unless (@user.check_for_instrument_and_zipcode || @user != current_user) %> </h3>
 
 <% if current_user == @user %>
-  <% Request.where(user_id: @user.id, finalized: nil).each do |request| %>
+  <% Request.where(user_id: @user.id, finalized: nil, user_approved: nil).each do |request| %>
   <%= link_to request.invite_message, request.group %>
   <% end %>
 <% end %>
@@ -53,15 +53,17 @@
   <% end %>
 <% end %>
 <p>
-  <strong>Ensembles:</strong>
   <% if !@user.member_of.empty? %>
+    <strong>Ensembles:</strong>
     <% @user.member_of.each do |group| %>
       <li><%= link_to group.name, group %></li>
     <% end %>
   <% else %>
-    <% if current_user == @user %>
-      You are not currently a member of any ensembles. Why not browse the <%= link_to 'ensemble library', groups_path%>?
-    <% else %>
+    <strong>Ensembles:</strong>
+    <% if current_user == @user && current_user.check_for_instrument_and_zipcode %>
+      You are not currently a member of any ensembles. Why not <%= link_to 'check some out', groups_path%> or <%= link_to 'create your own', new_group_path %>?
+    <% elsif current_user != @user %>
+      <strong>Ensembles:</strong>
       <%= "#{@user.first_name} isn't in any ensembles. Invite #{@user.gender_pronoun} to yours!" %>
     <% end %>
   <% end %>

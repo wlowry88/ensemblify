@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <% if current_user == @group.admin %>
-  <% Request.where(group_id: @group.id, finalized: nil).each do |request| %>
+  <% Request.where(group_id: @group.id, finalized: nil, group_approved: nil).each do |request| %>
   <%= link_to request.apply_message, request.user %>
   <% end %>
 <% end %>
@@ -27,7 +27,7 @@
 
 <p>
   <strong>Complete:</strong>
-  <%= @group.complete %>
+  <%= @group.complete ? 'yes' : 'no' %>
 </p>
 
 <p>

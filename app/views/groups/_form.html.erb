@@ -20,10 +20,14 @@
     <%= f.collection_select :instrumentation_id, Instrumentation.all, :id, :name  %>
 
   </div>
-  <div class="field">
-    <%= f.label :complete %><br>
-    <%= f.check_box :complete %>
-  </div>
+
+  <% if @group.id %>
+    <div class="field">
+      <%= f.label :complete %><br>
+      <%= f.check_box :complete %>
+    </div>
+  <% end %>
+  
   <div class="field">
     <%= f.hidden_field :admin_id, :value => current_user.id %>
   </div>

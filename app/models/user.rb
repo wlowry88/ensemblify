@@ -10,10 +10,12 @@ class User < ActiveRecord::Base
   before_update :check_for_instrument_and_zipcode
   geocoded_by :zipcode
   after_validation :geocode
-  before_update :geocode
-  validates_format_of :zipcode, :with => /\A\d{5}(-\d{4})?\z/, :message => "should be in the form 12345 or 12345-1234"
+  before_update :geocode, :validate_zipcode
+  # validates_format_of :zipcode, :with => /\A\d{5}(-\d{4})?\z/, :message => "should be in the form 12345 or 12345-1234"
 
-
+  def validate_zipcode
+    /\A\d{5}(-\d{4})?\z/.match(self.zipcode)
+  end
 
   def instrumentation_ids=(attributes)
     self.interests.destroy_all
@@ -47,6 +49,7 @@ class User < ActiveRecord::Base
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.save
+      UserMailer.welcome_email(user).deliver
     end
   end
 

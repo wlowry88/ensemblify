@@ -16,6 +16,9 @@ x musician index shows filtered results
 
 - add search capabilities for group and musician
 
+
+-allow sldkfjslkdjf to use location? group distance from you
+
 - add complete button for group edit page
 - preventing multiple invites
 - add Geocoder

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  extend Geocoder::Model::ActiveRecord
+
   has_many :requests
   has_many :groups, through: :requests
   has_many :interests
@@ -8,6 +10,7 @@ class User < ActiveRecord::Base
   before_update :check_for_instrument_and_zipcode
   geocoded_by :zipcode
   after_validation :geocode
+
 
   def instrumentation_ids=(attributes)
     self.interests.destroy_all
@@ -84,4 +87,11 @@ class User < ActiveRecord::Base
     user_array.flatten.compact.uniq.delete_if{|e| e == self}
   end
 
+  def self.return_admins
+    self.all.select{|user|!user.admin_of.empty?}
+  end
+
+  def admins_close_by
+    self.class.return_admins.near(self, order: "distance")
+  end
 end

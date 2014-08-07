@@ -25,7 +25,11 @@ class GroupsController < ApplicationController
   end
 
   def create
+
     @group = Group.new(group_params)
+    @admin = User.find(params[:group][:admin_id])
+    @group.zipcode = @admin.zipcode
+    binding.pry
     respond_to do |format|
       if @group.save
         @request = Request.create(user_id: current_user.id, group_id: @group.id, user_approved: true, group_approved: true, finalized: true)

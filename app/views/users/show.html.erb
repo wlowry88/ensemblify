@@ -10,6 +10,7 @@
 <p>
   <%= image_tag @user.image %>
 </p>
+<%= link_to 'Update Profile', edit_user_path if current_user==@user%>
 <p><%= "Instrument: #{@user.instrument.name.capitalize}" if @user.instrument %></p>
 <p><%= "Level: #{@user.level}" if @user.level %></p>
 <p><%= "Available: #{@user.available}" if @user.available %></p>
@@ -26,11 +27,8 @@
   <% end %>
 <% end %>
 
-<%= link_to 'Update Profile', edit_user_path if current_user==@user%>
 
-  <p>
-  <%= "(Already invited #{@user.first_name} to join #{current_user.already_invited(@user)})" if current_user.eligible_groups(@user) %>
-  </p>
+<%= current_user.already_invited(@user) if current_user!=@user %>
 <% if (current_user.pending_requests(@user).size > 0 && @user == current_user) %>
    <p>Add <%= @user.first_name %> to your groups?</p>
    <p><% current_user.pending_requests(@user).each do |request| %>

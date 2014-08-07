@@ -44,13 +44,13 @@ class User < ActiveRecord::Base
 
      
        correct_groups = correct.collect {|request| request.group }
-     
        final = all_admins_groups.collect do |group|
          if correct_groups.include? group
            group.name
          end
        end.compact.join(", ")
-       final 
+       
+       "Already invited #{user.first_name} to join #{final}!" if !final.empty?
   end
 
   def validate_zipcode

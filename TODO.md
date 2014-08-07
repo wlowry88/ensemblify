@@ -13,26 +13,26 @@ x make zipcode string
 x specify instrumentation of ensemble types
 x group index shows only groups that fit user's preferences
 x musician index shows filtered results
+x add search capabilities for group and musician
+x add Geocoder
+  x change zipcode on show page to city, state
 
-- add search capabilities for group and musician
-
-
--allow sldkfjslkdjf to use location? group distance from you
-
+- mailers (tg)
+- zipcode validation (w)
+- include chosen-rails gem
 - add complete button for group edit page
 - preventing multiple invites
-- add Geocoder
-  - change zipcode on show page to city, state
-- mailers
 - group member can send group admin a musician suggestion from that musician's show page
 - group show page - add jquery show for instrument types in ensemble
-
 - SEEEEEEEEEEEEEEEEEEEED
-
+- integrate bootstrap
 
 extra things:
-- zipcode validation
+- allow sldkfjslkdjf to use location? group distance from you (use geocoder by ip address)
+- add twilio
+- phone validation
 - validate ensemble types
+- relationship between deleting a group once admin is deleted
 
 
 AVAILABLE DOMAINS

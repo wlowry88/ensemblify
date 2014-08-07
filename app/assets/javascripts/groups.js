@@ -14,6 +14,10 @@ $(function(){
 		});
 	});
 
+	$(".group_parts").on("click", ".show_parts_button", function(e){
+		e.preventDefault();
+		$(".show_parts").slideToggle();
+	})
 
 	$(".all_ensemble_matches").on("click", ".search_button", function(e){
 		e.preventDefault();

@@ -14,11 +14,15 @@
 
 
 <p>
-  <strong>Ensemble Type:</strong>
-  <%= @group.instrumentation.name %>
-  <% @group.instrumentation.instruments.each do |instrument| %>
-    <li><%= instrument.name %></li>
-  <% end %>
+  <div class= "group_parts">
+    <strong>Ensemble Type:</strong>
+      <%= @group.instrumentation.name %> <a class="show_parts_button">(Show Parts)</a>
+      <div class= "show_parts">
+        <% @group.instrumentation.instruments.each do |instrument| %>
+          <li><%= instrument.name %></li>
+        <% end %>
+    </div>
+  </div>
 </p>
 
 <p>

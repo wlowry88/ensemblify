@@ -16,6 +16,7 @@ x musician index shows filtered results
 x add search capabilities for group and musician
 x add Geocoder
   x change zipcode on show page to city, state
+x group show page - add jquery show for instrument types in ensemble
 
 - mailers (tg)
 - zipcode validation (w)
@@ -23,7 +24,6 @@ x add Geocoder
 - add complete button for group edit page
 - preventing multiple invites
 - group member can send group admin a musician suggestion from that musician's show page
-- group show page - add jquery show for instrument types in ensemble
 - SEEEEEEEEEEEEEEEEEEEED
 - integrate bootstrap
 

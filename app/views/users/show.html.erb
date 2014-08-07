@@ -13,7 +13,7 @@
 <p><%= "Instrument: #{@user.instrument.name.capitalize}" if @user.instrument %></p>
 <p><%= "Level: #{@user.level}" if @user.level %></p>
 <p><%= "Available: #{@user.available}" if @user.available %></p>
-<p><%= "Location: #{@user.city_state}" if @user.city_state %></p>
+<p><%= "Location: #{@user.city_state}" if @user.zipcode && @user.city_state %></p>
 <p><%= "Bio: #{@user.short_bio}" if !@user.short_bio.empty? %></p>
 <p><%= "Video Sample: #{@user.video_sample}" if !@user.video_sample.empty? %></p>
 <p><%= "Audio Sample: #{@user.audio_sample}" if !@user.audio_sample.empty? %></p>

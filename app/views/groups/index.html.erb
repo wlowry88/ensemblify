@@ -6,7 +6,7 @@
   <% if current_user %>
   <button class="intelligent_ensemble_toggle">Show All Ensembles</button>
   <div class="intelligent_matches">
-    <p>Intelligent Matches</p>
+    <h4>Intelligent Matches</h4>
     <table>
       <thead>
         <tr>
@@ -37,6 +37,7 @@
   <% end %>
 
   <div class="all_ensemble_matches">
+    <h4>All Ensembles</h4>
     <%= form_for(Group.new) do |f| %>
 
       <%= f.label :instrumentation_id %>
@@ -53,7 +54,6 @@
     <% end %>
 
     <table>
-      <p>All Ensembles</p>
       <thead>
         <tr>
           <th>Name</th>

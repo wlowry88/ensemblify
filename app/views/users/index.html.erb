@@ -36,6 +36,7 @@
   <% end %>
 
   <div class="all_matches">
+    <h4>Showing all musicians</h4>
     <%= form_for(User.new) do |f| %>
     <%= f.label :instrument_id %>
     <%= f.collection_select :instrument_id, @instrument_list, :name, :name, {prompt: ""} %>
@@ -50,7 +51,6 @@
     <% end %>
 
     <table class="all_matches">
-      <h4>Showing all musicians</h4>
       <thead>
         <tr>
           <th>Name</th>

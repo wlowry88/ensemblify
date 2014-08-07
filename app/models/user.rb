@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   geocoded_by :zipcode
   after_validation :geocode
   before_update :geocode, :validate_zipcode
-  # validates_format_of :zipcode, :with => /\A\d{5}(-\d{4})?\z/, :message => "should be in the form 12345 or 12345-1234"
+  before_destroy :destroy_admin_of
+
 
   def validate_zipcode
     /\A\d{5}(-\d{4})?\z/.match(self.zipcode)
@@ -104,6 +105,13 @@ class User < ActiveRecord::Base
   def city_state
     result = Geocoder.search(zipcode)
     "#{result[0].city}, #{result[0].state_code}"
+  end
+
+  private
+  def destroy_admin_of
+    if admin_of
+      admin_of.destroy_all
+    end
   end
 
 end

@@ -6,7 +6,7 @@
   <body>
     <h1>Hey <%= @admin.first_name %>,</h1>
     <p>
-      <%= @user.full_name %> has requested to join <%= @group.name %>. Check <%= @user.gender_pronoun %> out. Maybe message <%= @user.gender_pronoun %>. Then, maybe accept or deny.
+      <%= "#{@user.full_name} has accepted your invitation to join #{@group.name}" %>.
     </p>
     <p>
       <%= link_to @group.name, @url %>.

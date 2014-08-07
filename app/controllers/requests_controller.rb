@@ -10,14 +10,30 @@ class RequestsController < ApplicationController
 			end
 			redirect_to Group.find(@request.group_id)
 		end
-	end	
+	end
 
 	def update
 		@request = Request.find(params[:id])
-		if @request.update(request_params)
-			@request.finalize
-			redirect_to Group.find(@request.group_id)
+		if @request.group_approved == nil
+			#request
+			if @request.update(request_params)
+				@request.finalize
+				if @request.finalize == true
+					UserMailer.accept_request(@request.user, @request.group).deliver
+				end
+			end
+
+		elsif @request.user_approved == nil
+			#invite
+			if @request.update(request_params)
+				@request.finalize
+				if @request.finalize == true
+					UserMailer.accept_invite(@request.group.admin, @request.user, @request.group).deliver
+				end
+			end
+
 		end
+		redirect_to Group.find(@request.group_id)
 	end
 
 

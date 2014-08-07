@@ -21,5 +21,20 @@ class UserMailer < ActionMailer::Base
     @url = '/user/:id/show'
     mail(to: @admin.email, subject: "#{@admin.first_name}, #{@user.full_name} has requested to join #{@group.name}.")
   end
-  
+
+  def accept_invite(admin, user, group)
+    @admin = admin
+    @user = user
+    @group = group
+    @url = '/groups/:id/show'
+    mail(to: @admin.email, subject: "#{@user.first_name} has accepted your invitation to join #{@group.name}.")
+  end
+
+  def accept_request(user, group)
+    @user = user
+    @group = group
+    @url = '/users/:id/show'
+    mail(to: @user.email, subject: "#{@group.name} has accepted your request to join.")
+  end
+
 end

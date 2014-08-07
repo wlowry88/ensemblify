@@ -1,10 +1,13 @@
 <p id="notice"><%= notice %></p>
 <% if current_user == @group.admin %>
   <% Request.where(group_id: @group.id, finalized: nil, group_approved: nil).each do |request| %>
-  <%= link_to request.apply_message, request.user %>
+    <%= link_to request.apply_message, request.user %>
+  <% end %>
+
+  <% Request.where(group_id: @group.id, finalized: true, user_approved: true).where.not(user_id: @group.admin_id).each do |request| %>
+    <%= "#{request.user.full_name} accepted your invitation to join!" %>
   <% end %>
 <% end %>
-
 <p>
   <strong>Name:</strong>
   <%= @group.name %>
@@ -40,6 +43,7 @@
   <%= link_to @admin.full_name, @admin %>
 </p>
 <% if @request %>
+  <%= "You have already applied to join #{@group.name}! Your request is pending :)" if @request.group_approved == nil && @request.finalized == nil %>
   <% if @request.invited? %>
     <%= form_for @request do |f| %>
       <%= f.hidden_field :user_approved, value: true %>

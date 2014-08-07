@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 
     correct = []
 
-    Request.where(user_id: user.id).collect do |row|
+    Request.where(user_id: user.id, finalized: nil).collect do |row|
       if row.group
         correct << row if row.group.admin_id == self.id 
       end
@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
      
        correct = []
      
-      Request.where(user_id: user.id).collect do |row|
+      Request.where(user_id: user.id, finalized: nil).collect do |row|
         if row.group
          correct << row if row.group.admin_id == self.id 
         end

@@ -18,9 +18,9 @@ x add Geocoder
   x change zipcode on show page to city, state
 x group show page - add jquery show for instrument types in ensemble
 x add complete button for group edit page
+x zipcode validation (w)
 
 - mailers (tg)
-- zipcode validation (w)
 - integrate bootstrap
 - set up youtube/soundcloud to not just be a string of a link
 - preventing multiple invites

@@ -14,6 +14,45 @@ class User < ActiveRecord::Base
   before_destroy :destroy_admin_of
 
 
+  def eligible_groups(user)
+    all_admins_groups = (self.admin_of - user.member_of)
+
+    correct = []
+
+    Request.where(user_id: user.id).collect do |row|
+      if row.group
+        correct << row if row.group.admin_id == self.id 
+      end
+    end
+
+    correct_groups = correct.collect {|request| request.group }
+
+    all_admins_groups - correct_groups 
+   
+  end
+
+  def already_invited(user)
+    all_admins_groups = (self.admin_of - user.member_of)
+     
+       correct = []
+     
+      Request.where(user_id: user.id).collect do |row|
+        if row.group
+         correct << row if row.group.admin_id == self.id 
+        end
+      end
+
+     
+       correct_groups = correct.collect {|request| request.group }
+     
+       final = all_admins_groups.collect do |group|
+         if correct_groups.include? group
+           group.name
+         end
+       end.compact.join(", ")
+       final 
+  end
+
   def validate_zipcode
     /\A\d{5}(-\d{4})?\z/.match(self.zipcode)
   end

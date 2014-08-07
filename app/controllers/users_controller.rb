@@ -3,10 +3,9 @@ class UsersController < ApplicationController
   skip_before_action :registered?, only: [:show, :edit, :update, :create]
 
   def index
-    @users = User.all
+    @all_users = User.near(current_user, 10000, :order => "distance")
     @instrument_list = Instrument.order(:name)
     @ensemble_types = Instrumentation.order(:name)
-
   end
 
   def show

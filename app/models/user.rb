@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   before_update :check_for_instrument_and_zipcode
   geocoded_by :zipcode
   after_validation :geocode
+  before_update :geocode
+
 
 
   def instrumentation_ids=(attributes)
@@ -75,7 +77,7 @@ class User < ActiveRecord::Base
   end
 
   def musician_intelligent_match
-    user_array = User.where(available: 'Seeking a group').collect do |user|
+    user_array = User.near(self, 20, :order => "distance").where(available: 'Seeking a group').collect do |user|
       self.groups.collect do |group|
         if group.instrumentation.instruments.include?(user.instrument)
           if user.instrumentations.include?(group.instrumentation)
@@ -94,4 +96,10 @@ class User < ActiveRecord::Base
   def admins_close_by
     self.class.return_admins.near(self, order: "distance")
   end
+
+  def city_state
+    result = Geocoder.search(zipcode)
+    "#{result[0].city}, #{result[0].state_code}"
+  end
+
 end

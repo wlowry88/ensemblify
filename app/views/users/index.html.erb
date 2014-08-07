@@ -14,6 +14,7 @@
             <th>Level</th>
             <th>Ensemble Preferences</th>
             <th>Availability</th>
+            <th>Distance</th>
             <th colspan="3"></th>
           </tr>
         </thead>
@@ -26,6 +27,7 @@
               <td><%= user.level %></td>
               <td><%= user.interests.collect{|i|i.instrumentation.name}.join(", ") %></td>
               <td><%= user.available %></td>
+              <td class="distance"><%= user.city_state %> (<%= user.distance_from(current_user).round(2) %> miles)</td>
             </tr>
           <% end %>
         </tbody>
@@ -56,12 +58,13 @@
           <th>Level</th>
           <th>Ensemble Preferences</th>
           <th>Availability</th>
+          <th>Location</th>
           <th colspan="3"></th>
         </tr>
       </thead>
 
       <tbody>
-        <% @users.each do |user| %>
+        <% @all_users.each do |user| %>
           <% if current_user != user && user.check_for_instrument_and_zipcode %>
             <tr>
               <td class="name_field"><%= user.full_name %></td>
@@ -69,6 +72,7 @@
               <td class="level_field"><%= user.level %></td>
               <td class="interests_field"><%= user.interests.collect{|i|i.instrumentation.name}.uniq.join(", ") %></td>
               <td class="available_field"><%= user.available %></td>
+              <td class="distance"><%= user.city_state %> (<%= user.distance_from(current_user).round(2) %> miles)</td>
             </tr>
           <% end %>
         <% end %>

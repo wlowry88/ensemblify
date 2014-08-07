@@ -11,7 +11,7 @@
     </p>
     <p>
     <%= f.label :zipcode %>
-    <%= f.text_field :zipcode, required: true %>
+    <%= f.text_field :zipcode, required: true, class: "zipcode_field" %>
     </p>
     <p>
     <%= f.label :phone_number %>
@@ -37,7 +37,7 @@
     <%= f.text_field :audio_sample, placeholder: "https://soundcloud.com/example" %>
     </p>
     <p>
-    <%= f.submit %>
+    <%= f.submit "Save Your Settings", id: "settings_edit_button" %>
     </p>
   <% end %>
 

@@ -8,7 +8,10 @@
 <p>
   <strong>Name:</strong>
   <%= @group.name %>
+  (<%= @group.distance_from(current_user).round(2) %> miles)
 </p>
+<p>
+  
 
 <p>
   <strong>Ensemble Type:</strong>

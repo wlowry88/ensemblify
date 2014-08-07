@@ -58,16 +58,18 @@
           <th>Name</th>
           <th>Type</th>
           <th>Complete</th>
+          <th>Location</th>
           <th colspan="3"></th>
         </tr>
       </thead>
 
       <tbody>
-        <% @groups.each do |group| %>
+        <% @all_groups.each do |group| %>
           <tr>
             <td><%= link_to group.name, group %></td>
             <td class="group_instrumentation"><%= group.instrumentation.name %></td>
             <td class="group_complete"><%= group.complete ? "complete" : "incomplete" %></td>
+            <td class="distance">(<%= group.distance_from(current_user).round(2) %> miles)</td>
           </tr>
         <% end %>
       </tbody>

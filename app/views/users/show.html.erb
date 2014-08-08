@@ -69,6 +69,15 @@
   <% end %>
 </p>
 
+<p><button class="email_form">Contact <%= @user.first_name %></button></p>
+<%= form_tag("/users/send_email", method: "post") do %>
+  <%= hidden_field_tag(:sender_name, current_user.full_name) %>
+  <%= hidden_field_tag(:sender_email, current_user.email) %>
+  <%= hidden_field_tag(:recipient_name, @user.full_name) %>
+  <%= hidden_field_tag(:recipient_email, @user.email) %>
+  <%= text_area_tag :content %>
+  <p><%= submit_tag "Send Message" %></p>
+<% end %>
 
 
 

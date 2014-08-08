@@ -37,4 +37,13 @@ class UserMailer < ActionMailer::Base
     mail(to: @user.email, subject: "#{@group.name} has accepted your request to join.")
   end
 
+  def contact_user(sender_name, sender_email, recipient_name, recipient_email, content)
+    @content = content
+    @sender_name = sender_name
+    @sender_email = sender_email
+    @recipient_name = recipient_name
+    @recipient_email = recipient_email
+    mail(to: recipient_email, subject: "#{sender_name} has sent you a message!", reply_to: @sender_email)
+  end
+
 end

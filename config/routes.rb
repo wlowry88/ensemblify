@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   post 'search/get_instruments_for_group', to: 'search#get_instruments_for_group'
 
+  post '/users/send_email', to: 'users#send_email'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

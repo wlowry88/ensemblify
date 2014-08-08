@@ -11,6 +11,16 @@ class UsersController < ApplicationController
   def show
   end
 
+  def send_email
+    @recipient_name = params[:recipient_name]
+    @recipient_email = params[:recipient_email]
+    @sender_name = params[:sender_name]
+    @sender_email = params[:sender_email]
+    @content = params[:content]
+    UserMailer.contact_user(@sender_name, @sender_email, @recipient_name, @recipient_email, @content).deliver
+    redirect_to User.find_by(email: @recipient_email)
+  end
+
   def edit
     @instrument_list = Instrument.order(:name)
     @ensemble_types = Instrumentation.all

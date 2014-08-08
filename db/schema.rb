@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140807012019) do
   create_table "instrument_instrumentations", force: true do |t|
     t.integer  "instrument_id"
     t.integer  "instrumentation_id"
+    t.integer  "quantity",           default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end

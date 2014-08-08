@@ -22,7 +22,7 @@
       <%= @group.instrumentation.name %> <a class="show_parts_button">(Show Parts)</a>
       <div class= "show_parts">
         <% @group.instrumentation.instruments.each do |instrument| %>
-          <li><%= instrument.name %></li>
+          <li><%= instrument.name %><%= "(x" + instrument_instrumentation.quantity + ")" if instrument_instrumentation.quantity > 1 %> </li>
         <% end %>
     </div>
   </div>

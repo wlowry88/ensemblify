@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :instrumentation_id %><br>
-    <%= f.collection_select :instrumentation_id, Instrumentation.all, :id, :name  %>
+    <%= f.collection_select :instrumentation_id, Instrumentation.all, :id, :name, {prompt: ""}, { class: 'chosen-select' } %>
 
   </div>
 

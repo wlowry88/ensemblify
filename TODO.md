@@ -22,10 +22,10 @@ x zipcode validation (w)
 x mailers (tg)
 x preventing multiple invites
 x relationship between deleting a group once admin is deleted
+x include chosen-rails gem
 
 - group member can send group admin a musician suggestion from that musician's show page
 - integrate bootstrap
-- include chosen-rails gem
 - SEEEEEEEEEEEEEEEEEEEED
 
 extra things:

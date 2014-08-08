@@ -3,11 +3,11 @@
   <%= form_for(@user) do |f| %>
     <p>
     <%= f.label :instrument_id %>
-    <%= f.collection_select :instrument_id, @instrument_list, :id, :name, {prompt: "< select >"}, {required: true} %>
+    <%= f.collection_select :instrument_id, @instrument_list, :id, :name, {prompt: "< select >"}, {required: true, class: 'chosen-select' } %>
     </p>
     <p>
     <%= f.label :level %>
-    <%= f.collection_select :level, ["beginner", "intermediate", "advanced", "professional"], :to_s, :to_s, {prompt: "< select >"} %>
+    <%= f.collection_select :level, ["beginner", "intermediate", "advanced", "professional"], :to_s, :to_s, {prompt: "< select >"}, { class: 'chosen-select' } %>
     </p>
     <p>
     <%= f.label :zipcode %>
@@ -22,11 +22,11 @@
     <%= f.text_area :short_bio %>
     </p>
     <%= f.label :instrumentation_ids, "Ensemble Preferences:" %>
-    <%= f.collection_check_boxes :instrumentation_ids, @ensemble_types, :id, :name %>
+    <%= f.collection_select :instrumentation_ids, @ensemble_types, :id, :name, {prompt: ""}, { class: 'chosen-select', multiple: true} %>
     </p>
     <p>
     <%= f.label :available %>
-    <%= f.collection_select :available, ["Seeking a group", "All set"], :to_s, :to_s %>
+    <%= f.collection_select :available, ["Seeking a group", "All set"], :to_s, :to_s, {prompt: "< select >"}, { class: 'chosen-select' } %>
     </p>
     <p>
     <%= f.label :video_sample %>

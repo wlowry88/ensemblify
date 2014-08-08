@@ -1,86 +1,91 @@
-<p id="notice"><%= notice %></p>
-<h3><%= "Welcome, " + @user.first_name + "! Please fill out the rest of your profile!" unless (@user.check_for_instrument_and_zipcode || @user != current_user) %> </h3>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <h3><%= "Welcome, " + @user.first_name + "! Please fill out the rest of your profile!" unless (@user.check_for_instrument_and_zipcode || @user != current_user) %> </h3>
 
-<% if current_user == @user %>
-  <% Request.where(user_id: @user.id, finalized: nil, user_approved: nil).each do |request| %>
-  <%= link_to request.invite_message, request.group %>
+  <% if current_user == @user %>
+    <% Request.where(user_id: @user.id, finalized: nil, user_approved: nil).each do |request| %>
+    <%= link_to request.invite_message, request.group %>
+    <% end %>
   <% end %>
-<% end %>
-<h1><%= @user.full_name %></h1>
-<p>
-  <%= image_tag @user.image %>
-</p>
-<%= link_to 'Update Profile', edit_user_path if current_user==@user%>
-<p><%= "Instrument: #{@user.instrument.name.capitalize}" if @user.instrument %></p>
-<p><%= "Level: #{@user.level}" if @user.level %></p>
-<p><%= "Available: #{@user.available}" if @user.available %></p>
-<p><%= "Location: #{@user.city_state}" if @user.zipcode && @user.city_state %></p>
-<p><%= "Bio: #{@user.short_bio}" if !@user.short_bio.empty? %></p>
-<p><%= "Video Sample: #{@user.video_sample}" if !@user.video_sample.empty? %></p>
-<p><%= "Audio Sample: #{@user.audio_sample}" if !@user.audio_sample.empty? %></p>
 
+  <div class="page-header">
+    <h1><%= @user.full_name %><small><%= "#{@user.instrument.name.capitalize}" if @user.instrument %></small></h1>
+  </div>
 
-<% if @user.interests.any? %>
-  <strong>Ensemble Preferences:</strong>
-  <% @user.interests.each do |interest| %>
-    <li><%= interest.instrumentation.name %></li>
-  <% end %>
-<% end %>
-
-
-<%= current_user.already_invited(@user) if current_user!=@user %>
-<% if (current_user.pending_requests(@user).size > 0 && @user != current_user) %>
-   <p>Add <%= @user.first_name %> to your groups?</p>
-   <p><% current_user.pending_requests(@user).each do |request| %>
-        <%= form_for request do |f| %>
-          <%= f.hidden_field :group_approved, value: true %>
-          <%= f.submit "Accept Request to join #{request.group.name}" %>
-        <% end %>
-        <%= form_for request do |f| %>
-          <%= f.hidden_field :group_approved, value: false %>
-          <%= f.submit "Deny Request to join #{request.group.name}" %>
-        <% end %>
-      <%end%>
+  <div class="user-image col-md-4">
+    <p>
+      <%= image_tag @user.image %>
     </p>
-<% end %>
-<% if (@user != current_user && !current_user.admin_of.empty? && current_user && !(current_user.eligible_groups(@user)).empty?) %>
-  <p>Would you like to invite <%= @user.first_name %> to one of your groups? </p>
-  <%= form_for Request.new do |f| %>
-    <%= f.label :group_id %>
-    <%= f.collection_select :group_id, current_user.eligible_groups(@user), :id, :name %>
-    <%= f.hidden_field :user_id, value: @user.id %>
-    <%= f.hidden_field :group_approved, value: true %>
-    <%= f.submit "Invite #{@user.first_name}" %>
-  <% end %>
-<% end %>
-<p>
-  <% if !@user.member_of.empty? %>
-    <strong>Ensembles:</strong>
-    <% @user.member_of.each do |group| %>
-      <li><%= link_to group.name, group %></li>
-    <% end %>
-  <% else %>
-    <strong>Ensembles:</strong>
-    <% if current_user == @user && current_user.check_for_instrument_and_zipcode %>
-      You are not currently a member of any ensembles. Why not <%= link_to 'check some out', groups_path%> or <%= link_to 'create your own', new_group_path %>?
-    <% elsif current_user != @user && @user.groups.empty? %>
-      <%= "#{@user.first_name} isn't in any ensembles. Invite #{@user.gender_pronoun} to yours!" %>
-    <% end %>
-  <% end %>
-</p>
-<% if current_user != @user %>
-  <div class="email_area">
-    <p><button class="email_form_button">Contact <%= @user.first_name %></button></p>
-    <%= form_tag("/users/send_email", method: "post", class: "email_form") do %>
-      <%= hidden_field_tag(:sender_name, current_user.full_name) %>
-      <%= hidden_field_tag(:sender_email, current_user.email) %>
-      <%= hidden_field_tag(:recipient_name, @user.full_name) %>
-      <%= hidden_field_tag(:recipient_email, @user.email) %>
-      <%= text_area_tag :content %>
-      <p><%= submit_tag "Send Message" %></p>
+  </div>
+
+  <div class="user-info col-md-8">
+    <p><%= "Level: #{@user.level}" if @user.level %></p>
+    <p><%= "Available: #{@user.available}" if @user.available %></p>
+    <p><%= "Location: #{@user.city_state}" if @user.zipcode && @user.city_state %></p>
+    <p><%= "Bio: #{@user.short_bio}" if !@user.short_bio.empty? %></p>
+    <p><%= "Video Sample: #{@user.video_sample}" if !@user.video_sample.empty? %></p>
+    <p><%= "Audio Sample: #{@user.audio_sample}" if !@user.audio_sample.empty? %></p>
+    <% if @user.interests.any? %>
+      <strong>Ensemble Preferences:</strong>
+      <% @user.interests.each do |interest| %>
+        <li><%= interest.instrumentation.name %></li>
+      <% end %>
     <% end %>
   </div>
-<% end %>
 
+  <%= link_to 'Update Profile', edit_user_path if current_user==@user%>
 
-
+  <%= current_user.already_invited(@user) if current_user!=@user %>
+  <% if (current_user.pending_requests(@user).size > 0 && @user != current_user) %>
+     <p>Add <%= @user.first_name %> to your groups?</p>
+     <p><% current_user.pending_requests(@user).each do |request| %>
+          <%= form_for request do |f| %>
+            <%= f.hidden_field :group_approved, value: true %>
+            <%= f.submit "Accept Request to join #{request.group.name}" %>
+          <% end %>
+          <%= form_for request do |f| %>
+            <%= f.hidden_field :group_approved, value: false %>
+            <%= f.submit "Deny Request to join #{request.group.name}" %>
+          <% end %>
+        <%end%>
+      </p>
+  <% end %>
+  <% if (@user != current_user && !current_user.admin_of.empty? && current_user && !(current_user.eligible_groups(@user)).empty?) %>
+    <p>Would you like to invite <%= @user.first_name %> to one of your groups? </p>
+    <%= form_for Request.new do |f| %>
+      <%= f.label :group_id %>
+      <%= f.collection_select :group_id, current_user.eligible_groups(@user), :id, :name %>
+      <%= f.hidden_field :user_id, value: @user.id %>
+      <%= f.hidden_field :group_approved, value: true %>
+      <%= f.submit "Invite #{@user.first_name}" %>
+    <% end %>
+  <% end %>
+  <p>
+    <% if !@user.member_of.empty? %>
+      <strong>Ensembles:</strong>
+      <% @user.member_of.each do |group| %>
+        <li><%= link_to group.name, group %></li>
+      <% end %>
+    <% else %>
+      <strong>Ensembles:</strong>
+      <% if current_user == @user && current_user.check_for_instrument_and_zipcode %>
+        You are not currently a member of any ensembles. Why not <%= link_to 'check some out', groups_path%> or <%= link_to 'create your own', new_group_path %>?
+      <% elsif current_user != @user && @user.groups.empty? %>
+        <%= "#{@user.first_name} isn't in any ensembles. Invite #{@user.gender_pronoun} to yours!" %>
+      <% end %>
+    <% end %>
+  </p>
+  <% if current_user != @user %>
+    <div class="email_area">
+      <p><button class="email_form_button">Contact <%= @user.first_name %></button></p>
+      <%= form_tag("/users/send_email", method: "post", class: "email_form") do %>
+        <%= hidden_field_tag(:sender_name, current_user.full_name) %>
+        <%= hidden_field_tag(:sender_email, current_user.email) %>
+        <%= hidden_field_tag(:recipient_name, @user.full_name) %>
+        <%= hidden_field_tag(:recipient_email, @user.email) %>
+        <%= text_area_tag :content %>
+        <p><%= submit_tag "Send Message" %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>

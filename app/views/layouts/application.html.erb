@@ -1,21 +1,54 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>PlayItByEar</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-  <%= analytics_init if Rails.env.production? %>
-</head>
-<body>
-<%= "Signed in as #{current_user.full_name}! |" if logged_in?%>
-<%= link_to "Profile | ", current_user if logged_in? %> 
-<%= link_to "Musicians | ", users_path %> 
-<%= link_to "Ensembles | ", groups_path  %> 
-<%= link_to "Login Page", "/login" unless logged_in?%>
-<%= link_to "Logout", "/logout" if logged_in? %>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Ensemblify</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<%= yield %>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+      <%= stylesheet_link_tag    'application', media: 'all' %>
+      <%= javascript_include_tag 'application' %>
+      <%= csrf_meta_tags %>
+      <%= analytics_init if Rails.env.production? %>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="treble_clef_small">
+    <link href='http://fonts.googleapis.com/css?family=Niconne' rel='stylesheet' type='text/css'>
+  </head>
 
-</body>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="index.html"><%= image_tag "treble_clef_small.png" %>ensemblify</a>
+          <div class="nav-collapse">
+            <ul class="nav pull-right">
+              <li><%= link_to "#{current_user.full_name}", current_user if logged_in? %></li>
+              <li><%= link_to "Musicians", users_path %></li>
+              <li><%= link_to "Ensembles", groups_path  %></li>
+              <li><%= link_to "Login", "/login" unless logged_in?%></li>
+              <li><%= link_to "Logout", "/logout" if logged_in? %></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+
+    <%= yield %>
+
+    <footer class="white navbar-fixed-bottom">
+      Made by Catherine Meyers, Rebecca Greenblatt, and Will Lowry at The Flatiron School
+    </footer>
+
+  </body>
 </html>

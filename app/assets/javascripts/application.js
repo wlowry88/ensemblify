@@ -17,4 +17,5 @@
 //= require instruments
 //= require users
 //= require bootstrap
+//= require typica-login
 //= require_tree .

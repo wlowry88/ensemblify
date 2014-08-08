@@ -1,4 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
+  <div id="login-wraper">
+      <form class="form login-form">
+          <legend>Welcome to <span class="blue">Ensemblify</span></legend>
+      
+          <div class="body">
+            <p><%= link_to 'log in with facebook', '/auth/facebook' %></p>
+          </div>
+      
+          <div class="footer">
+            <%= link_to "Take a look around", groups_path, class: "btn btn-black" %>           
+          </div>
+      
+      </form>
+  </div>
 
-<p><%= link_to 'log in with facebook', '/auth/facebook' %></p>
+</div>

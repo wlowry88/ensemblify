@@ -12,6 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require chosen
+ *= require token-input-facebook
  *= require users
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"

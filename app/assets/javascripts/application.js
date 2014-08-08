@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require chosen.jquery
+//= require jquery.tokeninput
+//= require instruments
 //= require users
 //= require bootstrap
 //= require_tree .

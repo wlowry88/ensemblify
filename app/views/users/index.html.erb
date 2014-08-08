@@ -39,13 +39,13 @@
     <h4>Showing all musicians</h4>
     <%= form_for(User.new) do |f| %>
     <%= f.label :instrument_id %>
-    <%= f.collection_select :instrument_id, @instrument_list, :name, :name, {prompt: ""} %>
+    <%= f.collection_select :instrument_id, @instrument_list, :name, :name, {prompt: ""}, { class: 'chosen-select' } %>
     <%= f.label :available %>
-    <%= f.collection_select :available, ["Seeking a group","All Set"], :to_s, :to_s, {prompt: ""} %>
+    <%= f.collection_select :available, ["Seeking a group","All Set"], :to_s, :to_s, {prompt: ""}, { class: 'chosen-select' } %>
     <%= f.label :instrumentation_ids, "Interests" %>
-    <%= f.collection_select :instrumentation_ids, @ensemble_types, :name, :name, {prompt: ""} %>
+    <%= f.collection_select :instrumentation_ids, @ensemble_types, :name, :name, {prompt: ""}, { class: 'chosen-select' } %>
     <%= f.label :level %>
-    <%= f.collection_select :level, ["beginner", "intermediate", "advanced", "professional"], :to_s, :to_s, {prompt: ""} %>
+    <%= f.collection_select :level, ["beginner", "intermediate", "advanced", "professional"], :to_s, :to_s, {prompt: ""}, { class: 'chosen-select' } %>
     <%= f.submit "Search", class:"search_button" %>
     <button class="clear_fields">Clear Fields</button>
     <% end %>

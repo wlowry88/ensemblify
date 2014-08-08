@@ -37,6 +37,9 @@ gem 'geocoder'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+group :assets do
+  gem 'chosen-rails'
+end
 
 group :test, :development do
   gem "rspec-rails"

@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 		@user = User.from_omniauth(auth)
 		session[:user_id]= @user.id 
 		if @user.check_for_instrument_and_zipcode
-			redirect_to groups_path
+			redirect_to @user
 		else
 			redirect_to @user 
 		end

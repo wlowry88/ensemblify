@@ -1,44 +1,56 @@
-<h1>Editing user</h1>
+<div class="container">
+    <div class="page-header">
+      <h1>Update your profile</h1>
+    </div>
 
-  <%= form_for(@user) do |f| %>
-    <p>
-    <%= f.label :instrument_id %>
-    <%= f.collection_select :instrument_id, @instrument_list, :id, :name, {prompt: "< select >"}, {required: true, class: 'chosen-select' } %>
-    </p>
-    <p>
-    <%= f.label :level %>
-    <%= f.collection_select :level, ["beginner", "intermediate", "advanced", "professional"], :to_s, :to_s, {prompt: "< select >"}, { class: 'chosen-select' } %>
-    </p>
-    <p>
-    <%= f.label :zipcode %>
-    <%= f.text_field :zipcode, required: true, class: "zipcode_field" %>
-    </p>
-    <p>
-    <%= f.label :phone_number %>
-    <%= f.telephone_field :phone_number %>
-    </p>
-    <p>
-    <%= f.label :short_bio %>
-    <%= f.text_area :short_bio %>
-    </p>
-    <%= f.label :instrumentation_ids, "Ensemble Preferences:" %>
-    <%= f.collection_select :instrumentation_ids, @ensemble_types, :id, :name, {prompt: ""}, { class: 'chosen-select', multiple: true} %>
-    </p>
-    <p>
-    <%= f.label :available %>
-    <%= f.collection_select :available, ["Seeking a group", "All set"], :to_s, :to_s, {prompt: "< select >"}, { class: 'chosen-select' } %>
-    </p>
-    <p>
-    <%= f.label :video_sample %>
-    <%= f.text_field :video_sample, placeholder: "https://www.youtube.com/example" %>
-    </p>
-    <p>
-    <%= f.label :audio_sample %>
-    <%= f.text_field :audio_sample, placeholder: "https://soundcloud.com/example" %>
-    </p>
-    <p>
-    <%= f.submit "Save Your Settings", id: "settings_edit_button" %>
-    </p>
-  <% end %>
+    <div class="row">
+      <div class="update-user-left member span6">
+        <%= form_for(@user) do |f| %>
+          <p>
+          <%= f.label :instrument_id %>
+          <%= f.collection_select :instrument_id, @instrument_list, :id, :name, {prompt: "< select >"}, {required: true, class: 'chosen-select' } %>
+          </p>
+          <p>
+          <%= f.label :level %>
+          <%= f.collection_select :level, ["beginner", "intermediate", "advanced", "professional"], :to_s, :to_s, {prompt: "< select >"}, { class: 'chosen-select' } %>
+          </p>
+          <p>
+          <%= f.label :zipcode %>
+          <%= f.text_field :zipcode, required: true, class: "zipcode_field" %>
+          </p>
+          <p>
+          <%= f.label :phone_number %>
+          <%= f.telephone_field :phone_number %>
+          </p>
+          <p>
+          <%= f.label :short_bio %>
+          <%= f.text_area :short_bio %>
+          </p>
+          </div>
 
-<%= link_to 'Show', @user %>
+          <div class="update-user-right member span6">
+          <%= f.label :instrumentation_ids, "Ensemble Preferences:" %>
+          <%= f.collection_select :instrumentation_ids, @ensemble_types, :id, :name, {prompt: ""}, { class: 'chosen-select', multiple: true} %>
+          </p>
+          <p>
+          <%= f.label :available %>
+          <%= f.collection_select :available, ["seeking a group", "all set"], :to_s, :to_s, {prompt: "< select >"}, { class: 'chosen-select' } %>
+          </p>
+          <p>
+          <%= f.label :video_sample %>
+          <%= f.text_field :video_sample, placeholder: "https://www.youtube.com/example" %>
+          </p>
+          <p>
+          <%= f.label :audio_sample %>
+          <%= f.text_field :audio_sample, placeholder: "https://soundcloud.com/example" %>
+          </p>
+          <br>
+          <p>
+          <%= f.submit "Save", class: "btn btn-black", id: "settings_edit_button" %><%= link_to 'Back', @user, class: "btn btn-black" %>
+          </p>
+        <% end %>
+        
+      </div>
+    </div>
+
+</div>

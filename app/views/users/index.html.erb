@@ -3,22 +3,22 @@
   <h1>
     Musicians
     <% if current_user %>
-    <button class="intelligent_musician_toggle">Show All Musicians</button>
+    <button class="btn intelligent_musician_toggle">Show All Musicians</button>
     <% end %>
   </h1>
 
     <% if current_user %>
       <div class="intelligent_matches">
-        <table class="intelligent_matches">
+        <table id="pricing-table" class="intelligent_matches table table-hover">
           <h4>These musicians might be a good fit for your group</h4>
-          <thead>
+          <thead class="header">
             <tr>
               <th>Name</th>
               <th>Instrument</th>
               <th>Level</th>
-              <th>Ensemble Preferences</th>
+              <th>Preferences</th>
               <th>Availability</th>
-              <th>Distance</th>
+              <th>Location</th>
               <th colspan="3"></th>
             </tr>
           </thead>
@@ -31,7 +31,7 @@
                 <td><%= user.level %></td>
                 <td><%= user.interests.collect{|i|i.instrumentation.name}.join(", ") %></td>
                 <td><%= user.available %></td>
-                <td class="distance"><%= user.city_state %> (<%= user.distance_from(current_user).round(2) %> miles)</td>
+                <td class="distance"><%= user.city_state %><br> (<%= user.distance_from(current_user).round(2) %> miles)</td>
               </tr>
             <% end %>
           </tbody>
@@ -52,8 +52,8 @@
       <%= f.collection_select :level, ["beginner", "intermediate", "advanced", "professional"], :to_s, :to_s, {prompt: ""}, { class: 'chosen-select' } %>
       <p></p>
       <div class="search_and_clear">
-      <%= f.submit "Search", class:"search_button" %>
-      <button class="clear_fields">Clear Fields</button>
+      <%= f.submit "Search", class:"search_button btn" %>
+      <button class="clear_fields btn">Clear Fields</button>
       </div>
       <% end %>
 
@@ -63,7 +63,7 @@
             <th>Name</th>
             <th>Instrument</th>
             <th>Level</th>
-            <th>Ensemble Preferences</th>
+            <th>Preferences</th>
             <th>Availability</th>
             <th>Location</th>
             <th colspan="3"></th>
@@ -79,7 +79,7 @@
                 <td class="level_field"><%= user.level %></td>
                 <td class="interests_field"><%= user.interests.collect{|i|i.instrumentation.name}.uniq.join(", ") %></td>
                 <td class="available_field"><%= user.available %></td>
-                <td class="distance"><%= user.city_state %> (<%= user.distance_from(current_user).round(2) %> miles)</td>
+                <td class="distance"><%= user.city_state %> <br>(<%= user.distance_from(current_user).round(2) %> miles)</td>
               </tr>
             <% end %>
           <% end %>

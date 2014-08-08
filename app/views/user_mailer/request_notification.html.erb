@@ -9,7 +9,7 @@
       <%= @user.full_name %> has requested to join <%= @group.name %>. Check <%= @user.gender_pronoun %> out. Maybe message <%= @user.gender_pronoun %>. Then, maybe accept or deny.
     </p>
     <p>
-      <%= link_to @group.name, @url %>.
+      <%= link_to @user.full_name, @url %>.
     </p>
     <p>Now go practice!</p>
 

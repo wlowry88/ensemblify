@@ -67,5 +67,10 @@ $(function(){
 			alert("Please enter a valid zipcode! It should be in the form 12345 or 12345-1234")
 		}
 	});
+	$(".email_form").hide();
+	$(".email_area").on("click", ".email_form_button", function(e){
+		e.preventDefault();
+		$(".email_form").slideToggle();
+	});
 
 });

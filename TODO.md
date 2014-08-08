@@ -19,12 +19,12 @@ x add Geocoder
 x group show page - add jquery show for instrument types in ensemble
 x add complete button for group edit page
 x zipcode validation (w)
+x mailers (tg)
+x preventing multiple invites
 
-- mailers (tg)
-- integrate bootstrap
 - set up youtube/soundcloud to not just be a string of a link
-- preventing multiple invites
 - group member can send group admin a musician suggestion from that musician's show page
+- integrate bootstrap
 - include chosen-rails gem
 - SEEEEEEEEEEEEEEEEEEEED
 

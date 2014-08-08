@@ -20,3 +20,6 @@ Instrumentation.find_by(name: 'piano trio').instruments << (Instrument.find_by(n
 Instrumentation.find_by(name: 'string quartet').instruments << (Instrument.find_by(name: 'violin'))
 Instrumentation.find_by(name: 'string quartet').instruments << (Instrument.find_by(name: 'viola'))
 Instrumentation.find_by(name: 'string quartet').instruments << (Instrument.find_by(name: 'cello'))
+violins_in_quartet = InstrumentInstrumentation.find_by(instrument: Instrument.find_by_name("violin"), instrumentation: Instrumentation.find_by_name("string quartet"))
+violins_in_quartet.quantity = 2
+violins_in_quartet.save

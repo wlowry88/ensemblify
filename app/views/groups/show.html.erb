@@ -21,8 +21,8 @@
     <strong>Ensemble Type:</strong>
       <%= @group.instrumentation.name %> <a class="show_parts_button">(Show Parts)</a>
       <div class= "show_parts">
-        <% @group.instrumentation.instruments.each do |instrument| %>
-          <li><%= instrument.name %><%= "(x" + instrument_instrumentation.quantity + ")" if instrument_instrumentation.quantity > 1 %> </li>
+        <% @group.instrumentation.instrument_instrumentations.each do |i| %>
+          <li><%= i.instrument.name %><%= " (x" + i.quantity.to_s + ")" if i.quantity > 1 %> </li>
         <% end %>
     </div>
   </div>

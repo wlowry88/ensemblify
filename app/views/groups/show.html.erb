@@ -73,6 +73,13 @@
   <% end %>
 </p>
 
+<% if @group.members.include?(current_user) && (current_user != @group.admin) %>
+  <%= form_tag do %>
+  <%= hidden_field_tag 'leave', 'true' %>
+  <%= submit_tag 'Leave Group' %>
+<% end %>
+<% end %>
+
 <%= link_to 'Edit', edit_group_path(@group) if current_user == @group.admin %> |
 <%= link_to 'Back', groups_path %> |
-<%= link_to 'Destroy', @group, method: :delete, data: {confirm: "Are you sure?"} if current_user == @group.admin %>
+<%= link_to 'Destroy Group', @group, method: :delete, data: {confirm: "Are you sure?"} if current_user == @group.admin %>

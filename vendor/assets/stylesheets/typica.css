@@ -1349,3 +1349,7 @@ blockquote p {
     text-align: center;
   }
 }
+.user-info {
+  text-align: left;
+  padding-left: 150px;
+}

@@ -11,29 +11,30 @@
   <div class="page-header">
     <h1><%= @user.full_name %><small><%= "#{@user.instrument.name.capitalize}" if @user.instrument %></small></h1>
   </div>
-
-  <div class="user-image col-md-4">
+<div class="row">
+  <div class="user-image member span4">
     <p>
       <%= image_tag @user.image %>
     </p>
   </div>
 
-  <div class="user-info col-md-8">
-    <p><%= "Level: #{@user.level}" if @user.level %></p>
-    <p><%= "Available: #{@user.available}" if @user.available %></p>
-    <p><%= "Location: #{@user.city_state}" if @user.zipcode && @user.city_state %></p>
-    <p><%= "Bio: #{@user.short_bio}" if !@user.short_bio.empty? %></p>
-    <p><%= "Video Sample: #{@user.video_sample}" if !@user.video_sample.empty? %></p>
-    <p><%= "Audio Sample: #{@user.audio_sample}" if !@user.audio_sample.empty? %></p>
+  <div class="user-info member span6">
+    <p><strong>Level: </strong><%= @user.level if @user.level %></p>
+    <p><strong>Available: </strong><%= @user.available if @user.available %></p>
+    <p><strong>Location: </strong><%= @user.city_state if @user.zipcode && @user.city_state %></p>
+    <p><strong>Bio: </strong><%= @user.short_bio if !@user.short_bio.empty? %></p>
+    <p><strong>Video Sample: </strong><%= @user.video_sample if !@user.video_sample.empty? %></p>
+    <p><strong>Audio Sample: </strong><%= @user.audio_sample if !@user.audio_sample.empty? %></p>
     <% if @user.interests.any? %>
       <strong>Ensemble Preferences:</strong>
       <% @user.interests.each do |interest| %>
         <li><%= interest.instrumentation.name %></li>
       <% end %>
     <% end %>
+    <%= link_to 'Update Profile', edit_user_path if current_user==@user%>
   </div>
+</div>
 
-  <%= link_to 'Update Profile', edit_user_path if current_user==@user%>
 
   <%= current_user.already_invited(@user) if current_user!=@user %>
   <% if (current_user.pending_requests(@user).size > 0 && @user != current_user) %>

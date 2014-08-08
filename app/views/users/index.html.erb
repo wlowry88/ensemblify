@@ -1,10 +1,12 @@
 <div class="container">
-  <h1>Musicians</h1>
-
   <div class="wrapper">
-
-
+  <h1>
+    Musicians
+    <% if current_user %>
     <button class="intelligent_musician_toggle">Show All Musicians</button>
+    <% end %>
+  </h1>
+
     <% if current_user %>
       <div class="intelligent_matches">
         <table class="intelligent_matches">
@@ -48,8 +50,11 @@
       <%= f.collection_select :instrumentation_ids, @ensemble_types, :name, :name, {prompt: ""}, { class: 'chosen-select' } %>
       <%= f.label :level %>
       <%= f.collection_select :level, ["beginner", "intermediate", "advanced", "professional"], :to_s, :to_s, {prompt: ""}, { class: 'chosen-select' } %>
+      <p></p>
+      <div class="search_and_clear">
       <%= f.submit "Search", class:"search_button" %>
       <button class="clear_fields">Clear Fields</button>
+      </div>
       <% end %>
 
     <table class="all_matches table table-hover" id="pricing-table">

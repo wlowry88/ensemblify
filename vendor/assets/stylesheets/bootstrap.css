@@ -967,7 +967,7 @@ textarea {
 }
 
 label {
-  display: block;
+  display: inline;
   margin-bottom: 5px;
 }
 

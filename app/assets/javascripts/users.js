@@ -60,7 +60,7 @@ $(function(){
 		$("#user_level").val("");
 	});
 
-	$(".edit_user").on("click", "#settings_edit_button", function(e){
+	$(".update-user-right").on("click", "#settings_edit_button", function(e){
 		if(/^\d{5}(-\d{4})?$/.test($("#user_zipcode").val())){
 		} else {
 			e.preventDefault();

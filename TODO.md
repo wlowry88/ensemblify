@@ -25,9 +25,11 @@ x relationship between deleting a group once admin is deleted
 x include chosen-rails gem
 x instruments and instrumentation seed
 
-- group member can send group admin a musician suggestion from that musician's show page
 - integrate bootstrap
+- change landing page
+  -Welcome to Ensemblify, login with facebook, Take a look around
 - pieces seed
+- group member can send group admin a musician suggestion from that musician's show page
 
 extra things:
 - set up youtube/soundcloud to not just be a string of a link

@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140807012019) do
   create_table "groups", force: true do |t|
     t.string   "name"
     t.integer  "instrumentation_id"
-    t.boolean  "complete"
+    t.boolean  "complete",           default: false
     t.integer  "admin_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 20140807012019) do
     t.string   "level"
     t.string   "video_sample",     default: ""
     t.string   "audio_sample",     default: ""
-    t.string   "available"
+    t.string   "available",        default: "Seeking a group"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "latitude"

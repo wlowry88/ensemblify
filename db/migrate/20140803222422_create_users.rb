@@ -17,7 +17,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :level
       t.string :video_sample, default: ""
       t.string :audio_sample, default: ""
-      t.string :available
+      t.string :available, default: "Seeking a group"
 
       t.timestamps
     end

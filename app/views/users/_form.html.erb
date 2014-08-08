@@ -1,81 +1,83 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<div class="container">
+  <%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :first_name %><br>
+      <%= f.text_field :first_name %>
+    </div>
+    <div class="field">
+      <%= f.label :last_name %><br>
+      <%= f.text_field :last_name %>
+    </div>
+    <div class="field">
+      <%= f.label :instrument %><br>
+      <%= f.text_field :instrument %>
+    </div>
+    <div class="field">
+      <%= f.label :gender %><br>
+      <%= f.text_field :gender %>
+    </div>
+    <div class="field">
+      <%= f.label :short_bio %><br>
+      <%= f.text_field :short_bio %>
+    </div>
+    <div class="field">
+      <%= f.label :image %><br>
+      <%= f.text_field :image %>
+    </div>
+    <div class="field">
+      <%= f.label :email %><br>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :zipcode %><br>
+      <%= f.number_field :zipcode %>
+    </div>
+    <div class="field">
+      <%= f.label :phone_number %><br>
+      <%= f.text_field :phone_number %>
+    </div>
+    <div class="field">
+      <%= f.label :instrument %><br>
+      <%= f.text_field :instrument %>
+    </div>
+    <div class="field">
+      <%= f.label :level %><br>
+      <%= f.text_field :level %>
+    </div>
+    <div class="field">
+      <%= f.label :video_sample %><br>
+      <%= f.text_field :video_sample %>
+    </div>
+    <div class="field">
+      <%= f.label :audio_sample %><br>
+      <%= f.text_field :audio_sample %>
+    </div>
+    <div class="field">
+      <%= f.label :type_preferences %><br>
+      <%= f.text_field :type_preferences %>
+    </div>
+    <div class="field">
+      <%= f.label :style_preferences %><br>
+      <%= f.text_field :style_preferences %>
+    </div>
+    <div class="field">
+      <%= f.label :availability %><br>
+      <%= f.number_field :availability %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :instrument %><br>
-    <%= f.text_field :instrument %>
-  </div>
-  <div class="field">
-    <%= f.label :gender %><br>
-    <%= f.text_field :gender %>
-  </div>
-  <div class="field">
-    <%= f.label :short_bio %><br>
-    <%= f.text_field :short_bio %>
-  </div>
-  <div class="field">
-    <%= f.label :image %><br>
-    <%= f.text_field :image %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :zipcode %><br>
-    <%= f.number_field :zipcode %>
-  </div>
-  <div class="field">
-    <%= f.label :phone_number %><br>
-    <%= f.text_field :phone_number %>
-  </div>
-  <div class="field">
-    <%= f.label :instrument %><br>
-    <%= f.text_field :instrument %>
-  </div>
-  <div class="field">
-    <%= f.label :level %><br>
-    <%= f.text_field :level %>
-  </div>
-  <div class="field">
-    <%= f.label :video_sample %><br>
-    <%= f.text_field :video_sample %>
-  </div>
-  <div class="field">
-    <%= f.label :audio_sample %><br>
-    <%= f.text_field :audio_sample %>
-  </div>
-  <div class="field">
-    <%= f.label :type_preferences %><br>
-    <%= f.text_field :type_preferences %>
-  </div>
-  <div class="field">
-    <%= f.label :style_preferences %><br>
-    <%= f.text_field :style_preferences %>
-  </div>
-  <div class="field">
-    <%= f.label :availability %><br>
-    <%= f.number_field :availability %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

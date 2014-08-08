@@ -31,7 +31,7 @@
         <li><%= interest.instrumentation.name %></li>
       <% end %>
     <% end %>
-    <%= link_to 'Update Profile', edit_user_path if current_user==@user%>
+    <%= link_to 'Update Profile', edit_user_path, class: "btn btn-black" if current_user==@user%>
   </div>
 </div>
 
@@ -61,21 +61,25 @@
       <%= f.submit "Invite #{@user.first_name}" %>
     <% end %>
   <% end %>
-  <p>
-    <% if !@user.member_of.empty? %>
-      <strong>Ensembles:</strong>
-      <% @user.member_of.each do |group| %>
-        <li><%= link_to group.name, group %></li>
+
+  <div class="member-of-ensembles">
+    <p>
+      <% if !@user.member_of.empty? %>
+        <strong>Ensembles:</strong>
+        <% @user.member_of.each do |group| %>
+          <li><%= link_to group.name, group %></li>
+        <% end %>
+      <% else %>
+        <strong>Ensembles:</strong>
+        <% if current_user == @user && current_user.check_for_instrument_and_zipcode %>
+          You are not currently a member of any ensembles. Why not <%= link_to 'check some out', groups_path%> or <%= link_to 'create your own', new_group_path %>?
+        <% elsif current_user != @user && @user.groups.empty? %>
+          <%= "#{@user.first_name} isn't in any ensembles. Invite #{@user.gender_pronoun} to yours!" %>
+        <% end %>
       <% end %>
-    <% else %>
-      <strong>Ensembles:</strong>
-      <% if current_user == @user && current_user.check_for_instrument_and_zipcode %>
-        You are not currently a member of any ensembles. Why not <%= link_to 'check some out', groups_path%> or <%= link_to 'create your own', new_group_path %>?
-      <% elsif current_user != @user && @user.groups.empty? %>
-        <%= "#{@user.first_name} isn't in any ensembles. Invite #{@user.gender_pronoun} to yours!" %>
-      <% end %>
-    <% end %>
-  </p>
+    </p>
+  </div>
+  
   <% if current_user != @user %>
     <div class="email_area">
       <p><button class="email_form_button">Contact <%= @user.first_name %></button></p>

@@ -29,7 +29,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="index.html"><%= image_tag "treble_clef_small.png" %>ensemblify</a>
+          <a class="brand" href="/groups"><%= image_tag "treble_clef_small.png" %>ensemblify</a>
           <div class="nav-collapse">
             <ul class="nav pull-right">
               <li><%= link_to "#{current_user.full_name}", current_user if logged_in? %></li>
@@ -47,7 +47,7 @@
     <%= yield %>
 
     <footer class="white navbar-fixed-bottom">
-      Made by Catherine Meyers, Rebecca Greenblatt, and Will Lowry at The Flatiron School
+      Made by <%= link_to "Catherine Meyers", "http://www.github.com/ccmeyers", target: "blank" %>, <%= link_to "Rebecca Greenblatt", "http://www.github.com/rebeccagreenblatt", target: "blank" %>, and <%= link_to "Will Lowry", "http://www.github.com/wlowry88", target: "blank" %> at <%= link_to "The Flatiron School", "http://flatironschool.com/", target: "blank" %>
     </footer>
 
   </body>

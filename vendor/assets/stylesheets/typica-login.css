@@ -37,6 +37,8 @@ body {
   background-image: none;
   color: white;
   text-shadow: none;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 /* line 33, ../sass/typica-login.scss */
 .btn-black:hover {

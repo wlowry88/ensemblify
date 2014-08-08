@@ -18,21 +18,23 @@
     </p>
   </div>
 
-  <div class="user-info member span6">
+  <div class="user-info member span3">
     <p><strong>Level: </strong><%= @user.level if @user.level %></p>
     <p><strong>Available: </strong><%= @user.available if @user.available %></p>
     <p><strong>Location: </strong><%= @user.city_state if @user.zipcode && @user.city_state %></p>
     <p><strong>Bio: </strong><%= @user.short_bio if !@user.short_bio.empty? %></p>
-    <p><strong>Video Sample: </strong><%= @user.video_sample if !@user.video_sample.empty? %></p>
-    <p><strong>Audio Sample: </strong><%= @user.audio_sample if !@user.audio_sample.empty? %></p>
+  </div>
+  <div class="user-info member span4">
+    <p><strong>Video Sample: </strong><%= link_to @user.video_sample, @user.video_sample, target: "blank" if !@user.video_sample.empty? %></p>
+    <p><strong>Audio Sample: </strong><%= link_to @user.audio_sample, @user.audio_sample, target: "blank" if !@user.audio_sample.empty? %></p>
     <% if @user.interests.any? %>
       <strong>Ensemble Preferences:</strong>
       <% @user.interests.each do |interest| %>
         <li><%= interest.instrumentation.name %></li>
       <% end %>
     <% end %>
-    <%= link_to 'Update Profile', edit_user_path, class: "btn btn-black" if current_user==@user%>
   </div>
+    <center><%= link_to 'Update Profile', edit_user_path, class: "btn btn-black" if current_user==@user%></center>
 </div>
 
 
@@ -79,7 +81,7 @@
       <% end %>
     </p>
   </div>
-  
+
   <% if current_user != @user %>
     <div class="email_area">
       <p><button class="email_form_button">Contact <%= @user.first_name %></button></p>

@@ -121,7 +121,7 @@ class User < ActiveRecord::Base
   end
 
   def musician_intelligent_match
-    user_array = User.near(self, 20, :order => "distance").where(available: 'Seeking a group').collect do |user|
+    user_array = User.near(self, 20, :order => "distance").where(available: 'seeking a group').collect do |user|
       self.groups.collect do |group|
         if group.instrumentation.instruments.include?(user.instrument)
           if user.instrumentations.include?(group.instrumentation)

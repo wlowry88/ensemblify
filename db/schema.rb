@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 20140807012019) do
     t.string   "level"
     t.string   "video_sample",     default: ""
     t.string   "audio_sample",     default: ""
-    t.string   "available",        default: "Seeking a group"
+    t.string   "available",        default: "seeking a group"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "latitude"

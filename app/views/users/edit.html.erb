@@ -34,7 +34,7 @@
           </p>
           <p>
           <%= f.label :available %>
-          <%= f.collection_select :available, ["Seeking a group", "All set"], :to_s, :to_s, {prompt: "< select >"}, { class: 'chosen-select' } %>
+          <%= f.collection_select :available, ["seeking a group", "all set"], :to_s, :to_s, {prompt: "< select >"}, { class: 'chosen-select' } %>
           </p>
           <p>
           <%= f.label :video_sample %>
@@ -46,11 +46,11 @@
           </p>
           <br>
           <p>
-          <%= f.submit "Save Your Settings", class: "btn btn-black", id: "settings_edit_button" %>
+          <%= f.submit "Save", class: "btn btn-black", id: "settings_edit_button" %><%= link_to 'Back', @user, class: "btn btn-black" %>
           </p>
-          </div>
-        </div>
-      <% end %>
+        <% end %>
+        
+      </div>
+    </div>
 
-    <%= link_to 'Show', @user %>
 </div>

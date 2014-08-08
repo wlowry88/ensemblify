@@ -84,7 +84,7 @@
 
   <% if current_user != @user %>
     <div class="email_area">
-      <p><button class="email_form_button">Contact <%= @user.first_name %></button></p>
+      <h1><small><span class="email_form_button">Contact <%= @user.first_name %></span></small></h1>
       <%= form_tag("/users/send_email", method: "post", class: "email_form") do %>
         <%= hidden_field_tag(:sender_name, current_user.full_name) %>
         <%= hidden_field_tag(:sender_email, current_user.email) %>

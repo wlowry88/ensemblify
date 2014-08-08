@@ -1352,3 +1352,12 @@ blockquote p {
 .user-info {
   text-align: left;
 }
+.update-user-left {
+  text-align: left;
+}
+.update-user-right {
+  text-align: left;
+}
+.email_form_button, .email_form {
+  float: right;
+}

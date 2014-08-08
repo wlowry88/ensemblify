@@ -32,6 +32,9 @@ class RequestsController < ApplicationController
 				end
 			end
 
+		elsif @request.finalized
+			@request.update(request_params)
+
 		end
 		redirect_to Group.find(@request.group_id)
 	end

@@ -76,10 +76,11 @@
   </p>
 
 <% if @group.members.include?(current_user) && (current_user != @group.admin) %>
-  <%= form_tag do %>
-  <%= hidden_field_tag 'leave', 'true' %>
-  <%= submit_tag 'Leave Group' %>
-<% end %>
+  <%= form_for Request.find_by(user: current_user, group: @group, finalized: true) do |f| %>
+    <%= f.hidden_field :finalized, value: false %>
+    <%= f.hidden_field :user_approved, value: false %>
+    <%= f.submit 'Leave Group' %>
+  <% end %>
 <% end %>
 
 <%= link_to 'Edit', edit_group_path(@group) if current_user == @group.admin %> |

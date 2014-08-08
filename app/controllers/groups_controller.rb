@@ -15,9 +15,11 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
+    @unique_instrumentations = Instrumentation.all[0..15]
   end
 
   def edit
+    @unique_instrumentations = Instrumentation.all[0..15]
     if current_user == @group.admin
       render 'edit'
     else
@@ -27,9 +29,23 @@ class GroupsController < ApplicationController
 
   def create
 
-    @group = Group.new(group_params)
-    @admin = User.find(params[:group][:admin_id])
-    @group.zipcode = @admin.zipcode
+    if group_params["instrumentation_id"]=="16"
+      @group = Group.new
+      @group.custom_type = params[:custom_type]
+      @group.save
+      @admin = User.find(params[:group][:admin_id])
+      @group.zipcode = @admin.zipcode
+      @group.name = group_params[:name]
+      @group.admin_id = group_params[:admin_id]
+      @group.instrument_ids = group_params[:instrument_ids]
+    else
+      @group = Group.new(group_params)
+      @admin = User.find(params[:group][:admin_id])
+      @group.zipcode = @admin.zipcode
+    end
+
+    binding.pry
+
     respond_to do |format|
       if @group.save
         @request = Request.create(user_id: current_user.id, group_id: @group.id, user_approved: true, group_approved: true, finalized: true)
@@ -72,6 +88,6 @@ class GroupsController < ApplicationController
     end
 
     def group_params
-      params.require(:group).permit(:name, :instrumentation_id, :complete, :admin_id)
+      params.require(:group).permit(:name, :instrumentation_id, :complete, :admin_id, :instrument_ids => [])
     end
 end

@@ -1,5 +1,6 @@
 $(function(){
 	$(".all_ensemble_matches").hide();
+	$(".instrument_options_for_alternate_group").hide();
 
 	$(".wrapper").on("click", ".intelligent_ensemble_toggle", function(e){
 		e.preventDefault();
@@ -13,7 +14,7 @@ $(function(){
 			}
 		});
 	});
-	
+
 	$(".show_parts").hide();
 
 	$(".group_parts").on("click", ".show_parts_button", function(e){
@@ -65,9 +66,16 @@ $(function(){
 
 	$(".wrapper").on("click", ".clear_fields", function(e){
 		e.preventDefault();
+		$(".chosen-container-single span").text("Select an Option");
 		$("#group_instrumentation_id").val("");
 		$("#group_instruments").val("");
 		$("#group_complete").val("");
 	});
+
+	$("#alternate_instrumentation").on("change", function(){
+		if ($(this).val() === "16"){
+			$(".instrument_options_for_alternate_group").show();
+		}
+	})
 
 });

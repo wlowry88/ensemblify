@@ -17,8 +17,15 @@
   </div>
   <div class="field">
     <%= f.label :instrumentation_id %><br>
-    <%= f.collection_select :instrumentation_id, Instrumentation.all, :id, :name, {prompt: ""}, { class: 'chosen-select' } %>
+    <%= f.collection_select :instrumentation_id, @unique_instrumentations, :id, :name, {prompt: ""}, { class: 'chosen-select', id: 'alternate_instrumentation' } %>
 
+  </div>
+
+  <div class="instrument_options_for_alternate_group">
+    <%= label_tag :custom_type, "Ensemble Type" %>
+    <%= text_field_tag :custom_type %>
+    <%= f.label :instrument_ids, "Instruments" %>
+    <%= f.collection_select :instrument_ids, Instrument.all, :id, :name, {prompt: ""}, { class: 'chosen-select', multiple: true} %>
   </div>
 
   <% if @group.id %>
@@ -27,7 +34,7 @@
       <%= f.check_box :complete %>
     </div>
   <% end %>
-  
+
   <div class="field">
     <%= f.hidden_field :admin_id, :value => current_user.id %>
   </div>

@@ -20,5 +20,18 @@ class Group < ActiveRecord::Base
   	requests.where(finalized: true).collect {|request| request.user_id}
   end
 
+  def custom_type=(custom_type)
+    self.instrumentation = Instrumentation.create(name: "Custom: #{custom_type}")
+  end
+
+  def instrument_ids=(attributes)
+    attributes.each do |id|
+      if !id.empty?
+        self.instrumentation.instruments << Instrument.find(id)
+      end
+    end
+    self.instrumentation.save
+  end
+
 
 end

@@ -6,21 +6,22 @@
 #   cities = City.create([{ name: 'Chicago' }},{name: { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Instrumentation.create([
-  {name: 'string trio'}, 
-  {name: 'string quartet'}, 
-  {name: 'string sextet'}, 
+  {name: 'string trio'},
+  {name: 'string quartet'},
+  {name: 'string sextet'},
   {name: 'string octet'},
-  {name: 'piano trio'}, 
-  {name: 'piano quartet'}, 
+  {name: 'piano trio'},
+  {name: 'piano quartet'},
   {name: 'piano quintet'},
-  {name: 'reed trio'}, 
-  {name: 'horn trio'}, 
-  {name: 'brass quintet'}, 
+  {name: 'reed trio'},
+  {name: 'horn trio'},
+  {name: 'brass quintet'},
   {name: 'flute quartet'},
   {name: 'clarinet quintet'},
-  {name: 'wind quintet'}, 
+  {name: 'wind quintet'},
   {name: 'wind octet'},
-  {name: 'pierrot ensemble'}
+  {name: 'pierrot ensemble'},
+  {name: 'alternate instrumentation'}
 ])
 
 Instrument.create([

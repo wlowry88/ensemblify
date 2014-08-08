@@ -23,10 +23,11 @@ x mailers (tg)
 x preventing multiple invites
 x relationship between deleting a group once admin is deleted
 x include chosen-rails gem
+x instruments and instrumentation seed
 
 - group member can send group admin a musician suggestion from that musician's show page
 - integrate bootstrap
-- SEEEEEEEEEEEEEEEEEEEED
+- pieces seed
 
 extra things:
 - set up youtube/soundcloud to not just be a string of a link

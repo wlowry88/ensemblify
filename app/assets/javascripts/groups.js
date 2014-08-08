@@ -1,4 +1,5 @@
 $(function(){
+
 	$(".all_ensemble_matches").hide();
 	$(".instrument_options_for_alternate_group").hide();
 

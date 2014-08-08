@@ -641,10 +641,10 @@ blockquote p {
   position: relative;
   font-size: 20px;
   font-weight: normal;
-  text-transform: uppercase;
+  
   padding: 40px;
   margin: -20px -20px 20px -20px;
-  border-bottom: 8px solid;
+  border-bottom: 6px solid;
   background-color: #eee;
   background-image: linear-gradient(#ffffff, #eeeeee);
 }

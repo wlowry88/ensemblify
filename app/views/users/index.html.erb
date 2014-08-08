@@ -1,82 +1,92 @@
-<h1>Musicians</h1>
+<div class="container">
+  <div class="wrapper">
+  <h1>
+    Musicians
+    <% if current_user %>
+    <button class="btn intelligent_musician_toggle">Show All Musicians</button>
+    <% end %>
+  </h1>
 
-<div class="wrapper">
+    <% if current_user %>
+      <div class="intelligent_matches">
+        <table id="pricing-table" class="intelligent_matches table table-hover">
+          <h4>These musicians might be a good fit for your group</h4>
+          <thead class="header">
+            <tr>
+              <th>Name</th>
+              <th>Instrument</th>
+              <th>Level</th>
+              <th>Preferences</th>
+              <th>Availability</th>
+              <th>Location</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
 
-  <button class="intelligent_musician_toggle">Show All Musicians</button>
-  <% if current_user %>
-    <div class="intelligent_matches">
-      <table class="intelligent_matches">
-        <h4>These musicians might be a good fit for your group</h4>
-        <thead>
+          <tbody>
+            <% current_user.musician_intelligent_match.each do |user| %>
+              <tr>
+                <td><%= link_to user.full_name, user %></td>
+                <td><%= user.instrument.name %></td>
+                <td><%= user.level %></td>
+                <td><%= user.interests.collect{|i|i.instrumentation.name}.join(", ") %></td>
+                <td><%= user.available %></td>
+                <td class="distance"><%= user.city_state %><br> (<%= user.distance_from(current_user).round(2) %> miles)</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+
+    <div class="all_matches">
+      <h4>Showing all musicians</h4>
+      <%= form_for(User.new) do |f| %>
+      <%= f.label :instrument_id %>
+      <%= f.collection_select :instrument_id, @instrument_list, :name, :name, {prompt: ""}, { class: 'chosen-select' } %>
+      <%= f.label :available %>
+      <%= f.collection_select :available, ["Seeking a group","All Set"], :to_s, :to_s, {prompt: ""}, { class: 'chosen-select' } %>
+      <%= f.label :instrumentation_ids, "Interests" %>
+      <%= f.collection_select :instrumentation_ids, @ensemble_types, :name, :name, {prompt: ""}, { class: 'chosen-select' } %>
+      <%= f.label :level %>
+      <%= f.collection_select :level, ["beginner", "intermediate", "advanced", "professional"], :to_s, :to_s, {prompt: ""}, { class: 'chosen-select' } %>
+      <p></p>
+      <div class="search_and_clear">
+      <%= f.submit "Search", class:"search_button btn" %>
+      <button class="clear_fields btn">Clear Fields</button>
+      </div>
+      <% end %>
+
+    <table class="all_matches table table-hover" id="pricing-table">
+      <thead class="header">
           <tr>
             <th>Name</th>
             <th>Instrument</th>
             <th>Level</th>
-            <th>Ensemble Preferences</th>
+            <th>Preferences</th>
             <th>Availability</th>
-            <th>Distance</th>
+            <th>Location</th>
             <th colspan="3"></th>
           </tr>
         </thead>
 
         <tbody>
-          <% current_user.musician_intelligent_match.each do |user| %>
-            <tr>
-              <td><%= link_to user.full_name, user %></td>
-              <td><%= user.instrument.name %></td>
-              <td><%= user.level %></td>
-              <td><%= user.interests.collect{|i|i.instrumentation.name}.join(", ") %></td>
-              <td><%= user.available %></td>
-              <td class="distance"><%= user.city_state %> (<%= user.distance_from(current_user).round(2) %> miles)</td>
-            </tr>
+          <% @all_users.each do |user| %>
+            <% if current_user != user && user.check_for_instrument_and_zipcode %>
+              <tr>
+                <td class="name_field"><%= link_to user.full_name, user %></td>
+                <td class="instrument_field"><%= user.instrument.name %></td>
+                <td class="level_field"><%= user.level %></td>
+                <td class="interests_field"><%= user.interests.collect{|i|i.instrumentation.name}.uniq.join(", ") %></td>
+                <td class="available_field"><%= user.available %></td>
+                <td class="distance"><%= user.city_state %> <br>(<%= user.distance_from(current_user).round(2) %> miles)</td>
+              </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>
     </div>
-  <% end %>
 
-  <div class="all_matches">
-    <h4>Showing all musicians</h4>
-    <%= form_for(User.new) do |f| %>
-    <%= f.label :instrument_id %>
-    <%= f.collection_select :instrument_id, @instrument_list, :name, :name, {prompt: ""}, { class: 'chosen-select' } %>
-    <%= f.label :available %>
-    <%= f.collection_select :available, ["seeking a group","all set"], :to_s, :to_s, {prompt: ""}, { class: 'chosen-select' } %>
-    <%= f.label :instrumentation_ids, "Interests" %>
-    <%= f.collection_select :instrumentation_ids, @ensemble_types, :name, :name, {prompt: ""}, { class: 'chosen-select' } %>
-    <%= f.label :level %>
-    <%= f.collection_select :level, ["beginner", "intermediate", "advanced", "professional"], :to_s, :to_s, {prompt: ""}, { class: 'chosen-select' } %>
-    <%= f.submit "Search", class:"search_button" %>
-    <button class="clear_fields">Clear Fields</button>
-    <% end %>
-
-    <table class="all_matches">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Instrument</th>
-          <th>Level</th>
-          <th>Ensemble Preferences</th>
-          <th>Availability</th>
-          <th>Location</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @all_users.each do |user| %>
-          <% if current_user != user && user.check_for_instrument_and_zipcode %>
-            <tr>
-              <td class="name_field"><%= link_to user.full_name, user %></td>
-              <td class="instrument_field"><%= user.instrument.name %></td>
-              <td class="level_field"><%= user.level %></td>
-              <td class="interests_field"><%= user.interests.collect{|i|i.instrumentation.name}.uniq.join(", ") %></td>
-              <td class="available_field"><%= user.available %></td>
-              <td class="distance"><%= user.city_state %> (<%= user.distance_from(current_user).round(2) %> miles)</td>
-            </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
   </div>
+
 </div>

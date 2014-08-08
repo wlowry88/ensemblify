@@ -44,7 +44,7 @@ class GroupsController < ApplicationController
       @group.zipcode = @admin.zipcode
     end
 
-    binding.pry
+
 
     respond_to do |format|
       if @group.save

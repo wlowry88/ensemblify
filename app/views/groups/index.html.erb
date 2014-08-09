@@ -27,7 +27,7 @@
         </thead>
 
         <tbody>
-          <% @groups.where(complete: false).each do |group| %>
+          <% @groups.where(complete: false).where.not(admin_id: current_user.id).each do |group| %>
             <% current_user.interests.each do |interest| %>
               <% if interest.instrumentation == group.instrumentation %>
               <tr>

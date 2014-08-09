@@ -1351,7 +1351,9 @@ blockquote p {
 }
 .user-info {
   text-align: left;
+  word-wrap: break-word;
 }
+
 .update-user-left {
   text-align: left;
 }
@@ -1360,4 +1362,11 @@ blockquote p {
 }
 .email_form_button, .email_form {
   float: right;
+}
+
+#notice {
+  font-weight: 400;
+  font-size: 13px;
+  float: right;
+  padding-top: 10px;
 }

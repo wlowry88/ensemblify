@@ -42,8 +42,6 @@
       <% end %>
     </div>
   </div>
-
-
   
   <div class="accept-deny-buttons">
   <% if (current_user.pending_requests(@user).size > 0 && @user != current_user) %>
@@ -60,7 +58,6 @@
         <%end%>
       </p>
   <% end %>
-<<<<<<< HEAD
   <% if (@user != current_user && !current_user.admin_of.empty? && current_user && !(current_user.eligible_groups(@user)).empty?) %>
     <p>Would you like to invite <%= @user.first_name %> to one of your groups? </p>
     <%= form_for Request.new do |f| %>
@@ -71,9 +68,8 @@
       <%= f.submit "Invite #{@user.first_name}", class:"btn" %>
     <% end %>
   <% end %>
-=======
   </div>
->>>>>>> 6a95047ba0d96a52fb3e274585b2c8076e95d98f
+
 
   <div class="member-of-ensembles member span4">
     <p>

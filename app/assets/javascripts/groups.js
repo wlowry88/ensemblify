@@ -1,6 +1,6 @@
 $(function(){
 
-	$(".all_ensemble_matches").hide();
+	$(".intelligent_ensemble_matches").hide();
 	$(".instrument_options_for_alternate_group").hide();
 
 	$(".wrapper").on("click", ".intelligent_ensemble_toggle", function(e){
@@ -8,10 +8,10 @@ $(function(){
 		$(".intelligent_matches").toggle();
 		$(".all_ensemble_matches").toggle();
 		$(this).text(function(){
-			if($(this).text() == "Show Intelligent Matches") {
-				return "Show All Ensembles"
-			} else {
+			if($(this).text() == "Show All Ensembles") {
 				return "Show Intelligent Matches"
+			} else {
+				return "Show All Ensembles"
 			}
 		});
 	});

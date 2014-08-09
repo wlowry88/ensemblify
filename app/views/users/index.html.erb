@@ -1,11 +1,14 @@
 <div class="container">
   <div class="wrapper">
-  <h1>
-    Musicians
-    <% if current_user %>
-    <button class="btn intelligent_musician_toggle">Show All Musicians</button>
-    <% end %>
-  </h1>
+    <div class="page-header">
+      <h1>
+        Musicians
+        <% if current_user %>
+        <button class="btn intelligent_musician_toggle">Show Intelligent Matches</button>
+        <% end %>
+      </h1>
+    </div>
+
 
     <% if current_user %>
       <div class="intelligent_matches">

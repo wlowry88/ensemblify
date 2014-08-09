@@ -1,6 +1,6 @@
 $(function(){
 
-	$(".all_matches").hide();
+	$(".intelligent_matches").hide();
 
 	$(".wrapper").on("click", ".intelligent_musician_toggle", function(e){
 		e.preventDefault();

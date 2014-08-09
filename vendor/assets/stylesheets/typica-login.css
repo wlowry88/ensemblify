@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700|Lato:100,300,400);
+@import url(http://fonts.googleapis.com/css?family=Oxygen);
 /* ##########  */
 /*   $GLOBAL   */
 /* ##########  */
@@ -55,6 +56,8 @@ body {
   padding-bottom: 8px;
   max-height: 40px;
   width: auto;
+  font-size: 25px;
+  font-weight: bold;
 }
 /* line 49, ../sass/typica-login.scss */
 .navbar .navbar-inner {
@@ -71,6 +74,10 @@ body {
   padding: 10px 10px 11px;
   color: #333;
   text-shadow: none;
+  font-family: 'Raleway', 'Open Sans', sans-serif;
+  font-weight: 100;
+  font-size: 13px;
+  text-transform: uppercase;
 }
 /* line 63, ../sass/typica-login.scss */
 .navbar .nav > li > a:hover {
@@ -248,11 +255,10 @@ footer.white {
 /* navigation */
 /* line 7, D:/DropBox/bootstrap/typica-login/sass/includes/_fonts.scss */
 .navbar {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Raleway', 'Open Sans', sans-serif;
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 1px;
-  text-transform: uppercase;
 }
 
 /* login form */

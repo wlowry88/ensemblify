@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Oxygen);
+@import url(http://fonts.googleapis.com/css?family=Raleway);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:800,600,400,300|Open+Sans+Condensed:300,700|Lato:100,300,400);
 /* 
 *           Layout stylesheet
@@ -320,7 +322,7 @@ footer a:hover {
 /* ###### */
 /* global */
 h1, h2, h3, h4, h5 {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Oxygen', 'Open Sans', sans-serif;
   font-weight: 600;
   padding: 10px 0;
 }
@@ -368,11 +370,10 @@ blockquote p {
 
 /* navigation */
 .navbar {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Oxygen', Open Sans', sans-serif;
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 1px;
-  text-transform: uppercase;
 }
 
 /* ###### */
@@ -1369,4 +1370,6 @@ blockquote p {
   font-size: 13px;
   float: right;
   padding-top: 10px;
+  width: 50%;
+  text-align: right;
 }

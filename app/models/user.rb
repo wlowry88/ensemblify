@@ -21,35 +21,35 @@ class User < ActiveRecord::Base
 
     Request.where(user_id: user.id, finalized: nil).collect do |row|
       if row.group
-        correct << row if row.group.admin_id == self.id 
+        correct << row if row.group.admin_id == self.id
       end
     end
 
     correct_groups = correct.collect {|request| request.group }
 
-    all_admins_groups - correct_groups 
-   
+    all_admins_groups - correct_groups
+
   end
 
   def already_invited(user)
     all_admins_groups = (self.admin_of - user.member_of)
-     
+
        correct = []
-     
+
       Request.where(user_id: user.id, finalized: nil).collect do |row|
         if row.group
-         correct << row if row.group.admin_id == self.id 
+         correct << row if row.group.admin_id == self.id
         end
       end
 
-     
+
        correct_groups = correct.collect {|request| request.group }
        final = all_admins_groups.collect do |group|
          if correct_groups.include? group
            group.name
          end
        end.compact.join(", ")
-       
+
        "Already invited #{user.first_name} to join #{final}!" if !final.empty?
   end
 
@@ -89,7 +89,7 @@ class User < ActiveRecord::Base
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.save
-      UserMailer.welcome_email(user).deliver
+      UserMailer.welcome_email(user).deliver if !user.check_for_instrument_and_zipcode
     end
   end
 
@@ -107,7 +107,7 @@ class User < ActiveRecord::Base
 
   def pending_requests(user)
     array = group_ids_for_admin.map do |id|
-      Request.where(group_id: id, user_id: user.id, finalized: nil)[0]
+      Request.where(group_id: id, user_id: user.id, finalized: nil, group_approved: nil)[0]
     end
     array.compact
   end

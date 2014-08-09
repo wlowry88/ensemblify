@@ -88,6 +88,6 @@ class GroupsController < ApplicationController
     end
 
     def group_params
-      params.require(:group).permit(:name, :instrumentation_id, :complete, :admin_id, :instrument_ids => [])
+      params.require(:group).permit(:name, :instrumentation_id, :complete, :admin_id, :leave, :instrument_ids => [])
     end
 end

@@ -1,24 +1,25 @@
-
-  <p id="notice"><%= notice %></p>
-<div class="container"
+<div class="container">
   <% if current_user == @group.admin %>
     <% Request.where(group_id: @group.id, finalized: nil, group_approved: nil).each do |request| %>
       <%= link_to request.apply_message, request.user %>
     <% end %>
 
-    <% Request.where(group_id: @group.id, finalized: true, user_approved: true).where.not(user_id: @group.admin_id).each do |request| %>
-      <%= "#{request.user.full_name} accepted your invitation to join!" %>
-    <% end %>
+    <!-- <span id="notice"><#% Request.where(group_id: @group.id, finalized: true, user_approved: true).where.not(user_id: @group.admin_id).each do |request| %>
+      <#%= "#{request.user.full_name} is now a member of your group!" %>
+    <#% end %></span> -->
   <% end %>
-  <p>
-    <strong>Name:</strong>
-    <%= @group.name %>
-    (<%= @group.distance_from(current_user).round(2) %> miles)
-  </p>
-  <p>
 
+  <div class="page-header">
+    <h1><%= @group.name %><small><%= "#{@group.instrumentation.name}" %></small><span id="notice"><%= notice %></span></h1>
+  </div>
 
-  <p>
+<div class="row">
+
+</div>
+
+<div class="row">
+  <div class="user-info member span4">
+    <p>
     <div class= "group_parts">
       <strong>Ensemble Type:</strong>
         <%= @group.instrumentation.name %> <a class="show_parts_button">(Show Parts)</a>
@@ -39,11 +40,25 @@
     <strong>Location:</strong>
     <%= @group.admin.city_state %>
   </p>
+</div>
 
+<div class="user-info member span4">
+  <p></p>
   <p>
     <strong>Admin:</strong>
     <%= link_to @admin.full_name, @admin %>
   </p>
+
+   <p>
+    <strong>Members:</strong>
+    <% @group.members.each do |member| %>
+      <li><%= link_to member.full_name, member %>, <%= member.instrument.name %></li>
+    <% end %>
+  </p>
+
+  </div>
+
+<div class="user-info member span4">
   <% if @request %>
     <%= "You have already applied to join #{@group.name}! Your request is pending :)" if @request.group_approved == nil && @request.finalized == nil %>
     <% if @request.invited? %>
@@ -68,14 +83,19 @@
     <% end %>
   <% end %>
 
-  <p>
-    <strong>Members:</strong>
-    <% @group.members.each do |member| %>
-      <li><%= link_to member.full_name, member %>, <%= member.instrument.name %></li>
-    <% end %>
-  </p>
 
-  <%= link_to 'Edit', edit_group_path(@group) if current_user == @group.admin %> |
-  <%= link_to 'Back', groups_path %> |
-  <%= link_to 'Destroy', @group, method: :delete, data: {confirm: "Are you sure?"} if current_user == @group.admin %>
+
+<% if @group.members.include?(current_user) && (current_user != @group.admin) %>
+  <%= form_for Request.find_by(user: current_user, group: @group, finalized: true) do |f| %>
+    <%= f.hidden_field :finalized, value: false %>
+    <%= f.hidden_field :user_approved, value: false %>
+    <%= f.submit 'Leave Group' %>
+  <% end %>
+<% end %>
+</div>
+</div>
+
+<%= link_to 'Edit', edit_group_path(@group) if current_user == @group.admin %> |
+<%= link_to 'Back', groups_path %> |
+<%= link_to 'Destroy Group', @group, method: :delete, data: {confirm: "Are you sure?"} if current_user == @group.admin %>
 </div>

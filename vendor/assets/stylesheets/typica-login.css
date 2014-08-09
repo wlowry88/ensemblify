@@ -28,7 +28,7 @@ body {
 }
 
 /* line 25, ../sass/typica-login.scss */
-.btn-black {
+.btn-black, button, .search_button, .btn {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;

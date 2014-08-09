@@ -57,8 +57,8 @@
         <%= f.label :complete %>
         <%= f.collection_select :complete, ["complete", "incomplete"], :to_s, :to_s, {prompt: ""}, { class: 'chosen-select' }  %>
 
-        <%= f.submit "Search", class:"search_button" %>
-        <button class="clear_fields">Clear Fields</button>
+        <%= f.submit "Search", class:"search_button btn" %>
+        <button class="clear_fields btn">Clear Fields</button>
       <% end %>
 
       <table class="table table-hover" id="pricing-table">

@@ -1369,4 +1369,6 @@ blockquote p {
   font-size: 13px;
   float: right;
   padding-top: 10px;
+  width: 50%;
+  text-align: right;
 }

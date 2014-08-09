@@ -35,7 +35,7 @@
       <% end %>
     <% end %>
   </div>
-    <center><%= link_to 'Update Profile', edit_user_path, class: "btn btn-black" if current_user==@user%></center>
+    <center><%= link_to 'Update Profile', edit_user_path, class: "btn" if current_user==@user%></center>
 </div>
 
 
@@ -45,11 +45,11 @@
      <p><% current_user.pending_requests(@user).each do |request| %>
           <%= form_for request do |f| %>
             <%= f.hidden_field :group_approved, value: true %>
-            <%= f.submit "Accept Request to join #{request.group.name}" %>
+            <%= f.submit "Accept Request to join #{request.group.name}", class: "btn" %>
           <% end %>
           <%= form_for request do |f| %>
             <%= f.hidden_field :group_approved, value: false %>
-            <%= f.submit "Deny Request to join #{request.group.name}" %>
+            <%= f.submit "Deny Request to join #{request.group.name}", class: "btn" %>
           <% end %>
         <%end%>
       </p>
@@ -61,7 +61,7 @@
       <%= f.collection_select :group_id, current_user.eligible_groups(@user), :id, :name %>
       <%= f.hidden_field :user_id, value: @user.id %>
       <%= f.hidden_field :group_approved, value: true %>
-      <%= f.submit "Invite #{@user.first_name}" %>
+      <%= f.submit "Invite #{@user.first_name}", class:"btn" %>
     <% end %>
   <% end %>
 
@@ -92,7 +92,7 @@
         <%= hidden_field_tag(:recipient_name, @user.full_name) %>
         <%= hidden_field_tag(:recipient_email, @user.email) %>
         <%= text_area_tag :content %>
-        <p><%= submit_tag "Send Message" %></p>
+        <p><%= submit_tag "Send Message", class: "btn" %></p>
       <% end %>
     </div>
   <% end %>

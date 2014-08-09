@@ -32,13 +32,13 @@ body {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  padding: 5px 20px;
-  background-color: #222222;
+  padding: 5px 5px;
+  background-color: #e6e6e6;
   background-image: none;
-  color: white;
+  color: black;
   text-shadow: none;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 /* line 33, ../sass/typica-login.scss */
 .btn-black:hover {

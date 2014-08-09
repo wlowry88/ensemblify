@@ -64,11 +64,11 @@
     <% if @request.invited? %>
       <%= form_for @request do |f| %>
         <%= f.hidden_field :user_approved, value: true %>
-        <%= f.submit "Accept Invitation" %>
+        <%= f.submit "Accept Invitation", class: "btn" %>
       <% end %>
       <%= form_for @request do |f| %>
         <%= f.hidden_field :user_approved, value: false %>
-        <%= f.submit "Deny Invitation" %>
+        <%= f.submit "Deny Invitation", class: "btn"%>
       <% end %>
     <% end %>
 
@@ -79,7 +79,7 @@
       <%= f.hidden_field :user_approved, value: true %>
       <%= f.hidden_field :group_id, value: @group.id %>
       <%= f.hidden_field :part, value: current_user.instrument %>
-      <%= f.submit "Ask to Join #{@group.name}" %>
+      <%= f.submit "Ask to Join #{@group.name}", class: "btn" %>
     <% end %>
   <% end %>
 
@@ -89,7 +89,7 @@
   <%= form_for Request.find_by(user: current_user, group: @group, finalized: true) do |f| %>
     <%= f.hidden_field :finalized, value: false %>
     <%= f.hidden_field :user_approved, value: false %>
-    <%= f.submit 'Leave Group' %>
+    <%= f.submit 'Leave Group', class: "btn" %>
   <% end %>
 <% end %>
 </div>

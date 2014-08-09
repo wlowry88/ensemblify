@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'login', to: 'static_pages#login'
   get 'logout', to: 'sessions#destroy'
   get '/auth/:provider/callback', to: 'sessions#create'
+  get '/about', to: 'static_pages#about'
 
   post 'search/get_instruments_for_group', to: 'search#get_instruments_for_group'
 

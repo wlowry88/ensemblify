@@ -9,6 +9,7 @@ $(function(){
 		$(this).text(function(){
 			if($(this).text() == "Show Intelligent Matches") {
 				return "Show All Musicians"
+
 			} else {
 				return "Show Intelligent Matches"
 			}

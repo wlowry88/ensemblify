@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
          end
        end.compact.join(", ")
 
-       "Already invited #{user.first_name} to join #{final}!" if !final.empty?
+       "You invited #{user.first_name} to join #{final}!" if !final.empty?
   end
 
   def validate_zipcode

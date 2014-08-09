@@ -107,7 +107,7 @@ class User < ActiveRecord::Base
 
   def pending_requests(user)
     array = group_ids_for_admin.map do |id|
-      Request.where(group_id: id, user_id: user.id, finalized: nil)[0]
+      Request.where(group_id: id, user_id: user.id, finalized: nil, group_approved: nil)[0]
     end
     array.compact
   end

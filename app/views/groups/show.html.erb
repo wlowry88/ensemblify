@@ -4,9 +4,9 @@
       <%= link_to request.apply_message, request.user %>
     <% end %>
 
-    <% Request.where(group_id: @group.id, finalized: true, user_approved: true).where.not(user_id: @group.admin_id).each do |request| %>
-      <%= "#{request.user.full_name} accepted your invitation to join!" %>
-    <% end %>
+    <!-- <span id="notice"><#% Request.where(group_id: @group.id, finalized: true, user_approved: true).where.not(user_id: @group.admin_id).each do |request| %>
+      <#%= "#{request.user.full_name} is now a member of your group!" %>
+    <#% end %></span> -->
   <% end %>
 
   <div class="page-header">

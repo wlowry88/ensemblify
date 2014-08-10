@@ -60,7 +60,7 @@
 
 <div class="user-info member span4">
   <% if @request %>
-    <%= "You have already applied to join #{@group.name}! Your request is pending :)" if @request.group_approved == nil && @request.finalized == nil %>
+    <%= "You have applied to join #{@group.name}! Your request is pending :)" if @request.group_approved == nil && @request.finalized == nil %>
     <% if @request.invited? %>
       <%= form_for @request do |f| %>
         <%= f.hidden_field :user_approved, value: true %>

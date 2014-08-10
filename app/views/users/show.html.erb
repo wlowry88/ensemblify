@@ -46,7 +46,7 @@
       <% end %>
     </div>
 
-    <div class="member-of-ensembles member span3"> <!-- both  -->
+    <div class="member-of-ensembles member span2"> <!-- both  -->
         <% if !@user.member_of.empty? %>
             <strong>Ensembles:</strong>
           <% @user.member_of.each do |group| %>
@@ -55,7 +55,7 @@
         <% else %>
           <strong>Ensembles:</strong>
           <% if current_user == @user && current_user.check_for_instrument_and_zipcode %>
-            You are not currently a member of any ensembles.<br>Why not <%= link_to 'check some out', groups_path%> or <%= link_to 'create your own', new_group_path %>?
+            <br>You are not currently a member of any ensembles.<br><%= link_to 'Check some out', groups_path%> or <%= link_to 'create your own', new_group_path %>?
           <% elsif current_user != @user && @user.groups.empty? %>
             <%= "#{@user.first_name} isn't in any ensembles." %>
           <% end %>

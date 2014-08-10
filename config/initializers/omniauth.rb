@@ -1,8 +1,9 @@
-  	if ENV['RAILS_ENV'] == 'production'
-  		HOST= 'ensemblify.herokuapp.com'
-    else
-    	HOST= 'localhost:3000'
-    end
+OmniAuth.config.logger = Rails.logger	
+	if ENV['RAILS_ENV'] == 'production'
+		HOST= 'ensemblify.herokuapp.com'
+  else
+  	HOST= 'localhost:3000'
+  end
 
 
 Rails.application.config.middleware.use OmniAuth::Builder do

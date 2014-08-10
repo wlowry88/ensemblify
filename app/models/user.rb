@@ -89,7 +89,7 @@ class User < ActiveRecord::Base
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.save
-      # UserMailer.welcome_email(user).deliver if !user.check_for_instrument_and_zipcode
+      UserMailer.welcome_email(user).deliver if !user.check_for_instrument_and_zipcode
     end
   end
 

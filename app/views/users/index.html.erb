@@ -82,7 +82,11 @@
                 <td class="level_field"><%= user.level %></td>
                 <td class="interests_field"><%= user.interests.collect{|i|i.instrumentation.name}.uniq.join(", ") %></td>
                 <td class="available_field"><%= user.available %></td>
+                <% if current_user %>
                 <td class="distance"><%= user.city_state %> <br>(<%= user.distance_from(current_user).round(2) %> miles)</td>
+                <% else %>
+                <td class="distance"><%= user.city_state %> <br>(<%= user.distance_from("10004").round(2) %> miles)</td>
+                <% end %>
               </tr>
             <% end %>
           <% end %>

@@ -36,9 +36,11 @@
       <p><strong>Audio Sample: </strong><%= link_to @user.audio_sample, @user.audio_sample, target: "blank" if !@user.audio_sample.empty? %></p>
       <% if @user.interests.any? %>
         <strong>Ensemble Preferences:</strong>
+        <ul>
         <% @user.interests.each do |interest| %>
           <li><%= interest.instrumentation.name %></li>
         <% end %>
+        </ul>
       <% end %>
     </div>
   </div>
@@ -58,16 +60,6 @@
         <%end%>
       </p>
   <% end %>
-  <% if (@user != current_user && !current_user.admin_of.empty? && current_user && !(current_user.eligible_groups(@user)).empty?) %>
-    <p>Would you like to invite <%= @user.first_name %> to one of your groups? </p>
-    <%= form_for Request.new do |f| %>
-      <%= f.label :group_id %>
-      <%= f.collection_select :group_id, current_user.eligible_groups(@user), :id, :name %>
-      <%= f.hidden_field :user_id, value: @user.id %>
-      <%= f.hidden_field :group_approved, value: true %>
-      <%= f.submit "Invite #{@user.first_name}", class:"btn" %>
-    <% end %>
-  <% end %>
   </div>
 
 
@@ -75,9 +67,11 @@
     <p>
       <% if !@user.member_of.empty? %>
         <strong>Ensembles:</strong>
+        <ul>
         <% @user.member_of.each do |group| %>
           <li><%= link_to group.name, group %></li>
         <% end %>
+        </ul>
       <% else %>
         <strong>Ensembles:</strong>
         <% if current_user == @user && current_user.check_for_instrument_and_zipcode %>
@@ -88,16 +82,21 @@
       <% end %>
     </p>
   </div>
+  <br>
 
   <div class="like-to-invite">
   <% if (@user != current_user && !current_user.admin_of.empty? && current_user && !(current_user.eligible_groups(@user)).empty?) %>
-    <p>Would you like to invite <%= @user.first_name %> to one of your ensembles? </p>
+    Would you like to invite <%= @user.first_name %> to one of your ensembles?
+
     <%= form_for Request.new do |f| %>
+      <p>
       <%= f.collection_select :group_id, current_user.eligible_groups(@user), :id, :name %>
+      </p>
       <%= f.hidden_field :user_id, value: @user.id %>
       <%= f.hidden_field :group_approved, value: true %>
       <%= f.submit "Invite #{@user.first_name}", class: "btn" %>
     <% end %>
+
   <% end %>
   </div>
 

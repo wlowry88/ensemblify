@@ -1385,3 +1385,10 @@ blockquote p {
   float:left;
   text-align: left;
 }
+.member-of-ensembles {
+  text-align:left;
+  margin-left:50px;
+}
+.member-of-ensembles li {
+  margin-left:10px;
+}

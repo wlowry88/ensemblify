@@ -47,7 +47,6 @@ class PiecesScraper
 
 	def save_quartet_pieces
 		rows = get_piece_rows
-		binding.pry
 		rows.collect do |row|
 			composer = row[0]
 			row[1..-1].first.split("\n").each do |piece_in_array|

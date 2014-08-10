@@ -1,4 +1,4 @@
-
+require 'open-uri'
 require_relative "../../config/environment"
 
 class PiecesScraper

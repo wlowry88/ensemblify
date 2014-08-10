@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20140807012019) do
 
   create_table "pieces", force: true do |t|
     t.string   "name"
+    t.string   "composer"
     t.integer  "level"
     t.integer  "instrumentation_id"
     t.datetime "created_at"

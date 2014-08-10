@@ -4,95 +4,101 @@
       <%= link_to request.apply_message, request.user %>
     <% end %>
 
-    <!-- <span id="notice"><#% Request.where(group_id: @group.id, finalized: true, user_approved: true).where.not(user_id: @group.admin_id).each do |request| %>
-      <#%= "#{request.user.full_name} is now a member of your group!" %>
-    <#% end %></span> -->
   <% end %>
 
   <div class="page-header">
     <h1><%= @group.name %><small><%= "#{@group.instrumentation.name}" %></small><span id="notice"><%= notice %></span></h1>
   </div>
 
-<div class="row">
 
-</div>
-
-<div class="row">
-  <div class="user-info member span4">
-    <p>
-    <div class= "group_parts">
-      <strong>Ensemble Type:</strong>
-        <%= @group.instrumentation.name %> <a class="show_parts_button">(Show Parts)</a>
-        <div class= "show_parts">
-          <% @group.instrumentation.instrument_instrumentations.each do |i| %>
-            <li><%= i.instrument.name %><%= " (x" + i.quantity.to_s + ")" if i.quantity > 1 %> </li>
-          <% end %>
+  <div class="row">
+    <div class="user-info member span4">
+      <p>
+      <div class= "group_parts">
+        <strong>Ensemble Type:</strong>
+          <%= @group.instrumentation.name %> <a class="show_parts_button">(Show Parts)</a>
+          <div class= "show_parts">
+            <% @group.instrumentation.instrument_instrumentations.each do |i| %>
+              <li><%= i.instrument.name %><%= " (x" + i.quantity.to_s + ")" if i.quantity > 1 %> </li>
+            <% end %>
+        </div>
       </div>
-    </div>
-  </p>
+    </p>
 
-  <p>
-    <strong>Complete:</strong>
-    <%= @group.complete ? 'yes' : 'no' %>
-  </p>
+    <p>
+      <strong>Complete:</strong>
+      <%= @group.complete ? 'yes' : 'no' %>
+    </p>
 
-  <p>
-    <strong>Location:</strong>
-    <%= @group.admin.city_state %>
-  </p>
-</div>
+    <p>
+      <strong>Location:</strong>
+      <%= @group.admin.city_state %>
+    </p>
+    <p>
+      <strong>Admin:</strong>
+      <%= link_to @admin.full_name, @admin %>
+    </p>
+  </div>
 
-<div class="user-info member span4">
-  <p></p>
-  <p>
-    <strong>Admin:</strong>
-    <%= link_to @admin.full_name, @admin %>
-  </p>
-
-   <p>
-    <strong>Members:</strong>
-    <% @group.members.each do |member| %>
-      <li><%= link_to member.full_name, member %>, <%= member.instrument.name %></li>
+  <div class="user-info member span4">
+    <p></p>
+     <p>
+      <strong>Members:</strong>
+      <% @group.members.each do |member| %>
+        <li><%= link_to member.full_name, member %>, <%= member.instrument.name %></li>
+      <% end %>
+    </p>
+      <strong>Pieces:</strong>
+    <% if @group.pieces.count==0 %>
+    <p>
+      <em><%=@group.name%> doesn't have any pieces yet! </em>
+    </p>
+    <% else @group.pieces.count > 0 %>
+    <p>
+        <% @group.pieces.each do |piece| %>
+          <li><%= "#{piece.name} by #{piece.composer}" %></li>
+        <% end %>
+    </p>
     <% end %>
-  </p>
+
+    </div>
+
+  <div class="user-info member span4">
+    <% if @request %>
+      <%= "You have already applied to join #{@group.name}! Your request is pending :)" if @request.group_approved == nil && @request.finalized == nil %>
+      <% if @request.invited? %>
+        <%= form_for @request do |f| %>
+          <%= f.hidden_field :user_approved, value: true %>
+          <%= f.submit "Accept Invitation", class: "btn" %>
+        <% end %>
+        <%= form_for @request do |f| %>
+          <%= f.hidden_field :user_approved, value: false %>
+          <%= f.submit "Deny Invitation", class: "btn"%>
+        <% end %>
+      <% end %>
+
+    <% elsif !(@group.member_ids.include? current_user.id) %>
+      <p>Would you like to ask to join <%= @group.name %>?</p>
+      <%= form_for Request.new do |f| %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :user_approved, value: true %>
+        <%= f.hidden_field :group_id, value: @group.id %>
+        <%= f.hidden_field :part, value: current_user.instrument %>
+        <%= f.submit "Ask to Join #{@group.name}", class: "btn" %>
+      <% end %>
+    <% end %>
+
+  <% if @group.members.include?(current_user) && (current_user != @group.admin) %>
+    <%= form_for Request.find_by(user: current_user, group: @group, finalized: true) do |f| %>
+      <%= f.hidden_field :finalized, value: false %>
+      <%= f.hidden_field :user_approved, value: false %>
+      <%= f.submit 'Leave Group', class: "btn" %>
+    <% end %>
+  <% end %>
 
   </div>
 
-<div class="user-info member span4">
-  <% if @request %>
-    <%= "You have already applied to join #{@group.name}! Your request is pending :)" if @request.group_approved == nil && @request.finalized == nil %>
-    <% if @request.invited? %>
-      <%= form_for @request do |f| %>
-        <%= f.hidden_field :user_approved, value: true %>
-        <%= f.submit "Accept Invitation", class: "btn" %>
-      <% end %>
-      <%= form_for @request do |f| %>
-        <%= f.hidden_field :user_approved, value: false %>
-        <%= f.submit "Deny Invitation", class: "btn"%>
-      <% end %>
-    <% end %>
 
-  <% elsif !(@group.member_ids.include? current_user.id) %>
-    <p>Would you like to ask to join <%= @group.name %>?</p>
-    <%= form_for Request.new do |f| %>
-      <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= f.hidden_field :user_approved, value: true %>
-      <%= f.hidden_field :group_id, value: @group.id %>
-      <%= f.hidden_field :part, value: current_user.instrument %>
-      <%= f.submit "Ask to Join #{@group.name}", class: "btn" %>
-    <% end %>
-  <% end %>
-
-
-
-<% if @group.members.include?(current_user) && (current_user != @group.admin) %>
-  <%= form_for Request.find_by(user: current_user, group: @group, finalized: true) do |f| %>
-    <%= f.hidden_field :finalized, value: false %>
-    <%= f.hidden_field :user_approved, value: false %>
-    <%= f.submit 'Leave Group', class: "btn" %>
-  <% end %>
-<% end %>
-</div>
 </div>
 
 <%= link_to 'Edit', edit_group_path(@group) if current_user == @group.admin %> |

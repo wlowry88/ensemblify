@@ -23,6 +23,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'figaro'
 gem 'omniauth-facebook'
+gem 'nokogiri'
+gem 'open-uri'
 
 gem 'geocoder'
 # Use ActiveModel has_secure_password

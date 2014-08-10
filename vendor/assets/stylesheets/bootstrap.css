@@ -48,6 +48,7 @@ a:focus {
 a:hover,
 a:active {
   outline: 0;
+  color: red;
 }
 
 sub,
@@ -173,7 +174,7 @@ a {
 }
 
 a:hover {
-  color: #005580;
+  color: red;
   text-decoration: underline;
 }
 

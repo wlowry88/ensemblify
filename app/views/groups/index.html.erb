@@ -73,7 +73,7 @@
         </thead>
 
         <tbody>
-          <% @all_groups.each do |group| %>
+          <% @full_groups.each do |group| %>
             <tr>
               <td><%= link_to group.name, group %></td>
               <td class="group_instrumentation"><%= group.instrumentation.name %></td>

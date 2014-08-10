@@ -313,7 +313,7 @@ footer a {
   color: #BBB;
 }
 footer a:hover {
-  color: #BBB;
+  color: red;
   text-decoration: underline;
 }
 
@@ -1357,6 +1357,7 @@ blockquote p {
 
 .update-user-left {
   text-align: left;
+  width: 250px;
 }
 .update-user-right {
   text-align: left;

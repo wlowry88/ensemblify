@@ -74,8 +74,8 @@
         </thead>
 
         <tbody>
-          <% @all_users.each do |user| %>
-            <% if current_user != user && user.check_for_instrument_and_zipcode %>
+          <% @full_users.each do |user| %>
+            <% if user.check_for_instrument_and_zipcode %>
               <tr>
                 <td class="name_field"><%= link_to user.full_name, user %></td>
                 <td class="instrument_field"><%= user.instrument.name %></td>

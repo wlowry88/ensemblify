@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @all_users = User.near(current_user, 10000, :order => "distance")
+    @full_users = User.all
     @instrument_list = Instrument.order(:name)
     @ensemble_types = Instrumentation.order(:name)
   end

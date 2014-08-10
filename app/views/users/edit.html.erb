@@ -7,46 +7,46 @@
       <div class="update-user-left member span6">
         <%= form_for(@user) do |f| %>
           <p>
-          <%= f.label :instrument_id %>
+          <%= f.label :instrument_id %><br>
           <%= f.collection_select :instrument_id, @instrument_list, :id, :name, {prompt: "< select >"}, {required: true, class: 'chosen-select' } %>
           </p>
           <p>
-          <%= f.label :level %>
+          <%= f.label :level %><br>
           <%= f.collection_select :level, ["beginner", "intermediate", "advanced", "professional"], :to_s, :to_s, {prompt: "< select >"}, { class: 'chosen-select' } %>
           </p>
           <p>
-          <%= f.label :zipcode %>
+          <%= f.label :zipcode %><br>
           <%= f.text_field :zipcode, required: true, class: "zipcode_field" %>
           </p>
           <p>
-          <%= f.label :phone_number %>
+          <%= f.label :phone_number %><br>
           <%= f.telephone_field :phone_number %>
           </p>
           <p>
-          <%= f.label :short_bio %>
+          <%= f.label :short_bio %><br>
           <%= f.text_area :short_bio %>
           </p>
           </div>
 
           <div class="update-user-right member span6">
-          <%= f.label :instrumentation_ids, "Ensemble Preferences:" %>
-          <%= f.collection_select :instrumentation_ids, @ensemble_types, :id, :name, {prompt: ""}, { class: 'chosen-select', multiple: true} %>
+          <%= f.label :instrumentation_ids, "Ensemble Preferences:" %><br>
+          <%= f.collection_select :instrumentation_ids, @ensemble_types, :id, :name, {prompt: ""}, { class: 'chosen-select', id: "make_wider", multiple: true} %>
           </p>
           <p>
-          <%= f.label :available %>
+          <%= f.label :available %><br>
           <%= f.collection_select :available, ["seeking a group", "all set"], :to_s, :to_s, {prompt: "< select >"}, { class: 'chosen-select' } %>
           </p>
           <p>
-          <%= f.label :video_sample %>
+          <%= f.label :video_sample %><br>
           <%= f.text_field :video_sample, placeholder: "https://www.youtube.com/example" %>
           </p>
           <p>
-          <%= f.label :audio_sample %>
+          <%= f.label :audio_sample %><br>
           <%= f.text_field :audio_sample, placeholder: "https://soundcloud.com/example" %>
           </p>
           <br>
           <p>
-          <%= f.submit "Save Settings", class: "btn edit_form", id: "settings_edit_button" %><br><%= link_to "Cancel", @user, class: "btn" %>
+          <%= f.submit "Save Settings", class: "btn edit_form", id: "settings_edit_button" %><%= link_to "Cancel", @user, class: "btn" %>
           </p>
         <% end %>
         

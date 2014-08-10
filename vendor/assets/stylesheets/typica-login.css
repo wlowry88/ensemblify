@@ -81,7 +81,7 @@ body {
 }
 /* line 63, ../sass/typica-login.scss */
 .navbar .nav > li > a:hover {
-  color: #111;
+  color: red;
 }
 /* line 67, ../sass/typica-login.scss */
 .navbar .nav > li.active > a {
@@ -346,7 +346,7 @@ footer.navbar-fixed-bottom {
 
   /* line 18, D:/DropBox/bootstrap/typica-login/sass/includes/_queries.scss */
   .navbar .nav > li > a:hover {
-    color: white;
+    color: red;
   }
 
   /* line 21, D:/DropBox/bootstrap/typica-login/sass/includes/_queries.scss */
@@ -389,4 +389,8 @@ footer.navbar-fixed-bottom {
     display: block;
     margin: 0 auto;
   }
+}
+
+#make_wider {
+  width: 100px;
 }

@@ -4,6 +4,7 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.near(current_user, 20, :order => "distance")
+    @full_groups = Group.all
     @users = User.all
     @all_groups = Group.near(current_user, 10000, :order => "distance")
   end

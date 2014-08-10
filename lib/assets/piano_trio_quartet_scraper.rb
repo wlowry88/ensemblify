@@ -30,7 +30,6 @@ class PiecesScraper
 	def save_pieces
 
 		rows = get_piece_rows
-		binding.pry
 		rows.collect do |row|
 			composer = row[0]
 			row[1..-1].each do |element_in_row|

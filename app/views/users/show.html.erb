@@ -100,7 +100,7 @@
 
     <div class="email_area member span4"> <!-- only for other viewing user -->
       <% if current_user != @user %>
-        <h1 id="email"><small><span class="email_form_button">Contact <%= @user.first_name %></span></small></h1>
+        <h1 id="email"><small><span class="email_form_button"><%= image_tag "mail.png" %>Contact <%= @user.first_name %></span></small></h1>
         <%= form_tag("/users/send_email", method: "post", class: "email_form") do %>
           <%= hidden_field_tag(:sender_name, current_user.full_name) %>
           <%= hidden_field_tag(:sender_email, current_user.email) %>

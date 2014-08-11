@@ -114,3 +114,26 @@ div {
   text-align: center;
   min-height: 500px;
 }
+
+#group_edit_page {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+
+
+  display: block;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 25px;
+  padding-top: 0px;
+  background: white;
+  text-align: left;
+}

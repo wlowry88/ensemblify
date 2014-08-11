@@ -6,11 +6,9 @@
   <body>
     <h1>Hey <%= @user.first_name %>!</h1>
     <p>
-      <%= @group.name %> has accepted your request to join! %>
+      <%= link_to @group.name, @url %> has accepted your request to join!
     </p>
-    <p>
-      <%= link_to @group.name, @url %>.
-    </p>
+
     <p>Now go practice!</p>
 
     <p>Love,<br>

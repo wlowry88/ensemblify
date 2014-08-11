@@ -6,11 +6,9 @@
   <body>
     <h1>Hey <%= @user.first_name %>,</h1>
     <p>
-      You've been invited to join <%= @group.name %>. Check them out. Maybe message them and see what they're about. Then, maybe accept or deny.
+      You've been invited to join <%= link_to @group.name, @url %>.
     </p>
-    <p>
-      <%= link_to @group.name, @url %>.
-    </p>
+
     <p>Now go practice!</p>
 
     <p>Love,<br>

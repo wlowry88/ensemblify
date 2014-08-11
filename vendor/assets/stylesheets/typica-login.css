@@ -58,12 +58,14 @@ body {
   width: auto;
   font-size: 25px;
   font-weight: bold;
+  color: white;
 }
 /* line 49, ../sass/typica-login.scss */
 .navbar .navbar-inner {
   height: 80px;
-  background: white;
+  background: rgba(178, 44, 44, 0.9);
   filter: none;
+  box-shadow: 2px 2px 2px #ddd;
 }
 /* line 54, ../sass/typica-login.scss */
 .navbar .nav {
@@ -72,7 +74,7 @@ body {
 /* line 56, ../sass/typica-login.scss */
 .navbar .nav > li > a {
   padding: 10px 10px 11px;
-  color: #333;
+  color: white;
   text-shadow: none;
   font-family: 'Raleway', 'Open Sans', sans-serif;
   font-weight: 100;
@@ -81,7 +83,8 @@ body {
 }
 /* line 63, ../sass/typica-login.scss */
 .navbar .nav > li > a:hover {
-  color: red;
+  font-weight: bold;
+  color: white;
 }
 /* line 67, ../sass/typica-login.scss */
 .navbar .nav > li.active > a {
@@ -346,7 +349,7 @@ footer.navbar-fixed-bottom {
 
   /* line 18, D:/DropBox/bootstrap/typica-login/sass/includes/_queries.scss */
   .navbar .nav > li > a:hover {
-    color: red;
+    font-weight: bold;
   }
 
   /* line 21, D:/DropBox/bootstrap/typica-login/sass/includes/_queries.scss */

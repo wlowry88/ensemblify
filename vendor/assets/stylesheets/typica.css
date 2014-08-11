@@ -301,7 +301,7 @@ blockquote p {
 /* $FOOTER  */
 /* ######## */
 footer {
-  color: #BBB;
+  color: rgba(178, 44, 44, 0.9);
   margin-top: 25px;
   padding-top: 10px;
   background: #555;
@@ -313,8 +313,7 @@ footer a {
   color: #BBB;
 }
 footer a:hover {
-  color: red;
-  text-decoration: underline;
+  font-weight: bold;
 }
 
 /* ###### */

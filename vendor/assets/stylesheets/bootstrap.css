@@ -48,7 +48,7 @@ a:focus {
 a:hover,
 a:active {
   outline: 0;
-  color: red;
+  font-weight: bold;
 }
 
 sub,
@@ -174,8 +174,7 @@ a {
 }
 
 a:hover {
-  color: red;
-  text-decoration: underline;
+  font-weight: bold;
 }
 
 .img-rounded {
@@ -4226,7 +4225,6 @@ input[type="submit"].btn.btn-mini {
   font-size: 20px;
   font-weight: 200;
   color: #777777;
-  text-shadow: 0 1px 0 #ffffff;
 }
 
 .navbar .brand:hover {

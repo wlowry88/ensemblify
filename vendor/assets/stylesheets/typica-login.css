@@ -15,6 +15,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background: #e9eaed;
 }
 @media (min-width: 979px) {
   /* line 13, ../sass/typica-login.scss */
@@ -65,7 +66,8 @@ body {
   height: 80px;
   background: rgba(178, 44, 44, 0.9);
   filter: none;
-  box-shadow: 2px 2px 2px #ddd;
+  box-shadow: 2px 2px 2px rgba(41, 41, 41, 0.7);
+  border:none;
 }
 /* line 54, ../sass/typica-login.scss */
 .navbar .nav {
@@ -136,7 +138,8 @@ body {
 }
 /* line 106, ../sass/typica-login.scss */
 .login-form .footer {
-  margin-top: 20px;
+  margin-top: 40px;
+  vertical-align: middle;
 }
 /* line 108, ../sass/typica-login.scss */
 .login-form .footer .checkbox.inline {
@@ -248,7 +251,7 @@ body {
 footer.white {
   padding-top: 20px;
   height: 50px;
-  background: white;
+  background: #e9eaed;
   text-align: center;
 }
 
@@ -396,4 +399,11 @@ footer.navbar-fixed-bottom {
 
 #make_wider {
   width: 100px;
+}
+.facebook-image {
+  margin-bottom: 40px;
+  margin-top: 10px;
+}
+a.btn {
+  color: black;
 }

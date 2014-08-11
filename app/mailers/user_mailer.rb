@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
   def invite_notification(user, group)
     @user = user
     @group = group
-    if logged_in?
+    if user.logged_in?
       @url = "ensemblify.com/groups/#{@group.id}"
     else
       @url = "ensemblify.com"
@@ -22,7 +22,7 @@ class UserMailer < ActionMailer::Base
     @admin = admin
     @user = user
     @group = group
-    if logged_in?
+    if user.logged_in?
       @group_url = "ensemblify.com/groups/#{@group.id}"
       @user_url = "ensemblify.com/users/#{@user.id}"
     else
@@ -36,7 +36,7 @@ class UserMailer < ActionMailer::Base
     @admin = admin
     @user = user
     @group = group
-    if logged_in?
+    if user.logged_in?
       @user_url = "ensemblify.com/users/#{@user.id}"
       @group_url = "ensemblify.com/groups/#{@group.id}"
     else

@@ -1,6 +1,6 @@
 <div class="container" id="white_div">
 
-  
+
 
   <% if current_user == @user %>
     <% Request.where(user_id: @user.id, finalized: nil, user_approved: nil).each do |request| %>
@@ -12,7 +12,9 @@
     <h1><%= @user.full_name %><small><%= "#{@user.instrument.name}" if @user.instrument %></small>
       <span id="notice">
         <p><%= notice %></p>
+        <% if current_user %>
         <p><%= current_user.already_invited(@user) if current_user!=@user %></p>
+        <% end %>
         <p><%= "Welcome to Ensemblify! Please fill out the rest of your profile!" unless (@user.check_for_instrument_and_zipcode || @user != current_user) %></p>
       </span></h1>
   </div>
@@ -67,7 +69,7 @@
   <div class="row">
 
     <div class="like-to-invite member span4"> <!-- only for other viewing user -->
-    <% if (@user != current_user && !current_user.admin_of.empty? && current_user && !(current_user.eligible_groups(@user)).empty?) %>
+    <% if (current_user && @user != current_user && !current_user.admin_of.empty? && !(current_user.eligible_groups(@user)).empty?) %>
       Would you like to invite <%= @user.first_name %> to one of your ensembles?
 
       <%= form_for Request.new do |f| %>
@@ -82,7 +84,7 @@
     <% end %>
     </div>
       <div class="accept-deny-buttons member span4"> <!-- only for other viewing user -->
-    <% if (current_user.pending_requests(@user).size > 0 && @user != current_user) %>
+    <% if (current_user && current_user.pending_requests(@user).size > 0 && @user != current_user) %>
        <p>Accept <%= @user.first_name %>'s request?</p>
        <p><% current_user.pending_requests(@user).each do |request| %>
             <%= form_for request do |f| %>
@@ -99,7 +101,7 @@
     </div>
 
     <div class="email_area member span4"> <!-- only for other viewing user -->
-      <% if current_user != @user %>
+      <% if current_user && current_user != @user %>
         <h1 id="email"><small><span class="email_form_button"><%= image_tag "mail.png" %>Contact <%= @user.first_name %></span></small></h1>
         <%= form_tag("/users/send_email", method: "post", class: "email_form") do %>
           <%= hidden_field_tag(:sender_name, current_user.full_name) %>

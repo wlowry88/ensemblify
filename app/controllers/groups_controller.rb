@@ -11,7 +11,9 @@ class GroupsController < ApplicationController
 
   def show
     @admin = User.find(@group.admin.id)
-    @request = Request.find_open_request_by_user_and_group(current_user, @group)
+    if current_user
+      @request = Request.find_open_request_by_user_and_group(current_user, @group)
+    end
   end
 
   def new

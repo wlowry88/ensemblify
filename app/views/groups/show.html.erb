@@ -1,5 +1,5 @@
 <div class="container" id="white_div">
-  <% if current_user == @group.admin %>
+  <% if current_user && current_user == @group.admin %>
     <% Request.where(group_id: @group.id, finalized: nil, group_approved: nil).each do |request| %>
       <%= link_to request.apply_message, request.user %>
     <% end %>
@@ -64,6 +64,7 @@
     </div>
 
   <div class="user-info member span4">
+    <% if current_user %>
     <% if @request %>
       <%= "You have applied to join #{@group.name}! Your request is pending :)" if @request.group_approved == nil && @request.finalized == nil %>
       <% if @request.invited? %>
@@ -87,8 +88,9 @@
         <%= f.submit "Ask to Join #{@group.name}", class: "btn" %>
       <% end %>
     <% end %>
+    <% end %>
 
-  <% if @group.members.include?(current_user) && (current_user != @group.admin) %>
+  <% if current_user && @group.members.include?(current_user) && (current_user != @group.admin) %>
     <%= form_for Request.find_by(user: current_user, group: @group, finalized: true) do |f| %>
       <%= f.hidden_field :finalized, value: false %>
       <%= f.hidden_field :user_approved, value: false %>

@@ -18,7 +18,7 @@ class RequestsController < ApplicationController
 			#request
 			if @request.update(request_params)
 				@request.finalize
-				if @request.finalize == true
+				if @request.finalized == true
 					UserMailer.accept_request(@request.user, @request.group).deliver
 				end
 			end
@@ -27,7 +27,7 @@ class RequestsController < ApplicationController
 			#invite
 			if @request.update(request_params)
 				@request.finalize
-				if @request.finalize == true
+				if @request.finalized == true
 					UserMailer.accept_invite(@request.group.admin, @request.user, @request.group).deliver
 				end
 			end

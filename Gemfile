@@ -23,9 +23,10 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'figaro'
 gem 'omniauth-facebook'
+gem 'nokogiri'
+
 
 gem 'geocoder'
-gem 'premailer-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

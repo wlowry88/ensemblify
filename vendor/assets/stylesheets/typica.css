@@ -323,7 +323,8 @@ footer a:hover {
 h1, h2, h3, h4, h5 {
   font-family: 'Oxygen', 'Open Sans', sans-serif;
   font-weight: 600;
-  padding: 10px 0;
+  padding-left: 10px;
+  text-align: left;
 }
 
 p {

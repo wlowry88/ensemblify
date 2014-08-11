@@ -1,6 +1,6 @@
 OmniAuth.config.logger = Rails.logger	
 	if ENV['RAILS_ENV'] == 'production'
-		HOST= 'ensemblify.com'
+		HOST= 'www.ensemblify.com'
   else
   	HOST= 'localhost:3000'
   end

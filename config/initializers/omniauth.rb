@@ -1,7 +1,7 @@
 OmniAuth.config.logger = Rails.logger	
 	if ENV['RAILS_ENV'] == 'production'
 		HOST= 'www.ensemblify.com'
-		URL = "#{HOST}/auth/facebook/callback"
+		URL = "http://#{HOST}/auth/facebook/callback"
   else
   	HOST= 'localhost:3000'
   	URL = "http://#{HOST}/auth/facebook/callback"

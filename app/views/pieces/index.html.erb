@@ -1,0 +1,49 @@
+<div class="container" id="search_form">
+  <div class="wrapper">
+    <div class="page-header">
+      <h1>Pieces</h1>
+    </div>
+
+    <div class="all_ensemble_matches">
+      <h4>All Pieces</h4>
+      <%= form_for(Piece.new) do |f| %>
+
+        <%= f.label :name %>
+        <%= f.collection_select :name, Piece.all, :name, :name, {prompt: ""}, { class: 'chosen-select' }  %>
+
+        <%= f.label :composer %>
+        <%= f.collection_select :composer, Piece.all, :name, :composer, {prompt: ""}, { class: 'chosen-select' } %>
+
+        <%= f.label :instrumentation %>
+        <%= f.collection_select :instrumentation, Instrumentation.all, :name, :name, {prompt: ""}, { class: 'chosen-select' }  %>
+
+        <%= f.submit "Search", class:"search_button btn" %>
+        <button class="clear_fields btn">Clear Fields</button>
+      <% end %>
+
+      <table class="table table-hover" id="pricing-table">
+        <thead class="header">
+          <tr>
+            <th>Name</th>
+            <th>Composer</th>
+            <th>Ensemble Type</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @pieces.order(:composer).each do |piece| %>
+            <tr>
+              <td><%= piece.name %></td>
+              <td><%= piece.composer %></td>
+              <td><%= piece.instrumentation.name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  <!-- wrapper end -->
+    <br>
+</div>

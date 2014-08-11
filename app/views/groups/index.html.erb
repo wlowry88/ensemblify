@@ -1,11 +1,11 @@
-<div class="container">
+<div class="container" id="search_form">
   <div class="wrapper">
     <div class="page-header">
       <h1>
         Ensembles
         <% if current_user %>
         <button class="btn intelligent_ensemble_toggle">Show Intelligent Matches</button>
-        <button class="btn"><%= link_to 'New Ensemble', new_group_path %></button>
+        <%= link_to 'New Ensemble', new_group_path, class: "btn" %>
         <% end %>
       </h1>
     </div>

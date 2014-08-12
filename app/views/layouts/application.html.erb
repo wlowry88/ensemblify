@@ -33,8 +33,8 @@
           <div class="nav-collapse">
             <ul class="nav pull-right">
               <% if current_user %>
-              <% requests = Request.where(user_id: current_user.id, finalized: nil, user_approved: nil) %>
-                <% if requests.size > 0 %>
+              <% requests = current_user.notifications %>
+                <% if requests && requests.size > 0 %>
                 <li>
                   <a href="<%= user_path(current_user) %>">
                     <div id="notification">

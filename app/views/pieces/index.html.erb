@@ -4,7 +4,7 @@
       <h1>Pieces</h1>
     </div>
 
-    <div class="all_ensemble_matches">
+    <div class="all_pieces_div">
       <h4>All Pieces</h4>
       <%= form_for(Piece.new) do |f| %>
 
@@ -34,9 +34,9 @@
         <tbody>
           <% @pieces.order(:composer).each do |piece| %>
             <tr>
-              <td><%= piece.name %></td>
-              <td><%= piece.composer %></td>
-              <td><%= piece.instrumentation.name %></td>
+              <td class="piece_name_field"><%= piece.name %></td>
+              <td class="composer_name_field"><%= piece.composer %></td>
+              <td class="interests_field"><%= piece.instrumentation.name %></td>
             </tr>
           <% end %>
         </tbody>

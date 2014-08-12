@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'search/get_instruments_for_group'
 
-  resources :pieces, only: [:index]
+  resources :pieces, only: [:index, :create]
 
   resources :groups
 

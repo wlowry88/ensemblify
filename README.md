@@ -6,9 +6,9 @@ Connects classical musicians with chamber music ensembles.
 
 ## Screenshots
 
-![user profile](/assets/user-profile-screen-shot.png "User Profile")
-![ensemble index](/assets/ensemble-index-screen-shot.png "Ensemble Index")
-![musician index](/assets/musician-index-screen-shot.png "Musician Index")
+![user profile](assets/user-profile-screen-shot.png "User Profile")
+![ensemble index](assets/ensemble-index-screen-shot.png "Ensemble Index")
+![musician index](assets/musician-index-screen-shot.png "Musician Index")
 
 ## Background
 
@@ -34,10 +34,8 @@ We would like to:
 
 ## Authors
 
-Rebecca Greenblatt
-Will Lowry
-Catherine Meyers
+Rebecca Greenblatt, Will Lowry, Catherine Meyers
 
 ## License
 
-Play It By Ear is MIT Licensed. See LICENSE for details.
+Ensemblify is MIT Licensed. See LICENSE for details.

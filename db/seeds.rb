@@ -10,6 +10,8 @@ require "#{Rails.root}/lib/assets/piano_trio_quartet_scraper.rb"
 
   piano_quartet_pieces = PiecesScraper.new('http://en.wikipedia.org/wiki/Piano_quartet', 'piano quartet')
   piano_quartet_pieces.save_quartet_pieces
+
+  
 #   cities = City.create([{ name: 'Chicago' }},{name: { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # Instrumentation.create([

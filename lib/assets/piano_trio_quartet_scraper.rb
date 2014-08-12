@@ -1,5 +1,6 @@
 require 'open-uri'
 require_relative "../../config/environment"
+require 'pry'
 
 class PiecesScraper
 
@@ -22,31 +23,33 @@ class PiecesScraper
 		"Value Not Provided"
 	end
 
-	def get_piece_rows
-		my_results = 
-		self.doc.search("ul li a")[27..-1].collect do |list_item|
-			list_item.parent.text.split("\n\n") if list_item.parent.text.include?("\n\n")
-		end.compact
+	def get_composer_divs
+    my_results = 
+    self.doc.search("div#mw-content-text >ul>li").collect do |div|
+      {div.children.first.text =>
+      div.css("li").collect do |element|
+        element.text
+      end
+      }
+    end
+    my_results
 	end
 
 	def save_pieces
 		puts "i'm in save pieces "
-		rows = get_piece_rows
-		puts "row: #{rows}"
-		rows.collect do |row|
-			composer = row[0]
-			puts "composer: #{composer}"
-			row[1..-1].each do |element_in_row|
-				element_in_row.split("\n").each do |piece_in_array|
-					p = Piece.new
-					p.composer = composer
-					p.name = piece_in_array
-					p.instrumentation = self.instrumentation
-					p.save
-					puts "saving #{p}"
-				end
-			end
-		end
+		my_results = get_composer_divs
+    my_results.collect do |composer_pieces|
+      composer_pieces.collect do |composer, pieces|
+        pieces.each do |piece|
+          p = Piece.new
+          p.composer = composer
+          p.name = piece
+          p.instrumentation_id = self.instrumentation.id
+          p.save
+          puts "just saved #{p.name} by #{p.composer}"
+        end
+      end
+    end
 	end
 
 	def save_quartet_pieces

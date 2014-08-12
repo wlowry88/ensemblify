@@ -63,7 +63,3 @@ class StringQuartetPiecesScraper
   end
 
 end
-
-
-string_quartet_pieces = StringQuartetPiecesScraper.new('http://www.clarinetinstitute.com/44329%20String%20Quartet%20Archives.htm', 'string quartet')
-string_quartet_pieces.save_quartet_pieces

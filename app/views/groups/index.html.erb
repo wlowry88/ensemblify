@@ -67,7 +67,9 @@
             <th>Name</th>
             <th>Type</th>
             <th>Complete</th>
+            <% if current_user %>
             <th>Location</th>
+            <% end %>
             <th colspan="3"></th>
           </tr>
         </thead>
@@ -80,8 +82,6 @@
               <td class="group_complete"><%= group.complete ? "complete" : "incomplete" %></td>
               <% if current_user %>
               <td class="distance"><%= "#{group.admin.city_state} (#{group.distance_from(current_user).round(2)} miles)" if group.zipcode %></td>
-              <% else %>
-              <td class="distance"><%= "#{group.admin.city_state} (#{group.distance_from("10004").round(2)} miles)" if group.zipcode %></td>
               <% end %>
             </tr>
           <% end %>

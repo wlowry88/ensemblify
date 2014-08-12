@@ -34,7 +34,9 @@
                 <td><%= user.level %></td>
                 <td><%= user.interests.collect{|i|i.instrumentation.name}.join(", ") %></td>
                 <td><%= user.available %></td>
+                <% if current_user %>
                 <td class="distance"><%= user.city_state %><br> (<%= user.distance_from(current_user).round(2) %> miles)</td>
+                <% end %>
               </tr>
             <% end %>
           </tbody>

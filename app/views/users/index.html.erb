@@ -34,9 +34,7 @@
                 <td><%= user.level %></td>
                 <td><%= user.interests.collect{|i|i.instrumentation.name}.join(", ") %></td>
                 <td><%= user.available %></td>
-                <% if current_user %>
                 <td class="distance"><%= user.city_state %><br> (<%= user.distance_from(current_user).round(2) %> miles)</td>
-                <% end %>
               </tr>
             <% end %>
           </tbody>
@@ -70,7 +68,9 @@
             <th>Level</th>
             <th>Interests</th>
             <th>Availability</th>
+            <% if current_user %>
             <th>Location</th>
+            <% end %>
             <th colspan="3"></th>
           </tr>
         </thead>
@@ -86,8 +86,6 @@
                 <td class="available_field"><%= user.available %></td>
                 <% if current_user %>
                 <td class="distance"><%= user.city_state %> <br>(<%= user.distance_from(current_user).round(2) %> miles)</td>
-                <% else %>
-                <td class="distance"><%= user.city_state %> <br>(<%= user.distance_from("10004").round(2) %> miles)</td>
                 <% end %>
               </tr>
             <% end %>

@@ -17,14 +17,14 @@ As classical musicians ourselves, we’ve noticed it can be hard to find other m
 ## Features
 
 Users can:  
-log in through facebook  
-create a new ensemble  
+* log in through facebook  
+* create a new ensemble  
 * invite other users to their ensemble  
 * add musical pieces to their ensemble  
-browse other users' ensembles  
+* browse other users' ensembles  
 * ask to join others' ensembles  
-search musicians and ensembles  
-message other users  
+* search musicians and ensembles  
+* message other users  
 
 ## Future
 

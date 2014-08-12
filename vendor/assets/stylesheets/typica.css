@@ -386,8 +386,9 @@ blockquote p {
 .member .thumbnail {
   margin: 0 auto;
   background: #eee;
+  border-radius:50%;
 }
-.member h2 {
+.member h3 {
   text-align: center;
 }
 .member .member-social {
@@ -401,7 +402,7 @@ blockquote p {
 }
 .member .member-description p {
   font-size: 90%;
-  padding: 0 10px;
+  padding-left:10px;
   text-align: left;
 }
 
@@ -845,6 +846,11 @@ blockquote p {
   background-position: 0 -352px;
   height: 32px;
   width: 32px;
+  padding-right:10px;
+}
+
+.elegant-icon-github {
+  padding-right:10px;
 }
 
 .elegant-icon-myspace {
@@ -921,8 +927,8 @@ blockquote p {
 
 .elegant-icon-twitter {
   background-position: 0 -320px;
-  height: 32px;
-  width: 32px;
+  height: 50px;
+  width: 50px;
 }
 
 .elegant-icon-vimeo {
@@ -1393,4 +1399,11 @@ blockquote p {
 }
 .member-of-ensembles li {
   margin-left:10px;
+}
+.member-description h5{
+  margin-left: 120px;
+  margin-right: 120px;
+}
+#settings_edit_button {
+  margin-right:10px;
 }

@@ -4,7 +4,7 @@
     </div>
 
     <div class="row">
-      <div class="update-user-left member span6">
+      <div class="update-user-left member span4">
         <%= form_for(@user) do |f| %>
           <p>
           <%= f.label :instrument_id %><br>
@@ -18,23 +18,20 @@
           <%= f.label :zipcode %><br>
           <%= f.text_field :zipcode, required: true, class: "zipcode_field" %>
           </p>
-          <p>
-          <%= f.label :phone_number %><br>
-          <%= f.telephone_field :phone_number %>
-          </p>
-          <p>
-          <%= f.label :short_bio %><br>
-          <%= f.text_area :short_bio %>
-          </p>
-          </div>
-
-          <div class="update-user-right member span6">
-          <%= f.label :instrumentation_ids, "Ensemble Preferences:" %><br>
-          <%= f.collection_select :instrumentation_ids, @ensemble_types, :id, :name, {prompt: ""}, { class: 'chosen-select', id: "make_wider", multiple: true} %>
-          </p>
+<!--           <p>
+          <%#= f.label :phone_number %><br>
+          <%#= f.telephone_field :phone_number %>
+          </p> -->
           <p>
           <%= f.label :available %><br>
           <%= f.collection_select :available, ["seeking a group", "all set"], :to_s, :to_s, {prompt: "< select >"}, { class: 'chosen-select' } %>
+          </p>
+        </div>
+
+        <div class="update-user-right member span4">
+          <p>
+          <%= f.label :short_bio %><br>
+          <%= f.text_area :short_bio %>
           </p>
           <p>
           <%= f.label :video_sample %><br>
@@ -45,12 +42,18 @@
           <%= f.text_field :audio_sample, placeholder: "https://soundcloud.com/example" %>
           </p>
           <br>
+        </div>
+        <div class="update-user-right member span4">
           <p>
-          <%= f.submit "Save Settings", class: "btn edit_form", id: "settings_edit_button" %><%= link_to "Cancel", @user, class: "btn" %>
+          <%= f.label :instrumentation_ids, "Ensemble Preferences:" %><br>
+          <%= f.collection_select :instrumentation_ids, @ensemble_types, :id, :name, {prompt: ""}, { class: 'chosen-select', id: "make_wider", multiple: true} %>
           </p>
+            <p>
+            <%= f.submit "Save Settings", class: "btn edit_form", id: "settings_edit_button" %><%= link_to "Cancel", @user, class: "btn" %>
+            </p>
+        </div>
         <% end %>
         
-      </div>
     </div>
 
 </div>

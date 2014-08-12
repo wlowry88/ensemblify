@@ -1,39 +1,42 @@
-# Play It By Ear
+# Ensemblify
 
 ## Description
 
-Add a short description of your app.
+Connects classical musicians with chamber music ensembles.
 
 ## Screenshots
 
-Add some spiffy screenshots of your app here.
+![user profile](/assets/user-profile-screen-shot.png "User Profile")
+![ensemble index](/assets/ensemble-index-screen-shot.png "Ensemble Index")
+![musician index](/assets/musician-index-screen-shot.png "Musician Index")
 
 ## Background
 
-Why did you want to make this app? What was your development process
-like?
+As classical musicians ourselves, we’ve noticed it can be hard to find other musicians with whom to play chamber music. We created Ensemblify to try to fill this void. We hope it lets people connect with new friends and provides a fun way to keep music in your lives.
 
 ## Features
 
-Bullet point some of the key features of your app here.
-
-## Usage
-
-How do users use your app?
-
-## Development/Contribution
-
-Explain how people can contribute to your app. How should they write tests?
-Any things in particular you'd like to see in pull requests?
+Users can:
+  log in through facebook
+  create a new ensemble
+    invite other users to their ensemble
+    add musical pieces to their ensemble
+  browse other users' ensembles
+    ask to join others' ensembles
+  search musicians and ensembles
+  message other users
 
 ## Future
 
-What features are you currently working on? Only mention things that you
-actually are implementing. No pie-in-the-sky-never-gonna-happen stuff.
+We would like to:
+  allow ensembles to coordinate and promote concerts
+  allow members of an ensemble to arrange rehearsal times and spaces
 
-## Author
+## Authors
 
-Link to your blog, twitter, etc!
+Rebecca Greenblatt
+Will Lowry
+Catherine Meyers
 
 ## License
 

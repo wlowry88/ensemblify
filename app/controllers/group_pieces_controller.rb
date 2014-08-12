@@ -1,9 +1,13 @@
 class GroupPiecesController < ApplicationController
   def create
   	@group_piece = GroupPiece.new(group_piece_params)
-  	@group_piece.save
-
-  	render json: {}
+  	if @group_piece.save
+			render json: {}
+		else
+			respond_to do |f|
+				f.json { render json: @group_piece.errors.full_messages[0], :status => :unprocessable_entity }
+			end
+		end
   end
 
 

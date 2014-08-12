@@ -275,7 +275,7 @@ DEPENDENCIES
   guard-rspec
   jbuilder (~> 2.0)
   jquery-rails
-  nokogiri
+  nokogiri (= 1.6.3.1)
   omniauth-facebook
   pg
   pry

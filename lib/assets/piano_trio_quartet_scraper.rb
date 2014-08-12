@@ -23,7 +23,7 @@ class PiecesScraper
 		"Value Not Provided"
 	end
 
-	def get_composer_divs
+	def get_trio_hash
     my_results = 
     self.doc.search("div#mw-content-text >ul>li").collect do |div|
       {div.children.first.text =>
@@ -35,10 +35,28 @@ class PiecesScraper
     my_results
 	end
 
-	def save_pieces
+  def get_quartet_hash
+    puts "i'm in get quartet divs "
+    my_results = 
+    self.doc.search("div#mw-content-text table ul>li").collect do |div|
+      {div.children.first.text =>
+      div.css("li").collect do |element|
+        element.text
+      end
+      }
+    end
+    my_results.each do |hash|
+      hash.delete_if do |key, value|
+        value.empty?
+      end
+    end
+    my_results.delete_if { |row| row.empty? }
+    my_results
+  end
+
+	def save_pieces(hash)
 		puts "i'm in save pieces "
-		my_results = get_composer_divs
-    my_results.collect do |composer_pieces|
+    hash.collect do |composer_pieces|
       composer_pieces.collect do |composer, pieces|
         pieces.each do |piece|
           p = Piece.new
@@ -50,25 +68,6 @@ class PiecesScraper
         end
       end
     end
-	end
-
-	def save_quartet_pieces
-		puts "i'm in save QUARTET pieces "
-
-		rows = get_piece_rows
-		puts "row: #{rows}"
-		rows.collect do |row|
-			composer = row[0]
-			puts "composer: #{composer}"
-			row[1..-1].first.split("\n").each do |piece_in_array|
-				p = Piece.new
-				p.composer = composer
-				p.name = piece_in_array
-				p.instrumentation = self.instrumentation
-				p.save
-				puts "saving #{p}"
-			end
-		end
 	end
 
 end

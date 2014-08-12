@@ -1400,3 +1400,7 @@ blockquote p {
 .member-of-ensembles li {
   margin-left:10px;
 }
+.member-description h5{
+  margin-left: 120px;
+  margin-right: 120px;
+}

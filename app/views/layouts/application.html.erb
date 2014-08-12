@@ -32,7 +32,13 @@
           <a class="brand" href="/groups"><%= image_tag "treble_clef_small.png" %>ensemblify</a>
           <div class="nav-collapse">
             <ul class="nav pull-right">
-              <li><%= link_to "#{current_user.full_name}", current_user if logged_in? %></li>
+              <% if current_user %>
+              <% requests = Request.where(user_id: current_user.id, finalized: nil, user_approved: nil) %>
+              <li><a><div id="notification"><%= requests.size if requests.size > 0 %></div></a></li>
+              <% end %>
+              <li>
+                <%= link_to "#{current_user.full_name}", current_user if logged_in? %>
+              </li>
               <li><%= link_to "Musicians", users_path %></li>
               <li><%= link_to "Ensembles", groups_path  %></li>
               <li><%= link_to "Pieces", pieces_path  %></li>

@@ -16,21 +16,21 @@ As classical musicians ourselves, we’ve noticed it can be hard to find other m
 
 ## Features
 
-Users can:
-  log in through facebook<br>
-  create a new ensemble<br>
-    *invite other users to their ensemble
-    *add musical pieces to their ensemble
-  browse other users' ensembles<br>
-    *ask to join others' ensembles
-  search musicians and ensembles<br>
-  message other users
+Users can:  
+  log in through facebook  
+  create a new ensemble  
+  * invite other users to their ensemble  
+  * add musical pieces to their ensemble
+  browse other users' ensembles  
+  * ask to join others' ensembles  
+  search musicians and ensembles  
+  message other users  
 
 ## Future
 
-We would like to:
-  *allow ensembles to coordinate and promote concerts
-  *allow members of an ensemble to arrange rehearsal times and spaces
+We would like to:  
+  * allow ensembles to coordinate and promote concerts  
+  * allow members of an ensemble to arrange rehearsal times and spaces
 
 ## Authors
 

@@ -6,9 +6,9 @@ Connects classical musicians with chamber music ensembles.
 
 ## Screenshots
 
-![user profile](assets/user-profile-screen-shot.png "User Profile")
-![ensemble index](assets/ensemble-index-screen-shot.png "Ensemble Index")
-![musician index](assets/musician-index-screen-shot.png "Musician Index")
+![user profile](https://raw.github.com/wlowry88/ensemblify/master/app/assets/images/user-profile-screen-shot.png "User Profile")
+![ensemble index](https://raw.github.com/wlowry88/ensemblify/master/app/assets/images/ensemble-index-screen-shot.png "Ensemble Index")
+![musician index](https://raw.github.com/wlowry88/ensemblify/master/app/assets/images/musician-index-screen-shot.png "Musician Index")
 
 ## Background
 

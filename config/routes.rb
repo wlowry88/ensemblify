@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :groups
 
+  resources :group_pieces
+
   resources :requests
 
   resources :users, only: [:show, :edit, :create, :update, :destroy, :index]

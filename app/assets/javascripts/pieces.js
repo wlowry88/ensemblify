@@ -1,5 +1,8 @@
 $(function(){
 
+	$(".add_piece_button").hide();
+	$(".add_piece_to_group_form").hide();
+
 	$(".all_pieces_div").on("click", "input.search_button", function(e){
 		e.preventDefault();
 
@@ -39,4 +42,17 @@ $(function(){
 		$("#piece_composer").next().find("span").text("Select an Option")
 		$("#piece_instrumentation").next().find("span").text("Select an Option")
 	});
+
+	$(".all_pieces_div").on("hover", ".piece_row", function(){
+		$(this).parent().find("div").slideToggle();
+	});
+
+	// $(".all_pieces_div").on("hover", ".add_piece_button", function(e){
+	// 	e.preventDefault();
+
+	// })
+
+	// $(".piece_row").on("hover", ".add_piece_button", function(e){
+	// 	e.preventDefault();
+	// });
 });

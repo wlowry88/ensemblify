@@ -1404,3 +1404,6 @@ blockquote p {
   margin-left: 120px;
   margin-right: 120px;
 }
+#settings_edit_button {
+  margin-right:10px;
+}

@@ -18,6 +18,7 @@ class RequestsController < ApplicationController
 			#request
 			if @request.update(request_params)
 				@request.finalize
+				@request.save
 				if @request.finalized == true
 					UserMailer.accept_request(@request.user, @request.group).deliver
 				end
@@ -27,6 +28,7 @@ class RequestsController < ApplicationController
 			#invite
 			if @request.update(request_params)
 				@request.finalize
+				@request.save
 				if @request.finalized == true
 					UserMailer.accept_invite(@request.group.admin, @request.user, @request.group).deliver
 				end
@@ -34,9 +36,14 @@ class RequestsController < ApplicationController
 
 		elsif @request.finalized
 			@request.update(request_params)
+	
+		else
+			@request.update(request_params)
+			@request.finalize
+			@request.save
 
 		end
-		redirect_to Group.find(@request.group_id)
+		redirect_to groups_path
 	end
 
 

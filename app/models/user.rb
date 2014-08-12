@@ -91,7 +91,7 @@ class User < ActiveRecord::Base
       user.save
       if user.email
         UserMailer.welcome_email(user).deliver if !user.check_for_instrument_and_zipcode
-      end
+       end
     end
   end
 

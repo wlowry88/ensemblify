@@ -1,0 +1,60 @@
+<div class="container" id="search_form">
+  <div class="wrapper">
+    <div class="page-header">
+      <h1>Pieces</h1>
+    </div>
+
+    <div class="all_pieces_div">
+      <h4>All Pieces</h4>
+      <%= form_for(Piece.new) do |f| %>
+
+        <%= f.label :name %>
+        <%= f.collection_select :name, Piece.all, :name, :name, {prompt: ""}, { class: 'chosen-select' }  %>
+
+        <%= f.label :composer %>
+        <%= f.collection_select :composer, Piece.all, :name, :composer, {prompt: ""}, { class: 'chosen-select' } %>
+
+        <%= f.label :instrumentation %>
+        <%= f.collection_select :instrumentation, Instrumentation.all, :name, :name, {prompt: ""}, { class: 'chosen-select' }  %>
+
+        <%= f.submit "Search", class:"search_button btn" %>
+        <button class="clear_fields btn">Clear Fields</button>
+      <% end %>
+
+      <table class="table table-hover" id="pricing-table">
+        <thead class="header">
+          <tr>
+            <th>Name</th>
+            <th>Composer</th>
+            <th>Ensemble Type</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @pieces.order(:composer).each do |piece| %>
+            <tr class="piece_row">
+              <td class="piece_name_field"><%= piece.name %></td>
+              <td class="composer_name_field"><%= piece.composer %></td>
+              <td class="interests_field"><%= piece.instrumentation.name %></td>
+              <td>
+                <button class="btn add_piece_button">Add Piece</button>
+                <div class="add_piece_to_group_form">
+                <% current_user.admin_of.each do |group| %>
+                  <%= form_for GroupPiece.new do |f| %>
+                    <%= f.hidden_field :group_id, :value => group.id %>
+                    <%= f.submit "Add to #{group.name}", class: "btn" %>
+                  <% end %>
+                <% end %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  <!-- wrapper end -->
+    <br>
+</div>

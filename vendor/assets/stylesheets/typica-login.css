@@ -407,3 +407,16 @@ footer.navbar-fixed-bottom {
 a.btn {
   color: black;
 }
+
+.add_piece_button {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  vertical-align: middle;
+}
+
+.add_piece_to_group_form {
+  background-color: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  z-index: 100;
+}

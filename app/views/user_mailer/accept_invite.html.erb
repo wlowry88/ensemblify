@@ -6,7 +6,7 @@
   <body>
     <h1>Hey <%= @admin.first_name %>,</h1>
     <p>
-    <%= link_to @user.full_name, @user_url %> has accepted your invitation to join + <%= link_to @group.name, @group_url %>.
+    <%= link_to @user.full_name, @user_url %> has accepted your invitation to join <%= link_to @group.name, @group_url %>.
     </p>
     <p>Now go practice!</p>
 

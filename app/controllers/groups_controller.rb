@@ -77,7 +77,7 @@ class GroupsController < ApplicationController
     if current_user == @group.admin
       @group.destroy
       respond_to do |format|
-        format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
+        format.html { redirect_to groups_url }
         format.json { head :no_content }
       end
     else

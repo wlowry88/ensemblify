@@ -34,7 +34,15 @@
             <ul class="nav pull-right">
               <% if current_user %>
               <% requests = Request.where(user_id: current_user.id, finalized: nil, user_approved: nil) %>
-              <li><a><div id="notification"><%= requests.size if requests.size > 0 %></div></a></li>
+                <% if requests.size > 0 %>
+                <li>
+                  <a href="<%= user_path(current_user) %>">
+                    <div id="notification">
+                      <%= requests.size %>
+                    </div>
+                  </a>
+                </li>
+                <% end %>
               <% end %>
               <li>
                 <%= link_to "#{current_user.full_name}", current_user if logged_in? %>

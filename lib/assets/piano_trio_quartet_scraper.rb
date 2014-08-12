@@ -1,6 +1,5 @@
 require 'open-uri'
 require_relative "../../config/environment"
-require 'pry'
 
 class PiecesScraper
 

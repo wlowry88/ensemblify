@@ -9,10 +9,6 @@ require_relative "../assets/piano_trio_quartet_scraper"
 
 		puts "reached line 10"
 
-		if Rails.env.production?
-			puts RAILS_ENV
-		end
-
 		piano_quartet_pieces = PiecesScraper.new('http://en.wikipedia.org/wiki/Piano_quartet', 'piano quartet')
 		piano_quartet_pieces.save_quartet_pieces
 	  

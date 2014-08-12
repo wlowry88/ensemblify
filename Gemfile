@@ -23,7 +23,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'figaro'
 gem 'omniauth-facebook'
-gem 'nokogiri'
+gem 'nokogiri', '1.6.3.1'
 
 
 gem 'geocoder'

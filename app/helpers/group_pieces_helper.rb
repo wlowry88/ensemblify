@@ -1,0 +1,2 @@
+module GroupPiecesHelper
+end

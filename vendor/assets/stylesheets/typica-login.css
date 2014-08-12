@@ -416,7 +416,7 @@ a.btn {
 
 .add_piece_to_group_form {
   background-color: white;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 5px;
   z-index: 100;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
 }

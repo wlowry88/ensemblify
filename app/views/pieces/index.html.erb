@@ -41,9 +41,10 @@
                 <button class="btn add_piece_button">Add Piece</button>
                 <div class="add_piece_to_group_form">
                 <% current_user.admin_of.each do |group| %>
-                  <%= form_for GroupPiece.new do |f| %>
+                  <%= form_for GroupPiece.new, class:"add_piece_ajax" do |f| %>
                     <%= f.hidden_field :group_id, :value => group.id %>
-                    <%= f.submit "Add to #{group.name}", class: "btn" %>
+                    <%= f.hidden_field :piece_id, :value => piece.id %>
+                    <%= f.submit "Add to #{group.name}", class: "btn add_piece_btn" %>
                   <% end %>
                 <% end %>
                 </div>

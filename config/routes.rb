@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'group_pieces/create'
+
   get 'search/get_instruments_for_group'
 
   resources :pieces, only: [:index, :create]

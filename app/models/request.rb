@@ -29,4 +29,5 @@ class Request < ActiveRecord::Base
   def self.find_open_request_by_user_and_group(user, group)
     find_by(user_id: user.id, group_id: group.id, finalized: nil)
   end
+
 end

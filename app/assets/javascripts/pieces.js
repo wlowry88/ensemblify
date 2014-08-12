@@ -7,8 +7,8 @@ $(function(){
 	    }
 	  }
 	}
-	$(".add_piece_button").hide();
-	$(".add_piece_to_group_form").hide();
+	// $(".add_piece_button").hide();
+	// $(".add_piece_to_group_form").hide();
 
 	$(".all_pieces_div").on("click", "input.search_button", function(e){
 		e.preventDefault();
@@ -50,27 +50,42 @@ $(function(){
 		$("#piece_instrumentation").next().find("span").text("Select an Option")
 	});
 
-	$(".all_pieces_div").on("hover", ".piece_row", function(){
-		$(this).find(".add_piece_button").toggle();
+	// shows the add piece button
+	$(".all_pieces_div").on("mouseover", ".piece_row", function(){
+		$(this).find(".add_piece_button").show();
 	});
 
-	$(".all_pieces_div").on("click", ".add_piece_button", function(e){
-		e.preventDefault();
+	$(".all_pieces_div").on("mouseleave", ".piece_row", function(){
+		var $add_or_done = $(this).find(".add_piece_button")
+		if($add_or_done.text() === "Add Piece"){
+			$add_or_done.hide();
+		}
+	});
 
-	})
-
+	// showing the div popdown
 	$(".piece_row").on("click", ".add_piece_button", function(e){
-		e.preventDefault();
+		e.preventDefault()
+		$(this).text(function(){
+			if($(this).text()=="Add Piece"){
+				return "Done";
+			}
+			else {
+				return "Add Piece"
+			}
+		});
 		$(this).parent().find("div").slideToggle();
 	});
 
-
+	// ajax submit, green crossout and remove
 	$(".piece_row").on("click", ".add_piece_btn", function(e){
 		e.preventDefault();
 
+		var $button = $(this).parent().parent().parent().find(".add_piece_button")
+		$button.show();
 		var $form = $(this).closest("form");
 		var $div = $(this).parent().parent();
 		var $row = $div.parent().parent();
+
 
 		$.ajax({
 			url: "/group_pieces",
@@ -80,14 +95,17 @@ $(function(){
 			success: function(data){
 				$form.css({"color":"green","text-decoration":"line-through"});
 				$form.text("successfully added to group");
+				$button.show();
 				$form.fadeOut(1000, function(){
 					$form.remove();
+					$button.show();
 
 					if ($div.find("form").length==0){
 						$div.remove();
 						$row.css({"color":"green","text-decoration":"line-through"});
 						$row.fadeOut(1000, function(){
 							$row.remove();
+							$button.show();
 						})
 					}
 				});

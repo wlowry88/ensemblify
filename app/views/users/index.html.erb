@@ -33,7 +33,11 @@
                 <td><%= user.level %></td>
                 <td><%= user.interests.collect{|i|i.instrumentation.name}.join(", ") %></td>
                 <td><%= user.available %></td>
-                <td class="distance"><%= user.city_state %><br> (<%= user.distance_from(current_user).round(2) %> miles)</td>
+                <% if current_user && current_user.city_state != "Not given" && user.city_state != "Not given" %>
+                  <td class="distance"><%= user.city_state %><br> (<%= user.distance_from(current_user).round(2) %> miles)</td>
+                <% else %>
+                  <td class="distance"> </td>
+                <% end %>
               </tr>
             <% end %>
           </tbody>
@@ -83,7 +87,11 @@
                 <td class="interests_field"><%= user.interests.collect{|i|i.instrumentation.name}.uniq.join(", ") %></td>
                 <td class="available_field"><%= user.available %></td>
                 <% if current_user %>
-                <td class="distance"><%= user.city_state %> <br>(<%= user.distance_from(current_user).round(2) %> miles)</td>
+                <% if current_user && current_user.city_state != "Not given" && user.city_state != "Not given" %>
+                  <td class="distance"><%= user.city_state %> <br>(<%= user.distance_from(current_user).round(2) %> miles)</td>
+                <% else %>
+                  <td class="distance"> </td>
+                  <% end %>
                 <% end %>
               </tr>
             <% end %>

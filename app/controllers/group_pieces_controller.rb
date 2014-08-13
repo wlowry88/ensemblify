@@ -10,6 +10,13 @@ class GroupPiecesController < ApplicationController
 		end
   end
 
+  def destroy
+    @group_piece = GroupPiece.find(params[:id])
+    @group_piece.destroy
+
+    render json: {}
+  end
+
 
   private
 

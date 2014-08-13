@@ -27,13 +27,14 @@
             <th>Name</th>
             <th>Composer</th>
             <th>Ensemble Type</th>
-            <th colspan="3"></th>
+            <th colspan="2"></th>
+
           </tr>
         </thead>
 
         <tbody>
           <% @pieces.order(:composer).each do |piece| %>
-            <tr class="piece_row">
+            <tr id="<%=piece.id%>" class="piece_row">
               <td class="piece_name_field"><%= piece.name %></td>
               <td class="composer_name_field"><%= piece.composer %></td>
               <td class="interests_field"><%= piece.instrumentation.name %></td>
@@ -49,7 +50,11 @@
                     <% end %>
                   <% end %>
                   </div>
-                  <% end %>
+                <% end %>
+                <% if current_user && current_user.admin_of %>
+                  <button id="spotify_button" class="btn">Listen</button>
+                  </div>
+                <% end %>
               </td>
             </tr>
           <% end %>

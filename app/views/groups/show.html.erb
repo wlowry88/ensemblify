@@ -58,7 +58,9 @@
       <% else @group.pieces.count > 0 %>
       <p>
         <% @group.pieces.each do |piece| %>
-          <li><%= "#{piece.name} by #{piece.composer}"%><%= image_tag("close-button-gray.gif", class: "delete_piece_x") %></li>
+          <li id="<%=GroupPiece.find_by(group_id: @group.id, piece_id: piece.id).id%>"><%= "#{piece.name} by #{piece.composer}"%>
+          <%= link_to image_tag("close-button-gray.gif"), GroupPiece.find_by(group_id: @group.id, piece_id: piece.id), class: "delete_piece_x" if current_user == @group.admin %>
+         </li>
         <% end %>  
       </p>
       <% end %>

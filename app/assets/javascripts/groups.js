@@ -83,4 +83,27 @@ $(function(){
 		$(this).find(".delete_piece_x").toggle();
 	});
 
+	$(".row").on("click", ".delete_piece_x", function(e){
+		e.preventDefault();
+		$id = $(this).parent().attr("id")
+		$row = $(this).parent()
+
+		if (confirm("Delete "+$row.text()+"...for real??") == true) {
+			$.ajax({
+				url: "/group_pieces/"+$id,
+				type: "delete",
+				success: function (){
+					
+					$row.css({"color":"red","text-decoration":"line-through"});
+					$row.text("successfully removed");
+					$row.fadeOut(1500, function(){
+						$row.remove();
+					});
+				}
+			})
+		}
+	});
+
+
+
 });

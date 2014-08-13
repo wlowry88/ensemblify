@@ -1,0 +1,27 @@
+ <table class="table table-hover" id="pricing-table">
+  <thead class="header">
+    <tr >
+      <th>Name</th>
+      <th>Type</th>
+      <th>Complete</th>
+      <% if current_user %>
+      <th>Location</th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% full_groups.each do |group| %>
+      <tr>
+        <td><%= link_to group.name, group %></td>
+        <td class="group_instrumentation"><%= group.instrumentation.name %></td>
+        <td class="group_complete"><%= group.complete ? "complete" : "incomplete" %></td>
+        <% if current_user && current_user.city_state != "Not given" && group.city_state != "Not given" %>
+        <td class="distance"><%= "#{group.admin.city_state} (#{group.distance_from(current_user).round(2)} miles)" if group.zipcode %></td>
+        <% else %>
+          <td class="distance"> </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

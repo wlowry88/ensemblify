@@ -1,0 +1,29 @@
+<table class="table table-hover" id="pricing-table">
+  <thead class="header">
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Complete</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% groups.where(complete: false).where.not(admin_id: current_user.id).each do |group| %>
+      <% current_user.interests.each do |interest| %>
+        <% if interest.instrumentation == group.instrumentation %>
+        <tr>
+          <td><%= link_to group.name, group %></td>
+          <td><%= group.instrumentation.name %></td>
+          <td><%= group.complete ? "complete" : "incomplete" %></td>
+          <% if current_user && current_user.city_state != "Not given" && group.city_state != "Not given" %>
+          <td class="distance"><%= "#{group.admin.city_state} (#{group.distance_from(current_user).round(2)} miles)" if (group.zipcode && current_user) %></td>
+          <% else %>
+          <td class="distance"> </td>
+          <% end %>
+        </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

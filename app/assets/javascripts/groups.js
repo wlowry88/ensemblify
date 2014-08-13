@@ -79,4 +79,8 @@ $(function(){
 		}
 	})
 
+	$(".row").on("hover", "li", function(){
+		$(this).find(".delete_piece_x").toggle();
+	});
+
 });

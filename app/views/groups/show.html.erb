@@ -58,7 +58,7 @@
       <% else @group.pieces.count > 0 %>
       <p>
         <% @group.pieces.each do |piece| %>
-          <li><%= "#{piece.name} by #{piece.composer}" %></li>
+          <li><%= "#{piece.name} by #{piece.composer}"%><%= image_tag("close-button-gray.gif", class: "delete_piece_x") %></li>
         <% end %>  
       </p>
       <% end %>

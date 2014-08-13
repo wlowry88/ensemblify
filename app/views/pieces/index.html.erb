@@ -38,16 +38,18 @@
               <td class="composer_name_field"><%= piece.composer %></td>
               <td class="interests_field"><%= piece.instrumentation.name %></td>
               <td>
-                <button class="btn add_piece_button">Add Piece</button>
-                <div class="add_piece_to_group_form">
-                <% current_user.admin_of.each do |group| %>
-                  <%= form_for GroupPiece.new, class:"add_piece_ajax" do |f| %>
-                    <%= f.hidden_field :group_id, :value => group.id %>
-                    <%= f.hidden_field :piece_id, :value => piece.id %>
-                    <%= f.submit "Add to #{group.name}", class: "btn add_piece_btn" %>
+                <% if current_user && current_user.admin_of %>
+                  <button class="btn add_piece_button">Add Piece</button>
+                  <div class="add_piece_to_group_form">
+                  <% current_user.admin_of.each do |group| %>
+                    <%= form_for GroupPiece.new, class:"add_piece_ajax" do |f| %>
+                      <%= f.hidden_field :group_id, :value => group.id %>
+                      <%= f.hidden_field :piece_id, :value => piece.id %>
+                      <%= f.submit "Add to #{group.name}", class: "btn add_piece_btn" %>
+                    <% end %>
                   <% end %>
-                <% end %>
-                </div>
+                  </div>
+                  <% end %>
               </td>
             </tr>
           <% end %>

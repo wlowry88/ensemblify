@@ -57,9 +57,6 @@
     <p>
         <% @group.pieces.each do |piece| %>
           <li><%= "#{piece.name} by #{piece.composer}" %></li>
-          <% if piece.spotify_id %>
-            <iframe src="https://embed.spotify.com/?uri=<%=piece.spotify_id%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
-          <% end %>
         <% end %>
 
         
@@ -104,8 +101,12 @@
   <% end %>
 
   </div>
-
-
+<div>
+  <% @group.pieces.each do |piece| %>
+    <% if piece.spotify_id %>
+      <iframe src="https://embed.spotify.com/?uri=<%=piece.spotify_id%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+    <% end %>
+  <% end %>
 </div>
 
 <%= link_to 'Edit', edit_group_path(@group) if current_user == @group.admin %> |

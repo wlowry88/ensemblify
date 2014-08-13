@@ -211,3 +211,20 @@ div {
   text-decoration: underline;
 }
 
+#spotify_button {
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: none;
+}
+
+.pieces_on_group_show {
+  margin-bottom: 20px;
+}
+
+.delete_piece_x {
+  cursor: pointer;
+  margin-left: 2px;
+  margin-bottom: 4px;
+  display: none;
+}

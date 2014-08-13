@@ -543,9 +543,9 @@ div.field, div.actions {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
   display: block;
   margin-top: 20px;
   margin-left: auto;
@@ -566,9 +566,9 @@ div.field, div.actions {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
   display: block;
   margin-top: 20px;
   margin-left: auto;
@@ -590,9 +590,9 @@ div.field, div.actions {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
   display: block;
   margin-top: 20px;
   margin-left: auto;
@@ -9435,9 +9435,9 @@ body {
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
   border-radius: 15px;
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -9496,9 +9496,9 @@ body {
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
   border-radius: 15px;
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
   margin-top: 25px;
   margin-bottom: 70px;
   padding-top: 25px;
@@ -9744,5 +9744,5 @@ a.btn {
   background-color: white;
   padding: 5px;
   z-index: 100;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 }

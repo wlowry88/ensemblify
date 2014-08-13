@@ -1,0 +1,33 @@
+<% if current_user %>
+  <% if request %>
+    <%= "You have applied to join #{group.name}! Your request is pending :)" if request.group_approved == nil && request.finalized == nil %>
+    <% if request.invited? %>
+      <%= form_for request do |f| %>
+        <%= f.hidden_field :user_approved, value: true %>
+        <%= f.submit "Accept Invitation", class: "btn" %>
+      <% end %>
+      <%= form_for request do |f| %>
+        <%= f.hidden_field :user_approved, value: false %>
+        <%= f.submit "Deny Invitation", class: "btn"%>
+      <% end %>
+    <% end %>
+
+  <% elsif !(group.member_ids.include? current_user.id) %>
+    <p>Would you like to ask to join <%= group.name %>?</p>
+    <%= form_for Request.new do |f| %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :user_approved, value: true %>
+      <%= f.hidden_field :group_id, value: group.id %>
+      <%= f.hidden_field :part, value: current_user.instrument %>
+      <%= f.submit "Ask to Join #{group.name}", class: "btn" %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if current_user && group.members.include?(current_user) && (current_user != group.admin) %>
+  <%= form_for Request.find_by(user: current_user, group: group, finalized: true) do |f| %>
+    <%= f.hidden_field :finalized, value: false %>
+    <%= f.hidden_field :user_approved, value: false %>
+    <%= f.submit 'Leave Group', class: "btn" %>
+  <% end %>
+<% end %>

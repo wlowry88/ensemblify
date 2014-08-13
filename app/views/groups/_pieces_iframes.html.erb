@@ -1,0 +1,4 @@
+<% group.pieces.where.not(spotify_id:nil).limit(3).each do |piece| %>
+      <iframe src="https://embed.spotify.com/?uri=<%=piece.spotify_id%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+  <% end %>
+</div>

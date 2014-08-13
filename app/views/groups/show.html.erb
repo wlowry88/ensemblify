@@ -31,6 +31,6 @@
   <%= render 'pieces_iframes', group: @group %>
 </div>
 
-<%= link_to 'Edit', edit_group_path(group) if current_user == group.admin %> |
+<%= link_to 'Edit', edit_group_path(@group) if current_user == @group.admin %> |
 <%= link_to 'Back', groups_path %> |
-<%= link_to 'Destroy Group', group, method: :delete, data: {confirm: "Are you sure?"} if current_user == group.admin %>
+<%= link_to 'Destroy Group', @group, method: :delete, data: {confirm: "Are you sure?"} if current_user == @group.admin %>

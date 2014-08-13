@@ -24,7 +24,6 @@ a {
     color: rgba(178, 44, 44, 0.9);
   }
   &:hover {
-    font-weight: bold;
 /*    background-color: #000;*/
   }
 }
@@ -74,9 +73,9 @@ div {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 
 
   display: block;
@@ -98,9 +97,9 @@ div {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 
 
   display: block;
@@ -123,9 +122,9 @@ div {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 
 
   display: block;
@@ -152,7 +151,7 @@ div {
   font-size: 10px;
   font-weight: bold;
   padding-bottom: 1px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
   background-color: white;
   border-radius: 10%;
   width: 18px;
@@ -167,7 +166,7 @@ div {
   margin-top: 30px;
   width: 300px;
   background-color: white;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
   border-radius: 0px 5px 5px 5px;
   background-color: #EDEDED;
 
@@ -228,3 +227,4 @@ div {
   margin-bottom: 4px;
   display: none;
 }
+

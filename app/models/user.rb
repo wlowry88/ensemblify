@@ -16,13 +16,12 @@ class User < ActiveRecord::Base
   def notifications
     notifications = []
     Request.where(user_id: self.id, finalized: nil, user_approved: nil).each do |notification|
-      notifications << "#{notification.group.name} invited you to join!"
+      notifications << ["invite","#{notification.group.name} invited you to join!"]
     end
     Request.where(finalized: nil, group_approved: nil).each do |notification|
-      notifications << "#{notification.user.name} has requested to join #{notification.group.name}" if notification.group.admin_id == self.id 
+      notifications << ["request","#{notification.user.name} has requested to join #{notification.group.name}"] if notification.group.admin_id == self.id
     end
     notifications
-
   end
 
   def eligible_groups(user)

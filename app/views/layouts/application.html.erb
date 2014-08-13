@@ -36,12 +36,15 @@
               <% requests = current_user.notifications %>
                 <% if requests && requests.size > 0 %>
                 <li>
-                  <a href="<%= user_path(current_user) %>">
-                    <div id="notification">
-                      <%= requests.size %>
-                    </div>
-                  </a>
+                  <div id="notification">
+                    <%= requests.size %>
+                  </div>
                 </li>
+                <div id="notifications_box">
+                <% requests.each do |request| %>
+                  <%= request[1] %>
+                <% end %>
+                </div>
                 <% end %>
               <% end %>
               <li>

@@ -1,0 +1,11 @@
+<% if current_user && current_user != user %>
+    <h1 id="email"><small><span class="email_form_button"><%= image_tag "mail.png" %>Contact <%= user.first_name %></span></small></h1>
+    <%= form_tag("/users/send_email", method: "post", class: "email_form") do %>
+      <%= hidden_field_tag(:sender_name, current_user.full_name) %>
+      <%= hidden_field_tag(:sender_email, current_user.email) %>
+      <%= hidden_field_tag(:recipient_name, user.full_name) %>
+      <%= hidden_field_tag(:recipient_email, user.email) %>
+      <%= text_area_tag :content %>
+      <p><%= submit_tag "Send Message", class: "btn", id: "email_button" %></p>
+    <% end %>
+  <% end %>

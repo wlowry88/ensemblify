@@ -1,7 +1,5 @@
 <div class="container" id="white_div">
 
-
-
   <% if current_user == @user %>
     <% Request.where(user_id: @user.id, finalized: nil, user_approved: nil).each do |request| %>
     <%= link_to request.invite_message, request.group %><br>
@@ -9,59 +7,25 @@
   <% end %>
 
   <div class="page-header">
-    <h1><%= @user.full_name %><small><%= "#{@user.instrument.name}" if @user.instrument %></small>
-      <span id="notice">
-        <p><%= notice %></p>
-        <% if current_user %>
-        <p><%= current_user.already_invited(@user) if current_user!=@user %></p>
-        <% end %>
-        <p><%= "Welcome to Ensemblify! Please fill out the rest of your profile!" unless (@user.check_for_instrument_and_zipcode || @user != current_user) %></p>
-      </span></h1>
+    <%= render 'main_info', user: @user %>
   </div>
 
   <div class="row">
 
     <div class="user-image member span3">
-      <p>
-        <%= image_tag @user.image %>
-        <p><%= link_to 'Update Profile', edit_user_path if current_user==@user%></p>
-      </p>
+      <%= render 'image', user: @user %>
     </div>
 
     <div class="user-info member span3">
-      <p><strong>Level: </strong><%= @user.level if @user.level %></p>
-      <p><strong>Available: </strong><%= @user.available if @user.available %></p>
-      <p><strong>Location: </strong><%= @user.city_state if @user.zipcode && @user.city_state %></p><p style="color:red"><%= "The zipcode you entered was invalid. Please update your zipcode." if @user.city_state == "Not given" && @user == current_user %></p>
-      <p><strong>Bio: </strong><%= @user.short_bio if !@user.short_bio.empty? %></p>
+      <%= render 'user_info_1', user: @user %>
     </div>
 
     <div class="user-info member span3">
-      <p><strong>Video Sample: </strong><%= link_to @user.video_sample, @user.video_sample, target: "blank" if !@user.video_sample.empty? %></p>
-      <p><strong>Audio Sample: </strong><%= link_to @user.audio_sample, @user.audio_sample, target: "blank" if !@user.audio_sample.empty? %></p>
-      <% if @user.interests.any? %>
-        <strong>Ensemble Preferences:</strong>
-        <ul>
-        <% @user.interests.each do |interest| %>
-          <li><%= interest.instrumentation.name %></li>
-        <% end %>
-        </ul>
-      <% end %>
+      <%= render 'user_info_2', user: @user %>
     </div>
 
     <div class="member-of-ensembles member span2"> <!-- both  -->
-        <% if !@user.member_of.empty? %>
-            <strong>Ensembles:</strong>
-          <% @user.member_of.each do |group| %>
-            <li><%= link_to group.name, group %></li>
-          <% end %>
-        <% else %>
-          <strong>Ensembles:</strong>
-          <% if current_user == @user && current_user.check_for_instrument_and_zipcode %>
-            <br>You are not currently a member of any ensembles.<br><%= link_to 'Check some out', groups_path%> or <%= link_to 'create your own', new_group_path %>?
-          <% elsif current_user != @user && @user.groups.empty? %>
-            <%= "#{@user.first_name} isn't in any ensembles." %>
-          <% end %>
-        <% end %>
+       <%= render 'user_ensembles', user: @user %>
     </div>
 
   </div>
@@ -69,49 +33,16 @@
   <div class="row">
 
     <div class="like-to-invite member span4"> <!-- only for other viewing user -->
-    <% if (current_user && @user != current_user && !current_user.admin_of.empty? && !(current_user.eligible_groups(@user)).empty?) %>
-      Would you like to invite <%= @user.first_name %> to one of your ensembles?
-
-      <%= form_for Request.new do |f| %>
-        <p>
-        <%= f.collection_select :group_id, current_user.eligible_groups(@user), :id, :name %>
-        </p>
-        <%= f.hidden_field :user_id, value: @user.id %>
-        <%= f.hidden_field :group_approved, value: true %>
-        <%= f.submit "Invite #{@user.first_name}", class: "btn" %>
-      <% end %>
-
-    <% end %>
+      <%= render 'invite', user: @user %>
     </div>
-      <div class="accept-deny-buttons member span4"> <!-- only for other viewing user -->
-    <% if (current_user && current_user.pending_requests(@user).size > 0 && @user != current_user) %>
-       <p>Accept <%= @user.first_name %>'s request?</p>
-       <p><% current_user.pending_requests(@user).each do |request| %>
-            <%= form_for request do |f| %>
-              <%= f.hidden_field :group_approved, value: true %>
-              <%= f.submit "Accept Request to join #{request.group.name}", class: "btn" %>
-            <% end %>
-            <%= form_for request do |f| %>
-              <%= f.hidden_field :group_approved, value: false %>
-              <%= f.submit "Deny Request to join #{request.group.name}", class: "btn" %>
-            <% end %>
-          <%end%>
-        </p>
-    <% end %>
+
+
+    <div class="accept-deny-buttons member span4"> <!-- only for other viewing user -->
+      <%= render 'accept_deny', user: @user %>
     </div>
 
     <div class="email_area member span4"> <!-- only for other viewing user -->
-      <% if current_user && current_user != @user %>
-        <h1 id="email"><small><span class="email_form_button"><%= image_tag "mail.png" %>Contact <%= @user.first_name %></span></small></h1>
-        <%= form_tag("/users/send_email", method: "post", class: "email_form") do %>
-          <%= hidden_field_tag(:sender_name, current_user.full_name) %>
-          <%= hidden_field_tag(:sender_email, current_user.email) %>
-          <%= hidden_field_tag(:recipient_name, @user.full_name) %>
-          <%= hidden_field_tag(:recipient_email, @user.email) %>
-          <%= text_area_tag :content %>
-          <p><%= submit_tag "Send Message", class: "btn", id: "email_button" %></p>
-        <% end %>
-      <% end %>
+        <%= render 'contact', user: @user %>
     </div>
 
   </div>

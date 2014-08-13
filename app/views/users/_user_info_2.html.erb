@@ -1,0 +1,10 @@
+<p><strong>Video Sample: </strong><%= link_to user.video_sample, user.video_sample, target: "blank" if !user.video_sample.empty? %></p>
+  <p><strong>Audio Sample: </strong><%= link_to user.audio_sample, user.audio_sample, target: "blank" if !user.audio_sample.empty? %></p>
+  <% if user.interests.any? %>
+    <strong>Ensemble Preferences:</strong>
+    <ul>
+    <% user.interests.each do |interest| %>
+      <li><%= interest.instrumentation.name %></li>
+    <% end %>
+    </ul>
+  <% end %>

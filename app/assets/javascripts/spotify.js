@@ -1,19 +1,28 @@
 $(function(){
 
-	function getSpotifyJson(title, composer) {
+	function getSpotifyPreview(instrumentation, composer, id) {
 
-    var $title_url = encodeURIComponent(title),
+    var $title_url = encodeURIComponent(instrumentation),
         $composer_url = encodeURIComponent(composer),
         $uri;
 
       $.ajax({
         url: "https://api.spotify.com/v1/search?q=" + $title_url + "%20" + $composer_url + "&type=track&limit=1",
         success: function (data) {
-          window.open(data.tracks.items[0].preview_url);
-        }
-      });    
-
+        window.open(data.tracks.items[0].preview_url);
+        $.ajax({
+          url: "/pieces",
+          type: "POST",
+          dataType: "json",
+          data: (id + "||" + data.tracks.items[0].uri),
+          success: function (data){
+            debugger;
+          }
+        });    
+      }
+    });
   }
+  
 
   $(".all_pieces_div").on("hover", ".piece_row", function(){
     $(this).find("#spotify_button").toggle();
@@ -22,11 +31,14 @@ $(function(){
   $(".piece_row").on("click", "#spotify_button", function(e){
     e.preventDefault();
 
-    var $name = $("#piece_name").next().find("span");
-    var $composer = $("#piece_composer").next().find("span");
+    var $instrumentation = $(this).parent().parent().find(".interests_field").text()
+    var $composer = $(this).parent().parent().find(".composer_name_field").text()
+    var $id = $(this).parent().parent().attr("id")
 
-    getSpotifyJson($name, $composer);
+    getSpotifyPreview($instrumentation, $composer, $id);
   });
+
+
     // function ajax1() {
     //   return $.ajax({
     //     url: "https://api.spotify.com/v1/search?q=" + $title_url + "%20" + $composer_url + "&type=track&limit=1",

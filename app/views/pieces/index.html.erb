@@ -34,7 +34,7 @@
 
         <tbody>
           <% @pieces.order(:composer).each do |piece| %>
-            <tr class="piece_row">
+            <tr id="<%=piece.id%>" class="piece_row">
               <td class="piece_name_field"><%= piece.name %></td>
               <td class="composer_name_field"><%= piece.composer %></td>
               <td class="interests_field"><%= piece.instrumentation.name %></td>

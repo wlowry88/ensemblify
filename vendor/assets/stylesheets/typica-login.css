@@ -31,8 +31,8 @@ body {
 
 /* line 25, ../sass/typica-login.scss */
 .btn-black, button, .search_button, .btn {
-  display: inline-block;
-  *display: inline;
+
+
   padding: 4px 12px;
   margin-bottom: 0;
   margin-left: 0;
@@ -468,6 +468,8 @@ text-shadow: 0 1px 0 #fff;
   padding-top: 0px;
   padding-bottom: 0px;
   vertical-align: middle;
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
 .add_piece_to_group_form {

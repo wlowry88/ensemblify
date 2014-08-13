@@ -159,5 +159,11 @@ div {
 }
 
 #notifications_box {
-  display: none;
+  display: block;
+  z-index: 1000;
+  position: absolute;
+  margin-top: 26px;
+  width: 150px;
+  background-color: white;
+  padding: 10px;
 }

@@ -1,0 +1,15 @@
+<%= form_for(User.new) do |f| %>
+  <%= f.label :instrument_id %>
+  <%= f.collection_select :instrument_id, instrument_list, :name, :name, {prompt: ""}, { class: 'chosen-select' } %>
+  <%= f.label :available %>
+  <%= f.collection_select :available, ["seeking a group","all set"], :to_s, :to_s, {prompt: ""}, { class: 'chosen-select' } %>
+  <%= f.label :instrumentation_ids, "Interests" %>
+  <%= f.collection_select :instrumentation_ids, ensemble_types, :name, :name, {prompt: ""}, { class: 'chosen-select' } %>
+  <%= f.label :level %>
+  <%= f.collection_select :level, ["beginner", "intermediate", "advanced", "professional"], :to_s, :to_s, {prompt: ""}, { class: 'chosen-select' } %>
+  <p></p>
+  <div class="search_and_clear">
+    <%= f.submit "Search", class:"search_button btn" %>
+    <button class="clear_fields btn">Clear Fields</button>
+  </div>
+<% end %>

@@ -1,0 +1,13 @@
+ <% if !user.member_of.empty? %>
+    <strong>Ensembles:</strong>
+  <% user.member_of.each do |group| %>
+    <li><%= link_to group.name, group %></li>
+  <% end %>
+<% else %>
+  <strong>Ensembles:</strong>
+  <% if current_user == user && current_user.check_for_instrument_and_zipcode %>
+    <br>You are not currently a member of any ensembles.<br><%= link_to 'Check some out', groups_path%> or <%= link_to 'create your own', new_group_path %>?
+  <% elsif current_user != user && user.groups.empty? %>
+    <%= "#{user.first_name} isn't in any ensembles." %>
+  <% end %>
+<% end %>

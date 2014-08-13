@@ -12,85 +12,16 @@
 
 
     <% if current_user %>
-
     <div class="intelligent_matches">
       <h4>These chamber groups might be a good fit for you based on your preferences.</h4>
-      <table class="table table-hover" id="pricing-table">
-        <thead class="header">
-          <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Complete</th>
-            <th>Location</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @groups.where(complete: false).where.not(admin_id: current_user.id).each do |group| %>
-            <% current_user.interests.each do |interest| %>
-              <% if interest.instrumentation == group.instrumentation %>
-              <tr>
-                <td><%= link_to group.name, group %></td>
-                <td><%= group.instrumentation.name %></td>
-                <td><%= group.complete ? "complete" : "incomplete" %></td>
-                <% if current_user && current_user.city_state != "Not given" && group.admin.city_state != "Not given" %>
-                <td class="distance"><%= "#{group.admin.city_state} (#{group.distance_from(current_user).round(2)} miles)" if (group.zipcode && current_user) %></td>
-                <% else %>
-                <td class="distance"> </td>
-                <% end %>
-              </tr>
-              <% end %>
-            <% end %>
-          <% end %>
-        </tbody>
-      </table>
+      <%= render 'intelligent_matches_table', groups: @groups %>
     </div>
     <% end %>
 
     <div class="all_ensemble_matches">
       <h4>All Ensembles</h4>
-      <%= form_for(Group.new) do |f| %>
-
-        <%= f.label :instrumentation_id %>
-        <%= f.collection_select :instrumentation_id, Instrumentation.all, :name, :name, {prompt: ""}, { class: 'chosen-select' }  %>
-
-        <%= f.label :instruments %>
-        <%= f.collection_select :instruments, Instrument.all, :name, :name, {prompt: ""}, { class: 'chosen-select' } %>
-
-        <%= f.label :complete %>
-        <%= f.collection_select :complete, ["complete", "incomplete"], :to_s, :to_s, {prompt: ""}, { class: 'chosen-select' }  %>
-
-        <%= f.submit "Search", class:"search_button btn" %>
-        <button class="clear_fields btn">Clear Fields</button>
-      <% end %>
-
-      <table class="table table-hover" id="pricing-table">
-        <thead class="header">
-          <tr >
-            <th>Name</th>
-            <th>Type</th>
-            <th>Complete</th>
-            <% if current_user %>
-            <th>Location</th>
-            <% end %>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @full_groups.each do |group| %>
-            <tr>
-              <td><%= link_to group.name, group %></td>
-              <td class="group_instrumentation"><%= group.instrumentation.name %></td>
-              <td class="group_complete"><%= group.complete ? "complete" : "incomplete" %></td>
-              <% if current_user && current_user.city_state != "Not given" && group.admin.city_state != "Not given" %>
-              <td class="distance"><%= "#{group.admin.city_state} (#{group.distance_from(current_user).round(2)} miles)" if group.zipcode %></td>
-              <% else %>
-                <td class="distance"> </td>
-              <% end %>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <%= render 'search_form' %>
+      <%= render 'all_matches_table', full_groups: @full_groups %>
     </div>
   </div>
   <!-- wrapper end -->

@@ -1,0 +1,32 @@
+<p>
+  <div class= "group_parts">
+    <strong>Ensemble Type:</strong>
+      <%= group.instrumentation.name %> <a class="show_parts_button">(Show Parts)</a>
+      <div class= "show_parts">
+        <% group.instrumentation.instrument_instrumentations.each do |i| %>
+          <li><%= i.instrument.name %><%= " (x" + i.quantity.to_s + ")" if i.quantity > 1 %> </li>
+        <% end %>
+      </div>
+  </div>
+  </p>
+
+  <p>
+    <strong>Complete:</strong>
+    <%= group.complete ? 'yes' : 'no' %>
+  </p>
+
+  <p>
+    <strong>Location:</strong>
+    <%= group.admin.city_state %>
+  </p>
+
+  <p>
+    <strong>Members:</strong>
+    <% group.members.each do |member| %>
+      <li><%= link_to member.full_name, member %>, <%= member.instrument.name %></li>
+    <% end %>
+  </p>
+  <p>
+    <strong>Admin:</strong>
+    <%= link_to admin.full_name, admin %>
+  </p>

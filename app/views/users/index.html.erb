@@ -1,5 +1,7 @@
 <div class="container" id="search_form">
+
   <div class="wrapper">
+
     <div class="page-header">
       <h1>
         Musicians
@@ -9,95 +11,16 @@
       </h1>
     </div>
 
-
     <% if current_user %>
       <div class="intelligent_matches">
-        <table id="pricing-table" class="table table-hover">
-          <h4>These musicians might be a good fit for your group based on your preferences.</h4>
-          <thead class="header">
-            <tr>
-              <th>Name</th>
-              <th>Instrument</th>
-              <th>Level</th>
-              <th>Interests</th>
-              <th>Availability</th>
-              <th>Location</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% current_user.musician_intelligent_match.each do |user| %>
-              <tr>
-                <td><%= link_to user.full_name, user %></td>
-                <td><%= user.instrument.name %></td>
-                <td><%= user.level %></td>
-                <td><%= user.interests.collect{|i|i.instrumentation.name}.join(", ") %></td>
-                <td><%= user.available %></td>
-                <% if current_user && current_user.city_state != "Not given" && user.city_state != "Not given" %>
-                  <td class="distance"><%= user.city_state %><br> (<%= user.distance_from(current_user).round(2) %> miles)</td>
-                <% else %>
-                  <td class="distance"> </td>
-                <% end %>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+        <%= render 'intelligent_matches_table' %>
       </div>
     <% end %>
 
     <div class="all_matches">
       <h4>Showing all musicians</h4>
-      <%= form_for(User.new) do |f| %>
-      <%= f.label :instrument_id %>
-      <%= f.collection_select :instrument_id, @instrument_list, :name, :name, {prompt: ""}, { class: 'chosen-select' } %>
-      <%= f.label :available %>
-      <%= f.collection_select :available, ["seeking a group","all set"], :to_s, :to_s, {prompt: ""}, { class: 'chosen-select' } %>
-      <%= f.label :instrumentation_ids, "Interests" %>
-      <%= f.collection_select :instrumentation_ids, @ensemble_types, :name, :name, {prompt: ""}, { class: 'chosen-select' } %>
-      <%= f.label :level %>
-      <%= f.collection_select :level, ["beginner", "intermediate", "advanced", "professional"], :to_s, :to_s, {prompt: ""}, { class: 'chosen-select' } %>
-      <p></p>
-      <div class="search_and_clear">
-      <%= f.submit "Search", class:"search_button btn" %>
-      <button class="clear_fields btn">Clear Fields</button>
-      </div>
-      <% end %>
-
-    <table class="table table-hover" id="pricing-table">
-      <thead class="header">
-          <tr>
-            <th>Name</th>
-            <th>Instrument</th>
-            <th>Level</th>
-            <th>Interests</th>
-            <th>Availability</th>
-            <% if current_user %>
-            <th>Location</th>
-            <% end %>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @full_users.each do |user| %>
-            <% if user.check_for_instrument_and_zipcode %>
-              <tr>
-                <td class="name_field"><%= link_to user.full_name, user %></td>
-                <td class="instrument_field"><%= user.instrument.name %></td>
-                <td class="level_field"><%= user.level %></td>
-                <td class="interests_field"><%= user.interests.collect{|i|i.instrumentation.name}.uniq.join(", ") %></td>
-                <td class="available_field"><%= user.available %></td>
-                <% if current_user %>
-                <% if current_user && current_user.city_state != "Not given" && user.city_state != "Not given" %>
-                  <td class="distance"><%= user.city_state %> <br>(<%= user.distance_from(current_user).round(2) %> miles)</td>
-                <% else %>
-                  <td class="distance"> </td>
-                  <% end %>
-                <% end %>
-              </tr>
-            <% end %>
-          <% end %>
-        </tbody>
-      </table>
+      <%= render 'search_form', instrument_list: @instrument_list, ensemble_types: @ensemble_types %>
+      <%= render 'all_matches_table', full_users: @full_users %>
     </div>
 
   </div>

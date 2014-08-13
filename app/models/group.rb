@@ -33,5 +33,14 @@ class Group < ActiveRecord::Base
     self.instrumentation.save
   end
 
+  def city_state
+    result = Geocoder.search(zipcode)
+    if result[0]
+      "#{result[0].city}, #{result[0].state_code}"
+    else
+      "Not given"
+    end
+  end
+
 
 end

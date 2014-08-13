@@ -1,0 +1,14 @@
+<% if (current_user && current_user.pending_requests(user).size > 0 && user != current_user) %>
+     <p>Accept <%= user.first_name %>'s request?</p>
+     <p><% current_user.pending_requests(user).each do |request| %>
+          <%= form_for request do |f| %>
+            <%= f.hidden_field :group_approved, value: true %>
+            <%= f.submit "Accept Request to join #{request.group.name}", class: "btn" %>
+          <% end %>
+          <%= form_for request do |f| %>
+            <%= f.hidden_field :group_approved, value: false %>
+            <%= f.submit "Deny Request to join #{request.group.name}", class: "btn" %>
+          <% end %>
+        <%end%>
+      </p>
+  <% end %>

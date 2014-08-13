@@ -7,7 +7,7 @@
       <div class="update-user-left member span4">
         <%= form_for(@user) do |f| %>
           <p>
-          <%= f.label :instrument_id %><br>
+          <%= f.label :instrument_id %><span style="color: red">*</span><br>
           <%= f.collection_select :instrument_id, @instrument_list, :id, :name, {prompt: "< select >"}, {required: true, class: 'chosen-select' } %>
           </p>
           <p>
@@ -15,7 +15,7 @@
           <%= f.collection_select :level, ["beginner", "intermediate", "advanced", "professional"], :to_s, :to_s, {prompt: "< select >"}, { class: 'chosen-select' } %>
           </p>
           <p>
-          <%= f.label :zipcode %><br>
+          <%= f.label :zipcode %><span style="color: red">*</span><br>
           <%= f.text_field :zipcode, required: true, class: "zipcode_field" %>
           </p>
 <!--           <p>
@@ -53,7 +53,7 @@
             </p>
         </div>
         <% end %>
-        
+
     </div>
 
 </div>

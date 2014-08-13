@@ -1,0 +1,30 @@
+<table id="pricing-table" class="table table-hover">
+  <h4>These musicians might be a good fit for your group based on your preferences.</h4>
+  <thead class="header">
+    <tr>
+      <th>Name</th>
+      <th>Instrument</th>
+      <th>Level</th>
+      <th>Interests</th>
+      <th>Availability</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% current_user.musician_intelligent_match.each do |user| %>
+      <tr>
+        <td><%= link_to user.full_name, user %></td>
+        <td><%= user.instrument.name %></td>
+        <td><%= user.level %></td>
+        <td><%= user.interests.collect{|i|i.instrumentation.name}.join(", ") %></td>
+        <td><%= user.available %></td>
+        <% if current_user && current_user.city_state != "Not given" && user.city_state != "Not given" %>
+          <td class="distance"><%= user.city_state %><br> (<%= user.distance_from(current_user).round(2) %> miles)</td>
+        <% else %>
+          <td class="distance"> </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

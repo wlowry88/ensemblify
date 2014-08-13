@@ -1,0 +1,14 @@
+<%= form_for(Group.new) do |f| %>
+
+  <%= f.label :instrumentation_id %>
+  <%= f.collection_select :instrumentation_id, Instrumentation.all, :name, :name, {prompt: ""}, { class: 'chosen-select' }  %>
+
+  <%= f.label :instruments %>
+  <%= f.collection_select :instruments, Instrument.all, :name, :name, {prompt: ""}, { class: 'chosen-select' } %>
+
+  <%= f.label :complete %>
+  <%= f.collection_select :complete, ["complete", "incomplete"], :to_s, :to_s, {prompt: ""}, { class: 'chosen-select' }  %>
+
+  <%= f.submit "Search", class:"search_button btn" %>
+  <button class="clear_fields btn">Clear Fields</button>
+<% end %>

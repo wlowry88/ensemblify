@@ -47,6 +47,7 @@ a:focus {
 
 a:hover,
 a:active {
+  text-decoration: underline;
   outline: 0;
 
 }

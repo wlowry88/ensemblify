@@ -318,7 +318,7 @@ footer a {
   color: #BBB;
 }
 footer a:hover {
-
+  text-decoration: underline;
 }
 
 /* ###### */

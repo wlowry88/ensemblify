@@ -152,10 +152,12 @@ div {
   font-size: 10px;
   font-weight: bold;
   padding-bottom: 1px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
   background-color: white;
   border-radius: 10%;
   width: 18px;
   height: 18px;
+  cursor: pointer;
 }
 
 #notifications_box {
@@ -166,7 +168,7 @@ div {
   width: 300px;
   background-color: white;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  border-radius: 1px;
+  border-radius: 0px 5px 5px 5px;
   background-color: #EDEDED;
 
 }
@@ -202,4 +204,10 @@ div {
   background-color: white;
   padding: 12px;
   font-weight: bold;
+  border-top-right-radius: 5px;
 }
+
+.individual_link:hover{
+  text-decoration: underline;
+}
+

@@ -47,9 +47,9 @@
                 <% requests.each do |request| %>
                   <div class="individual_notification">
                     <% if request[0] == "invite" %>
-                      <%= link_to request[1], group_path(request[2].group) %>
+                      <%= link_to request[1], group_path(request[2].group), class: "individual_link" %>
                     <% else %>
-                      <%= link_to request[1], user_path(request[2].user) %>
+                      <%= link_to request[1], user_path(request[2].user), class: "individual_link" %>
                     <% end %>
                   </div>
                 <% end %>

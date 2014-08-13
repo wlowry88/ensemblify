@@ -85,18 +85,19 @@ body {
 }
 /* line 63, ../sass/typica-login.scss */
 .navbar .nav > li > a:hover {
-  font-weight: bold;
-  color: white;
+    background-color: rgba(136, 33, 33, 0.9);
+    border-radius: 5px;
 }
 /* line 67, ../sass/typica-login.scss */
 .navbar .nav > li.active > a {
   background: none;
-  color: #111;
+  color: white;
 }
 /* line 70, ../sass/typica-login.scss */
 .navbar .nav > li.active > a:hover {
   background: none;
-  color: #111;
+  color: white;
+
 }
 
 /* ####### */
@@ -156,7 +157,7 @@ body {
   -moz-box-shadow: none;
   box-shadow: none;
   margin-left: 15px;
-  padding: 7px 25px;
+  padding: 0px 25px;
   background-image: none;
 }
 
@@ -352,7 +353,9 @@ footer.navbar-fixed-bottom {
 
   /* line 18, D:/DropBox/bootstrap/typica-login/sass/includes/_queries.scss */
   .navbar .nav > li > a:hover {
-    font-weight: bold;
+    color: white;
+    background-color: rgba(136, 33, 33, 0.9);
+    border-radius: 5px;
   }
 
   /* line 21, D:/DropBox/bootstrap/typica-login/sass/includes/_queries.scss */
@@ -419,4 +422,14 @@ a.btn {
   padding: 5px;
   z-index: 100;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  position: absolute;
+  border-radius: 5px;
+}
+
+form#new_piece {
+  margin-bottom: 0px;
+}
+
+#pricing-table {
+  margin-top: 20px;
 }

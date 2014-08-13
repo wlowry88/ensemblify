@@ -16,7 +16,6 @@ $(function(){
           dataType: "json",
           data: (id + "||" + data.tracks.items[0].uri),
           success: function (data){
-            debugger;
           }
         });    
       }

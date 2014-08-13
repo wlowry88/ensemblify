@@ -24,8 +24,11 @@ $(function(){
   }
   
 
-  $(".all_pieces_div").on("hover", ".piece_row", function(){
-    $(this).find("#spotify_button").toggle();
+  $(".all_pieces_div").on("mouseover", ".piece_row", function(){
+    $(this).find("#spotify_button").show();
+  });
+  $(".all_pieces_div").on("mouseleave", ".piece_row", function(){
+    $(this).find("#spotify_button").hide();
   });
 
   $(".piece_row").on("click", "#spotify_button", function(e){

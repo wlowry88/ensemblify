@@ -40,9 +40,18 @@
                     <%= requests.size %>
                   </div>
                 </li>
+                <div id= "notifications_triangle">
+                </div>
                 <div id="notifications_box">
+                <div id="notification_label">Notifications (<%= requests.size %>)</div>
                 <% requests.each do |request| %>
-                  <%= request[1] %>
+                  <div class="individual_notification">
+                    <% if request[0] == "invite" %>
+                      <%= link_to request[1], group_path(request[2].group) %>
+                    <% else %>
+                      <%= link_to request[1], user_path(request[2].user) %>
+                    <% end %>
+                  </div>
                 <% end %>
                 </div>
                 <% end %>

@@ -15,11 +15,15 @@ class User < ActiveRecord::Base
 
   def notifications
     notifications = []
-    Request.where(user_id: self.id, finalized: nil, user_approved: nil).each do |notification|
-      notifications << ["invite","#{notification.group.name} invited you to join!"]
+    if Request.where(user_id: self.id, finalized: nil, user_approved: nil)
+      Request.where(user_id: self.id, finalized: nil, user_approved: nil).each do |notification|
+        notifications << ["invite", "#{notification.group.name} invited you to join!", notification]
+      end
     end
-    Request.where(finalized: nil, group_approved: nil).each do |notification|
-      notifications << ["request","#{notification.user.name} has requested to join #{notification.group.name}"] if notification.group.admin_id == self.id
+    if Request.where(finalized: nil, group_approved: nil)
+      Request.where(finalized: nil, group_approved: nil).each do |notification|
+        notifications << ["request","#{notification.user.full_name} has requested to join #{notification.group.name}", notification] if notification.group.admin_id == self.id
+      end
     end
     notifications
   end

@@ -159,11 +159,47 @@ div {
 }
 
 #notifications_box {
-  display: block;
+  display: none;
   z-index: 1000;
   position: absolute;
-  margin-top: 26px;
-  width: 150px;
+  margin-top: 30px;
+  width: 300px;
   background-color: white;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  border-radius: 1px;
+  background-color: #EDEDED;
+
+}
+
+#notifications_triangle {
+  width: 2px;
+  display: none;
+  z-index: 10000;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 10px solid white;
+  margin-top: 20px;
+  position: absolute;
+}
+
+.individual_notification {
+  border-bottom: 1px #ddd solid;
+  color: black;
   padding: 10px;
+}
+
+.individual_notification > a {
+  color: black;
+}
+.individual_notification:hover {
+  background-color: #F7F7F7;
+}
+
+
+#notification_label {
+  color: black;
+  font-size: 15px;
+  background-color: white;
+  padding: 12px;
+  font-weight: bold;
 }

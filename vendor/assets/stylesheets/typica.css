@@ -1395,7 +1395,8 @@ blockquote p {
 }
 .member-of-ensembles {
   text-align:left;
-  margin-left:50px;
+  margin-left:10px;
+  min-width: 200px;
 }
 .member-of-ensembles li {
   margin-left:10px;

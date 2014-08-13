@@ -34,6 +34,13 @@
         <strong>Location:</strong>
         <%= @group.admin.city_state %>
       </p>
+
+      <p>
+        <strong>Members:</strong>
+        <% @group.members.each do |member| %>
+          <li><%= link_to member.full_name, member %>, <%= member.instrument.name %></li>
+        <% end %>
+      </p>
       <p>
         <strong>Admin:</strong>
         <%= link_to @admin.full_name, @admin %>
@@ -42,13 +49,8 @@
 
     <div class="user-info member span4">
       <p></p>
-      <p>
-        <strong>Members:</strong>
-        <% @group.members.each do |member| %>
-          <li><%= link_to member.full_name, member %>, <%= member.instrument.name %></li>
-        <% end %>
-      </p>
-        <strong>Pieces:</strong>
+
+    <strong>Pieces:</strong>
       <% if @group.pieces.count==0 %>
       <p>
         <em><%=@group.name%> doesn't have any pieces yet! </em>
@@ -60,7 +62,6 @@
         <% end %>  
       </p>
       <% end %>
-
     </div>
 
     <div class="user-info member span4">
@@ -97,14 +98,12 @@
           <%= f.submit 'Leave Group', class: "btn" %>
         <% end %>
       <% end %>
-
+       
     </div>
 </div>
 <div class="pieces_on_group_show">
-  <% @group.pieces.each do |piece| %>
-    <% if piece.spotify_id %>
+  <% @group.pieces.where.not(spotify_id:nil).limit(3).each do |piece| %>
       <iframe src="https://embed.spotify.com/?uri=<%=piece.spotify_id%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
-    <% end %>
   <% end %>
 </div>
 <%= link_to 'Edit', edit_group_path(@group) if current_user == @group.admin %> |

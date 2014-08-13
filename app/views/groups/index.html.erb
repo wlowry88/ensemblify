@@ -33,7 +33,7 @@
                 <td><%= link_to group.name, group %></td>
                 <td><%= group.instrumentation.name %></td>
                 <td><%= group.complete ? "complete" : "incomplete" %></td>
-                <% if current_user && current_user.city_state != "Not given" && group.admin.city_state != "Not given" %>
+                <% if current_user && current_user.city_state != "Not given" && group.city_state != "Not given" %>
                 <td class="distance"><%= "#{group.admin.city_state} (#{group.distance_from(current_user).round(2)} miles)" if (group.zipcode && current_user) %></td>
                 <% else %>
                 <td class="distance"> </td>
@@ -82,7 +82,7 @@
               <td><%= link_to group.name, group %></td>
               <td class="group_instrumentation"><%= group.instrumentation.name %></td>
               <td class="group_complete"><%= group.complete ? "complete" : "incomplete" %></td>
-              <% if current_user && current_user.city_state != "Not given" && group.admin.city_state != "Not given" %>
+              <% if current_user && current_user.city_state != "Not given" && group.city_state != "Not given" %>
               <td class="distance"><%= "#{group.admin.city_state} (#{group.distance_from(current_user).round(2)} miles)" if group.zipcode %></td>
               <% else %>
                 <td class="distance"> </td>

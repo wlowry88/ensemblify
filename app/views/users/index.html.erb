@@ -1,4 +1,5 @@
 <div class="container" id="search_form">
+
   <div class="wrapper">
 
     <div class="page-header">
@@ -10,7 +11,6 @@
       </h1>
     </div>
 
-
     <% if current_user %>
       <div class="intelligent_matches">
         <%= render 'intelligent_matches_table' %>
@@ -19,11 +19,8 @@
 
     <div class="all_matches">
       <h4>Showing all musicians</h4>
-
       <%= render 'search_form', instrument_list: @instrument_list, ensemble_types: @ensemble_types %>
-
       <%= render 'all_matches_table', full_users: @full_users %>
-
     </div>
 
   </div>

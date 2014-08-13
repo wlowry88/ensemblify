@@ -1,4 +1,4 @@
 <p><strong>Level: </strong><%= user.level if user.level %></p>
 <p><strong>Available: </strong><%= user.available if user.available %></p>
-<p><strong>Location: </strong><%= user.city_state if user.zipcode && user.city_state %></p><p style="color:red"><%= "The zipcode you entered was invalid. Please update your zipcode." if user.city_state == "Not given" && user == current_user %></p>
+<p><strong>Location: </strong><%= user.city_state if user.zipcode && user.city_state %></p><p style="color:red"><%= "Please enter a valid zipcode." if user.city_state == "Not given" && user == current_user %></p>
 <p><strong>Bio: </strong><%= user.short_bio if !user.short_bio.empty? %></p>

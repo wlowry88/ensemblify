@@ -53,7 +53,7 @@
     <strong>Pieces:</strong>
       <% if @group.pieces.count==0 %>
       <p>
-        <em><%=@group.name%> doesn't have any pieces yet! </em>
+        <em><%=@group.name%> doesn't have any pieces yet! <%= link_to "Add some here", pieces_path %></em>
       </p>
       <% else @group.pieces.count > 0 %>
       <p>
@@ -61,7 +61,7 @@
           <li id="<%=GroupPiece.find_by(group_id: @group.id, piece_id: piece.id).id%>"><%= "#{piece.name} by #{piece.composer}"%>
           <%= link_to image_tag("close-button-gray.gif"), GroupPiece.find_by(group_id: @group.id, piece_id: piece.id), class: "delete_piece_x" if current_user == @group.admin %>
          </li>
-        <% end %>  
+        <% end %>
       </p>
       <% end %>
     </div>
@@ -100,7 +100,7 @@
           <%= f.submit 'Leave Group', class: "btn" %>
         <% end %>
       <% end %>
-       
+
     </div>
 </div>
 <div class="pieces_on_group_show">

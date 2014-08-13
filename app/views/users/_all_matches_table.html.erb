@@ -1,0 +1,33 @@
+<table class="table table-hover" id="pricing-table">
+  <thead class="header">
+    <tr>
+      <th>Name</th>
+      <th>Instrument</th>
+      <th>Level</th>
+      <th>Interests</th>
+      <th>Availability</th>
+      <% if current_user %>
+      <th>Location</th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% full_users.each do |user| %>
+      <% if user.check_for_instrument_and_zipcode %>
+        <tr>
+          <td class="name_field"><%= link_to user.full_name, user %></td>
+          <td class="instrument_field"><%= user.instrument.name %></td>
+          <td class="level_field"><%= user.level %></td>
+          <td class="interests_field"><%= user.interests.collect{|i|i.instrumentation.name}.uniq.join(", ") %></td>
+          <td class="available_field"><%= user.available %></td>
+          <% if current_user && current_user.city_state != "Not given" && user.city_state != "Not given" %>
+            <td class="distance"><%= user.city_state %> <br>(<%= user.distance_from(current_user).round(2) %> miles)</td>
+          <% else %>
+            <td class="distance"> </td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

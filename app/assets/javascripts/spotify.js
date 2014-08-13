@@ -37,7 +37,13 @@ $(function(){
     var $composer = $(this).parent().parent().find(".composer_name_field").text()
     var $id = $(this).parent().parent().attr("id")
 
-    getSpotifyPreview($instrumentation, $composer, $id);
+    if($(this).text()=="Listen") {
+      getSpotifyPreview($instrumentation, $composer, $id);
+      $(this).text("Close");
+    } else if ($(this).text()=="Close") {
+      $("iframe").remove();
+      $(this).text("Listen")
+    }
   });
 
 

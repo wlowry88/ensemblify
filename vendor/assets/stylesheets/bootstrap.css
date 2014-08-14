@@ -1916,6 +1916,10 @@ table {
   vertical-align: bottom;
 }
 
+.ensemble_type_header {
+  min-width: 168px;
+}
+
 .table caption + thead tr:first-child th,
 .table caption + thead tr:first-child td,
 .table colgroup + thead tr:first-child th,

@@ -10,6 +10,7 @@ class Group < ActiveRecord::Base
   has_many :instruments, through: :instrumentation
   geocoded_by :zipcode
   after_validation :geocode
+  before_destroy :destroy_requests
 
 
   def members
@@ -40,6 +41,11 @@ class Group < ActiveRecord::Base
     else
       "Not given"
     end
+  end
+
+  private
+  def destroy_requests
+    requests.destroy_all
   end
 
 

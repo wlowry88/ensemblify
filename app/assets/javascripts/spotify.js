@@ -2,23 +2,22 @@ $(function() {
 
     function getSpotifyPreview(instrumentation, composer, id) {
 
-        var $title_url = encodeURIComponent(instrumentation),
-            $composer_url = encodeURIComponent(composer),
-            $uri;
+      var $title_url = encodeURIComponent(instrumentation),
+          $composer_url = encodeURIComponent(composer),
+          $uri;
 
-        $.ajax({
-            url: "https://api.spotify.com/v1/search?q=" + $title_url + "%20" + $composer_url + "&type=track&limit=1",
-            success: function(data) {
-                $("#" + id).append('<iframe class="popup_iframe" src= "' + data.tracks.items[0].preview_url + '"></iframe>');
-                $.ajax({
-                    url: "/pieces",
-                    type: "POST",
-                    dataType: "json",
-                    data: (id + "||" + data.tracks.items[0].uri),
-                    success: function(data) {}
-                });
-            }
-        });
+      $.ajax({
+        url: "https://api.spotify.com/v1/search?q=" + $title_url + "%20" + $composer_url + "&type=track&limit=1",
+        success: function(data) {
+          $("#" + id).append('<iframe class="popup_iframe" src= "' + data.tracks.items[0].preview_url + '"></iframe>');
+          $.ajax({
+              url: "/pieces",
+              type: "POST",
+              dataType: "json",
+              data: (id + "||" + data.tracks.items[0].uri)
+          });
+        }
+      });
     }
 
 

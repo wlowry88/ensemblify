@@ -1904,7 +1904,7 @@ table {
   text-align: left;
   min-width: 100px;
   max-width: 400px;
-  vertical-align: top;
+  vertical-align: middle;
   border-top: 1px solid #dddddd;
 }
 

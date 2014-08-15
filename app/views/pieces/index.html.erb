@@ -3,66 +3,57 @@
     <div class="page-header">
       <h1>Pieces</h1>
     </div>
-
     <div class="all_pieces_div">
       <h4>All Pieces</h4>
       <%= form_for(Piece.new) do |f| %>
-
-        <%= f.label :name %>
-        <%= f.collection_select :name, Piece.all, :name, :name, {prompt: ""}, { class: 'chosen-select' }  %>
-
-        <%= f.label :composer %>
-        <%= f.collection_select :composer, Piece.all, :name, :composer, {prompt: ""}, { class: 'chosen-select' } %>
-
-        <%= f.label :instrumentation %>
-        <%= f.collection_select :instrumentation, Instrumentation.all, :name, :name, {prompt: ""}, { class: 'chosen-select' }  %>
-
-        <%= f.submit "Search", class:"search_button btn" %>
-        <button class="clear_fields btn">Clear Fields</button>
+      <%= f.label :name %>
+      <%= f.collection_select :name, Piece.all, :name, :name, {prompt: ""}, { class: 'chosen-select' }  %>
+      <%= f.label :composer %>
+      <%= f.collection_select :composer, Piece.all, :name, :composer, {prompt: ""}, { class: 'chosen-select' } %>
+      <%= f.label :instrumentation %>
+      <%= f.collection_select :instrumentation, Instrumentation.all, :name, :name, {prompt: ""}, { class: 'chosen-select' }  %>
+      <%= f.submit "Search", class:"search_button btn" %>
+      <button class="clear_fields btn">Clear Fields</button>
       <% end %>
-
       <table class="table table-hover" id="pricing-table">
         <thead class="header">
           <tr>
             <th>Name</th>
-            <th>Composer</th>
-            <th>Ensemble Type</th>
+            <th class="composer_header">Composer</th>
+            <th class="ensemble_type_header">Ensemble Type</th>
             <th colspan="2"></th>
-
           </tr>
         </thead>
-
         <tbody>
           <% @pieces.order(:composer).each do |piece| %>
-            <tr id="<%=piece.id%>" class="piece_row">
-              <td class="piece_name_field"><%= piece.name %></td>
-              <td class="composer_name_field"><%= piece.composer %></td>
-              <td class="interests_field"><%= piece.instrumentation.name %></td>
-              <td>
-                <% if current_user && current_user.admin_of %>
-                  <button class="btn add_piece_button">Add Piece</button>
-                  <div class="add_piece_to_group_form">
-                  <% current_user.admin_of.each do |group| %>
-                    <%= form_for GroupPiece.new, class:"add_piece_ajax" do |f| %>
-                      <%= f.hidden_field :group_id, :value => group.id %>
-                      <%= f.hidden_field :piece_id, :value => piece.id %>
-                      <%= f.submit "Add to #{group.name}", class: "btn add_piece_btn" %>
-                    <% end %>
-                  <% end %>
-                  </div>
+          <tr id="<%=piece.id%>" class="piece_row">
+            <td class="piece_name_field"><%= piece.name %></td>
+            <td class="composer_name_field"><%= piece.composer %></td>
+            <td class="interests_field"><%= piece.instrumentation.name %></td>
+            <td>
+              <% if current_user && current_user.admin_of %>
+              <button class="btn add_piece_button">Add Piece</button>
+              <div class="add_piece_to_group_form">
+                <% current_user.admin_of.each do |group| %>
+                <%= form_for GroupPiece.new, class:"add_piece_ajax" do |f| %>
+                <%= f.hidden_field :group_id, :value => group.id %>
+                <%= f.hidden_field :piece_id, :value => piece.id %>
+                <%= f.submit "Add to #{group.name}", class: "btn add_piece_btn" %>
                 <% end %>
-                <% if current_user && current_user.admin_of %>
-                  <button id="spotify_button" class="btn">Listen</button>
-                  </div>
                 <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-    </div>
+              </div>
+              <% end %>
+              <% if current_user && current_user.admin_of %>
+              <button id="spotify_button" class="btn">Listen</button>
+            </div>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-  <!-- wrapper end -->
-    <br>
+</div>
+<!-- wrapper end -->
+<br>
 </div>

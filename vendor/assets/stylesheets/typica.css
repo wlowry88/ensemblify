@@ -1413,3 +1413,7 @@ blockquote p {
 #settings_edit_button {
   margin-right:10px;
 }
+
+.bottom_nav {
+  margin-bottom: 50px;
+}

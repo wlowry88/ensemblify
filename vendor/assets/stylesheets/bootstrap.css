@@ -1904,7 +1904,7 @@ table {
   text-align: left;
   min-width: 100px;
   max-width: 400px;
-  vertical-align: top;
+  vertical-align: middle;
   border-top: 1px solid #dddddd;
 }
 
@@ -1914,6 +1914,10 @@ table {
 
 .table thead th {
   vertical-align: bottom;
+}
+
+.ensemble_type_header {
+  min-width: 168px;
 }
 
 .table caption + thead tr:first-child th,
